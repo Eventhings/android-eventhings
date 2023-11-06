@@ -1,4 +1,4 @@
-package com.eventhngs.component
+package com.eventhngs.ui.component
 
 import androidx.compose.material3.Button
 import androidx.compose.material3.Surface

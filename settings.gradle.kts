@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "Eventh!ngs"
 include(":app")
 include(":ui")
+include(":feature-auth")
