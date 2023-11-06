@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Eventh!ngs"
 include(":app")
+include(":ui")
