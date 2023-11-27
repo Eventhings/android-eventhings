@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.eventhngs.feature_auth"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
