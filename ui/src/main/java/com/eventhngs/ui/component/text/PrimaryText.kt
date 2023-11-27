@@ -18,14 +18,16 @@ fun PrimaryText(
     color: Color = MaterialTheme.colorScheme.primary,
     fontSize: TextUnit = 24.sp,
     letterSpacing: TextUnit = 0.48.sp,
+    lineHeight: TextUnit = 36.sp,
     fontWeight: FontWeight = FontWeight.SemiBold
 ) {
     BaseText(
         modifier = modifier,
-        letterSpacing = letterSpacing,
         text = text,
         color = color,
         fontSize = fontSize,
+        letterSpacing = letterSpacing,
+        lineHeight = lineHeight,
         fontWeight = fontWeight
     )
 }

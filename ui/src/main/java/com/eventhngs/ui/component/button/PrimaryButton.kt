@@ -36,7 +36,7 @@ fun PrimaryButton(
             contentColor = Color.White
         ),
         elevation = ButtonDefaults.buttonElevation(
-            defaultElevation = 30.dp, 20.dp, 10.dp
+            defaultElevation = 10.dp, 5.dp, 5.dp
         ),
         contentPadding = PaddingValues(
             vertical = 14.dp,
