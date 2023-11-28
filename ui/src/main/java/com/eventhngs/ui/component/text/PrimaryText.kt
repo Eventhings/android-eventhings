@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
@@ -19,7 +20,8 @@ fun PrimaryText(
     fontSize: TextUnit = 24.sp,
     letterSpacing: TextUnit = 0.48.sp,
     lineHeight: TextUnit = 36.sp,
-    fontWeight: FontWeight = FontWeight.SemiBold
+    fontWeight: FontWeight = FontWeight.SemiBold,
+    textAlign: TextAlign = TextAlign.Start
 ) {
     BaseText(
         modifier = modifier,
@@ -28,7 +30,8 @@ fun PrimaryText(
         fontSize = fontSize,
         letterSpacing = letterSpacing,
         lineHeight = lineHeight,
-        fontWeight = fontWeight
+        fontWeight = fontWeight,
+        textAlign = textAlign
     )
 }
 
