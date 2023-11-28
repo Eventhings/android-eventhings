@@ -1,4 +1,4 @@
-package com.eventhngs.feature_auth.enterotp
+package com.eventhngs.feature_auth.resetpassword
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -13,10 +13,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,18 +21,15 @@ import com.eventhngs.feature_auth.R
 import com.eventhngs.ui.component.button.PrimaryButton
 import com.eventhngs.ui.component.text.BodyText
 import com.eventhngs.ui.component.text.PrimaryText
-import com.eventhngs.ui.component.textfield.BaseOtpTextField
+import com.eventhngs.ui.component.textfield.BaseOutlinedTextField
 import com.eventhngs.ui.theme.EventhngsTheme
 
 @ExperimentalMaterial3Api
 @Composable
-fun EnterOtpScreen(
+fun ResetPasswordScreen(
     modifier: Modifier = Modifier
 ) {
-
     val scrollState = rememberScrollState()
-    var otp by remember { mutableStateOf("") }
-
     Scaffold(
         modifier = modifier
     ) { paddingValues ->
@@ -46,28 +39,41 @@ fun EnterOtpScreen(
                 .fillMaxSize()
                 .verticalScroll(scrollState)
         ) {
-            Spacer(modifier = Modifier.height(92.dp))
+            Spacer(modifier = Modifier.height(64.dp))
             Image(
-                painter = painterResource(id = R.drawable.img_enter_otp),
-                contentDescription = "enter otp",
+                painter = painterResource(id = R.drawable.img_reset_password),
+                contentDescription = "reset password",
                 modifier = Modifier
                     .padding(horizontal = 45.dp)
                     .fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(82.dp))
             PrimaryText(
-                text = "Enter OTP",
+                text = "Reset Password",
                 modifier = Modifier.padding(horizontal = 45.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
             BodyText(
-                text = "We have sent you an email and there is a code there. Please enter it!",
+                text = "Please enter reset your new password, and reconfirm",
                 modifier = Modifier.padding(horizontal = 45.dp)
             )
             Spacer(modifier = Modifier.height(30.dp))
-            BaseOtpTextField(
-                value = otp,
-                onValueChange = { value, _ -> otp = value },
+            BaseOutlinedTextField(
+                value = "",
+                onValueChange = {},
+                label = "New  Password",
+                placeholder = "New  Password",
+                modifier = Modifier
+                    .padding(horizontal = 45.dp)
+                    .fillMaxWidth()
+
+            )
+            Spacer(modifier = Modifier.height(22.dp))
+            BaseOutlinedTextField(
+                value = "",
+                onValueChange = {},
+                label = "Confirm Password",
+                placeholder = "Confirm Password",
                 modifier = Modifier
                     .padding(horizontal = 45.dp)
                     .fillMaxWidth()
@@ -89,10 +95,10 @@ fun EnterOtpScreen(
 @ExperimentalMaterial3Api
 @Preview
 @Composable
-fun PreviewEnterOtpScreen() {
+fun PreviewResetPasswordScreen() {
     EventhngsTheme {
         Surface {
-            EnterOtpScreen()
+            ResetPasswordScreen()
         }
     }
 }
