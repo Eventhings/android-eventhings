@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.eventhngs.feature_auth.R
+import com.eventhngs.ui.component.button.PrimaryButton
 import com.eventhngs.ui.component.text.BodyText
 import com.eventhngs.ui.component.text.PrimaryText
 import com.eventhngs.ui.theme.EventhngsTheme
@@ -59,6 +60,14 @@ fun ResetPasswordSuccessScreen(
                 text = "Reset password successful, now find your event needs!",
                 modifier = Modifier.padding(horizontal = 45.dp),
                 textAlign = TextAlign.Center
+            )
+            Spacer(modifier = Modifier.height(28.dp))
+            PrimaryButton(
+                text = "Done!",
+                onClick = {},
+                modifier = Modifier
+                    .padding(horizontal = 45.dp)
+                    .fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(16.dp))
         }
