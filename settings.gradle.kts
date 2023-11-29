@@ -1,5 +1,11 @@
 import java.net.URI
 
+include(":common")
+
+
+include(":feature-home")
+
+
 pluginManagement {
     repositories {
         google()

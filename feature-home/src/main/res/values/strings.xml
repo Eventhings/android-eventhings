@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_all">All</string>
+    <string name="label_media_partner">Media Partner</string>
+    <string name="label_sponsor">Sponsor</string>
+    <string name="label_equipment">Equipment</string>
+</resources>

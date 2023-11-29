@@ -51,14 +51,14 @@ dependencies {
     api("androidx.appcompat:appcompat:1.6.1")
     api("com.google.android.material:material:1.10.0")
 
-    api("androidx.activity:activity-compose:1.8.0")
+    api("androidx.activity:activity-compose:1.8.1")
     api(platform("androidx.compose:compose-bom:2023.03.00"))
     api("androidx.compose.ui:ui")
     api("androidx.compose.ui:ui-graphics")
     api("androidx.compose.ui:ui-tooling-preview")
     api("androidx.compose.material3:material3")
 
-    implementation("com.github.composeuisuite:ohteepee:1.0.3")
+    api("io.coil-kt:coil-compose:2.5.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
