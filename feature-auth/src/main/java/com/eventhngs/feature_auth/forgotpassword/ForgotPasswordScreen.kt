@@ -27,7 +27,8 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @ExperimentalMaterial3Api
 @Composable
 fun ForgotPasswordScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToEnterOtpScreen: () -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
     Scaffold(
@@ -71,7 +72,7 @@ fun ForgotPasswordScreen(
             Spacer(modifier = Modifier.height(42.dp))
             PrimaryButton(
                 text = "Continue",
-                onClick = {},
+                onClick = navigateToEnterOtpScreen,
                 modifier = Modifier
                     .padding(horizontal = 45.dp)
                     .fillMaxWidth()

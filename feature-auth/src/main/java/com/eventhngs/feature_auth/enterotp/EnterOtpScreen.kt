@@ -31,7 +31,8 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @ExperimentalMaterial3Api
 @Composable
 fun EnterOtpScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToResetPasswordScreen: () -> Unit = {}
 ) {
 
     val scrollState = rememberScrollState()
@@ -76,7 +77,7 @@ fun EnterOtpScreen(
             Spacer(modifier = Modifier.height(42.dp))
             PrimaryButton(
                 text = "Continue",
-                onClick = {},
+                onClick = navigateToResetPasswordScreen,
                 modifier = Modifier
                     .padding(horizontal = 45.dp)
                     .fillMaxWidth()

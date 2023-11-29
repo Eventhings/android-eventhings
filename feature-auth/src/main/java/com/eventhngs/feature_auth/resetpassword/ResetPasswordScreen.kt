@@ -27,7 +27,8 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @ExperimentalMaterial3Api
 @Composable
 fun ResetPasswordScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToResetPasswordSuccessScreen: () -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
     Scaffold(
@@ -82,7 +83,7 @@ fun ResetPasswordScreen(
             Spacer(modifier = Modifier.height(42.dp))
             PrimaryButton(
                 text = "Continue",
-                onClick = {},
+                onClick = navigateToResetPasswordSuccessScreen,
                 modifier = Modifier
                     .padding(horizontal = 45.dp)
                     .fillMaxWidth()

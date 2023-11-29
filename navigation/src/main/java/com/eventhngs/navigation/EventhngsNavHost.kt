@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.eventhngs.feature_auth.enterotp.EnterOtpScreen
 import com.eventhngs.feature_auth.forgotpassword.ForgotPasswordScreen
+import com.eventhngs.feature_auth.login.LoginScreen
 import com.eventhngs.feature_auth.resetpassword.ResetPasswordScreen
 import com.eventhngs.feature_auth.resetpasswordsuccess.ResetPasswordSuccessScreen
 import com.eventhngs.feature_home.HomeScreen
@@ -19,26 +20,39 @@ import com.eventhngs.feature_home.HomeScreen
 @ExperimentalMaterial3Api
 @Composable
 fun EventhngsNavHost(
-    startDestination: Screen = Screen.Home,
+    startDestination: Screen = Screen.Login,
     navController: NavHostController = rememberNavController()
 ) {
 
     val startDestinationRoute = startDestination.route
 
     NavHost(navController = navController, startDestination = startDestinationRoute) {
-        composable(Screen.Login.route) { }
-        composable(Screen.Register.route) { }
-        composable(Screen.EnterOtp.route) {
-            EnterOtpScreen()
+        composable(Screen.Login.route) {
+            LoginScreen(
+                navigateToForgotPasswordScreen = navController::navigateToForgotPasswordScreen,
+                navigateToHomeScreen = navController::navigateToHomeScreen
+            )
         }
+        composable(Screen.Register.route) { }
         composable(Screen.ForgotPassword.route) {
-            ForgotPasswordScreen()
+            ForgotPasswordScreen(
+                navigateToEnterOtpScreen = navController::navigateToEnterOtpScreen
+            )
+        }
+        composable(Screen.EnterOtp.route) {
+            EnterOtpScreen(
+                navigateToResetPasswordScreen = navController::navigateToResetPasswordScreen
+            )
         }
         composable(Screen.ResetPassword.route) {
-            ResetPasswordScreen()
+            ResetPasswordScreen(
+                navigateToResetPasswordSuccessScreen = navController::navigateToResetPasswordSuccessScreen
+            )
         }
         composable(Screen.ResetPasswordSuccess.route) {
-            ResetPasswordSuccessScreen()
+            ResetPasswordSuccessScreen(
+                navigateToLoginScreen = { navController.navigateToLoginScreen(from = Screen.Login) }
+            )
         }
         composable(Screen.Home.route) {
             HomeScreen()
