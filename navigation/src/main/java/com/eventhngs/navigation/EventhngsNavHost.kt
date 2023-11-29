@@ -6,7 +6,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.eventhngs.feature_auth.enterotp.EnterOtpScreen
 import com.eventhngs.feature_auth.forgotpassword.ForgotPasswordScreen
@@ -27,34 +26,34 @@ fun EventhngsNavHost(
     val startDestinationRoute = startDestination.route
 
     NavHost(navController = navController, startDestination = startDestinationRoute) {
-        composable(Screen.Login.route) {
+        composableWithSlideAnimation(Screen.Login.route) {
             LoginScreen(
                 navigateToForgotPasswordScreen = navController::navigateToForgotPasswordScreen,
                 navigateToHomeScreen = navController::navigateToHomeScreen
             )
         }
-        composable(Screen.Register.route) { }
-        composable(Screen.ForgotPassword.route) {
+        composableWithSlideAnimation(Screen.Register.route) { }
+        composableWithSlideAnimation(Screen.ForgotPassword.route) {
             ForgotPasswordScreen(
                 navigateToEnterOtpScreen = navController::navigateToEnterOtpScreen
             )
         }
-        composable(Screen.EnterOtp.route) {
+        composableWithSlideAnimation(Screen.EnterOtp.route) {
             EnterOtpScreen(
                 navigateToResetPasswordScreen = navController::navigateToResetPasswordScreen
             )
         }
-        composable(Screen.ResetPassword.route) {
+        composableWithSlideAnimation(Screen.ResetPassword.route) {
             ResetPasswordScreen(
                 navigateToResetPasswordSuccessScreen = navController::navigateToResetPasswordSuccessScreen
             )
         }
-        composable(Screen.ResetPasswordSuccess.route) {
+        composableWithSlideAnimation(Screen.ResetPasswordSuccess.route) {
             ResetPasswordSuccessScreen(
                 navigateToLoginScreen = { navController.navigateToLoginScreen(from = Screen.Login) }
             )
         }
-        composable(Screen.Home.route) {
+        composableWithSlideAnimation(Screen.Home.route) {
             HomeScreen()
         }
     }
