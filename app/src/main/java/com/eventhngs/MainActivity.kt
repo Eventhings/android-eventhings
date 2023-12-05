@@ -11,8 +11,12 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.eventhngs.data.di.dataModule
+import com.eventhngs.domain.di.domainModule
 import com.eventhngs.navigation.EventhngsNavHost
 import com.eventhngs.ui.theme.EventhngsTheme
+import org.koin.android.ext.koin.androidContext
+import org.koin.compose.KoinApplication
 
 @ExperimentalMaterial3Api
 @ExperimentalFoundationApi
@@ -22,13 +26,18 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            EventhngsTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    EventhngsNavHost()
+            KoinApplication(application = {
+                androidContext(applicationContext)
+                modules(dataModule, domainModule)
+            }) {
+                EventhngsTheme {
+                    // A surface container using the 'background' color from the theme
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background
+                    ) {
+                        EventhngsNavHost()
+                    }
                 }
             }
         }
