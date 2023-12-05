@@ -10,9 +10,11 @@ import androidx.navigation.compose.rememberNavController
 import com.eventhngs.feature_auth.enterotp.EnterOtpScreen
 import com.eventhngs.feature_auth.forgotpassword.ForgotPasswordScreen
 import com.eventhngs.feature_auth.login.LoginScreen
+import com.eventhngs.feature_auth.register.RegisterScreen
 import com.eventhngs.feature_auth.resetpassword.ResetPasswordScreen
 import com.eventhngs.feature_auth.resetpasswordsuccess.ResetPasswordSuccessScreen
 import com.eventhngs.feature_home.HomeScreen
+import com.eventhngs.splashscreen.SplashScreen
 
 @ExperimentalFoundationApi
 @ExperimentalLayoutApi
@@ -25,11 +27,15 @@ fun EventhngsNavHost(
 
     val startDestinationRoute = startDestination.route
 
-    NavHost(navController = navController, startDestination = startDestinationRoute) {
+    NavHost(navController = navController, startDestination = Screen.SplashScreen.route) {
+        composableWithSlideAnimation(Screen.SplashScreen.route) {
+            SplashScreen(
+                navController
+            )
+        }
         composableWithSlideAnimation(Screen.Login.route) {
             LoginScreen(
-                navigateToForgotPasswordScreen = navController::navigateToForgotPasswordScreen,
-                navigateToHomeScreen = navController::navigateToHomeScreen
+              navController
             )
         }
         composableWithSlideAnimation(Screen.Register.route) { }
@@ -56,5 +62,11 @@ fun EventhngsNavHost(
         composableWithSlideAnimation(Screen.Home.route) {
             HomeScreen()
         }
+        composableWithSlideAnimation(Screen.Register.route) {
+           RegisterScreen(
+               navController
+           )
+        }
+
     }
 }

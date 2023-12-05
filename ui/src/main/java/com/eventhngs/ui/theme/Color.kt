@@ -22,4 +22,17 @@ val Blue = Color(0xFF4F85CB)
 val LightGreen = Color(0xFFD8FFF3)
 val Green = Color(0xFF38AF89)
 
+//eventhings color
+val blue1 = Color(0xFF5D5FEF)
+val Purple1 = Color(0xFF9365CD)
+val Purple2 = Color(0xFF704C9D)
+val black1 = Color(0xFF2D2D2D)
+val grey1 = Color(0xFF787878)
+val white = Color(0xFFFFFFFF)
+val purple3 = Color(0xFFEBE5F2)
+val purple4 = Color(0xFFF5F2F8)
+val blue2 = Color(0xFF4F85CB)
+val grey2 = Color(0xA4A4A4)
+val grey3 = Color(0x4D4D4D)
+
 
