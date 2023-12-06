@@ -6,7 +6,7 @@ import kotlin.jvm.Throws
 @Throws(IllegalArgumentException::class)
 fun NavHostController.navigateToLoginScreen(
     clearBackStack: Boolean = true,
-    from: Screen = Screen.Home
+    from: Screen = Screen.Main
 ) {
     navigate(Screen.Login.route) {
         if (!clearBackStack) return@navigate
@@ -14,6 +14,11 @@ fun NavHostController.navigateToLoginScreen(
             inclusive = true
         }
     }
+}
+
+@Throws(IllegalArgumentException::class)
+fun NavHostController.navigateToRegisterScreen() {
+    navigate(Screen.Register.route)
 }
 
 @Throws(IllegalArgumentException::class)
@@ -53,11 +58,11 @@ fun NavHostController.navigateToResetPasswordSuccessScreen(
 }
 
 @Throws(IllegalArgumentException::class)
-fun NavHostController.navigateToHomeScreen(
+fun NavHostController.navigateToMainScreen(
     clearBackStack: Boolean = true,
     from: Screen = Screen.Login
 ) {
-    navigate(Screen.Home.route) {
+    navigate(Screen.Main.route) {
         if (!clearBackStack) return@navigate
         popUpTo(from.route) {
             inclusive = true

@@ -13,7 +13,7 @@ import com.eventhngs.feature_auth.login.LoginScreen
 import com.eventhngs.feature_auth.register.RegisterScreen
 import com.eventhngs.feature_auth.resetpassword.ResetPasswordScreen
 import com.eventhngs.feature_auth.resetpasswordsuccess.ResetPasswordSuccessScreen
-import com.eventhngs.feature_home.HomeScreen
+import com.eventhngs.feature_main.MainScreen
 import com.eventhngs.splashscreen.SplashScreen
 
 @ExperimentalFoundationApi
@@ -21,13 +21,13 @@ import com.eventhngs.splashscreen.SplashScreen
 @ExperimentalMaterial3Api
 @Composable
 fun EventhngsNavHost(
-    startDestination: Screen = Screen.Login,
+    startDestination: Screen = Screen.SplashScreen,
     navController: NavHostController = rememberNavController()
 ) {
 
     val startDestinationRoute = startDestination.route
 
-    NavHost(navController = navController, startDestination = Screen.SplashScreen.route) {
+    NavHost(navController = navController, startDestination = startDestinationRoute) {
         composableWithSlideAnimation(Screen.SplashScreen.route) {
             SplashScreen(
                 navController
@@ -35,7 +35,9 @@ fun EventhngsNavHost(
         }
         composableWithSlideAnimation(Screen.Login.route) {
             LoginScreen(
-              navController
+                navigateToMainScreen = navController::navigateToMainScreen,
+                navigateToRegisterScreen = navController::navigateToRegisterScreen,
+                navigateToForgotPasswordScreen = navController::navigateToForgotPasswordScreen
             )
         }
         composableWithSlideAnimation(Screen.Register.route) { }
@@ -59,8 +61,8 @@ fun EventhngsNavHost(
                 navigateToLoginScreen = { navController.navigateToLoginScreen(from = Screen.Login) }
             )
         }
-        composableWithSlideAnimation(Screen.Home.route) {
-            HomeScreen()
+        composableWithSlideAnimation(Screen.Main.route) {
+            MainScreen()
         }
         composableWithSlideAnimation(Screen.Register.route) {
            RegisterScreen(

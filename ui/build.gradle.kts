@@ -45,9 +45,6 @@ android {
 
 dependencies {
 
-    implementation(project(":navigation"))
-    implementation(project(":feature-home"))
-
     api("androidx.core:core-ktx:1.12.0")
     api("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
@@ -60,6 +57,8 @@ dependencies {
     api("androidx.compose.ui:ui-graphics")
     api("androidx.compose.ui:ui-tooling-preview")
     api("androidx.compose.material3:material3")
+    api("androidx.compose.material:material-icons-extended")
+
 
     api("io.coil-kt:coil-compose:2.5.0")
 
@@ -80,5 +79,5 @@ dependencies {
     implementation("androidx.compose.material:material")
     implementation("androidx.compose.material:material-icons-extended")
 
-    implementation("androidx.navigation:navigation-compose:2.6.0")
+    implementation("androidx.navigation:navigation-compose:2.7.5")
 }

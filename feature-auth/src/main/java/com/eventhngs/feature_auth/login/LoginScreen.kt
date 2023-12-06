@@ -58,8 +58,10 @@ import com.eventhngs.ui.theme.blue1
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
-    navController: NavController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToMainScreen: () -> Unit = {},
+    navigateToRegisterScreen: () -> Unit = {},
+    navigateToForgotPasswordScreen: () -> Unit = {}
 ) {
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
@@ -123,7 +125,7 @@ fun LoginScreen(
                 .padding(top = 20.dp)
                 .fillMaxWidth(),
             value = password,
-            onValueChange ={newPassword ->
+            onValueChange ={ newPassword ->
                 password = newPassword
                 isValid = isEmailValid(email) && isPasswordValid(newPassword)
             },
@@ -164,7 +166,7 @@ fun LoginScreen(
                     Toast.makeText(context, "Pleae Enter Password", Toast.LENGTH_SHORT).show()
                 }else{
                     Toast.makeText(context, "Validation Succesfully Completed", Toast.LENGTH_SHORT).show()
-                    navController.navigate("home")
+                    navigateToMainScreen()
                 }
             }
         ) {
@@ -175,9 +177,7 @@ fun LoginScreen(
                 contentAlignment = Alignment.Center
             ){
                 Text(stringResource(R.string.login))
-
             }
-
         }
 
         Row (
@@ -194,7 +194,7 @@ fun LoginScreen(
                     textAlign = TextAlign.Center
                 ),
                 onClick = {
-                    navController.navigate("register")
+                    navigateToRegisterScreen()
                 }
             )
             ClickableText(
@@ -208,7 +208,7 @@ fun LoginScreen(
                     textAlign = TextAlign.End
                 ),
                 onClick = {
-                    navController.navigate("forgot-password")
+                    navigateToForgotPasswordScreen()
                 }
             )
 
