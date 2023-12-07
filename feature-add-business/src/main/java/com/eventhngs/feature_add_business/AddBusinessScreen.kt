@@ -3,6 +3,7 @@ package com.eventhngs.feature_add_business
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -60,6 +61,7 @@ fun AddBusinessScreen(
                 modifier = Modifier
                     .padding(horizontal = 20.dp)
                     .padding(bottom = 20.dp)
+                    .navigationBarsPadding()
             )
         },
         modifier = modifier
