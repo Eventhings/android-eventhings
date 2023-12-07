@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.eventhngs.feature_add_business.AddBusinessScreen
 import com.eventhngs.feature_auth.enterotp.EnterOtpScreen
 import com.eventhngs.feature_auth.forgotpassword.ForgotPasswordScreen
 import com.eventhngs.feature_auth.login.LoginScreen
@@ -61,13 +62,16 @@ fun EventhngsNavHost(
                 navigateToLoginScreen = { navController.navigateToLoginScreen(from = Screen.Login) }
             )
         }
+        composableWithSlideAnimation(Screen.Register.route) {
+            RegisterScreen(
+               navController
+           )
+        }
         composableWithSlideAnimation(Screen.Main.route) {
             MainScreen()
         }
-        composableWithSlideAnimation(Screen.Register.route) {
-           RegisterScreen(
-               navController
-           )
+        composableWithSlideAnimation(Screen.AddBusiness.route) {
+            AddBusinessScreen()
         }
 
     }

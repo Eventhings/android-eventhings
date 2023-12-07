@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.eventhngs.navigation"
+    namespace = "com.eventhngs.feature_add_business"
     compileSdk = 34
 
     defaultConfig {
@@ -46,11 +46,7 @@ android {
 dependencies {
 
     implementation(project(":ui"))
-    implementation(project(":feature-auth"))
-    implementation(project(":feature-main"))
-    implementation(project(":feature-add-business"))
-
-    api("androidx.navigation:navigation-compose:2.7.5")
+    implementation(project(":common"))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

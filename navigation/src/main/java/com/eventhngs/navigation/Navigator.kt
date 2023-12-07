@@ -70,3 +70,8 @@ fun NavHostController.navigateToMainScreen(
     }
 }
 
+@Throws(IllegalArgumentException::class)
+fun NavHostController.navigateToAddBusinessScreen() {
+    navigate(Screen.AddBusiness.route)
+}
+
