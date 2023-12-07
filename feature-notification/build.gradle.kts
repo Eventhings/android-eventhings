@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.eventhngs.feature_main"
+    namespace = "com.eventhngs.feature_notification"
     compileSdk = 34
 
     defaultConfig {
@@ -46,10 +46,6 @@ android {
 dependencies {
 
     implementation(project(":ui"))
-    implementation(project(":feature-home"))
-    implementation(project(":feature-notification"))
-
-    implementation("androidx.navigation:navigation-compose:2.7.5")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

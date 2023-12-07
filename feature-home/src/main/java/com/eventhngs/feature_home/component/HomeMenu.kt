@@ -10,9 +10,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.eventhngs.feature_home.R
 import com.eventhngs.feature_home.domain.MenuItem
 import com.eventhngs.ui.theme.EventhngsTheme
+import com.eventhngs.ui.R
 
 @Composable
 fun HomeMenu(

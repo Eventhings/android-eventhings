@@ -16,6 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import com.eventhngs.feature_home.HomeScreen
 import com.eventhngs.feature_main.component.BottomBar
 import com.eventhngs.feature_main.navigation.Screen
+import com.eventhngs.feature_notification.NotificationScreen
 import com.eventhngs.ui.theme.EventhngsTheme
 
 @ExperimentalFoundationApi
@@ -41,7 +42,9 @@ fun MainScreen(
                 HomeScreen()
             }
             composable(Screen.Chat.route) {}
-            composable(Screen.Notification.route) {}
+            composable(Screen.Notification.route) {
+                NotificationScreen()
+            }
             composable(Screen.Profile.route) {}
         }
     }

@@ -37,6 +37,7 @@ import com.eventhngs.feature_home.domain.EventNeedItem
 import com.eventhngs.feature_home.domain.MenuItem
 import com.eventhngs.ui.theme.EventhngsTheme
 import com.eventhngs.ui.theme.poppinsFontFamily
+import com.eventhngs.ui.R
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalLayoutApi
