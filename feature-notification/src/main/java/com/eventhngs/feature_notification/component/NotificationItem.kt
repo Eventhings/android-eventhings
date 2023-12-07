@@ -13,6 +13,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -46,14 +47,26 @@ fun NotificationItem(
             )
             Spacer(modifier = Modifier.width(8.dp))
             Column {
-                Text(
-                    text = notification.title,
-                    fontSize = 12.sp,
-                    lineHeight = 18.sp,
-                    fontFamily = poppinsFontFamily,
-                    fontWeight = FontWeight.SemiBold,
-                    color = Color(0xFF2D2D2D)
-                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = notification.title,
+                        fontSize = 12.sp,
+                        lineHeight = 18.sp,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color(0xFF2D2D2D),
+                        modifier = Modifier.weight(1f)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "23 Jan",
+                        fontSize = 10.sp,
+                        lineHeight = 16.sp,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = FontWeight.Medium,
+                        color = Color(0xFF787878)
+                    )
+                }
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = notification.description,
@@ -78,7 +91,8 @@ fun PreviewNotificationItem() {
                 id = 1,
                 icon = R.drawable.ic_menu_all,
                 title = "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-                description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis interdum augue eu sollicitudin."
+                description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis interdum augue eu sollicitudin.",
+                date = "23 Jan"
             )
             NotificationItem(
                 notification = notification,

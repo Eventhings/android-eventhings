@@ -27,7 +27,8 @@ fun NotificationScreen(
             id = it,
             icon = R.drawable.ic_menu_all,
             title = "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis interdum augue eu sollicitudin."
+            description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis interdum augue eu sollicitudin.",
+            date = "23 Jan"
         )
     }
 
