@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_saved">Saved</string>
+    <string name="label_draft">Draft</string>
+    <string name="label_active">Active</string>
+    <string name="label_archive">Archive</string>
+</resources>

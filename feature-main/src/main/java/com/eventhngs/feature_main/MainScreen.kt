@@ -18,6 +18,7 @@ import com.eventhngs.feature_home.HomeScreen
 import com.eventhngs.feature_main.component.BottomBar
 import com.eventhngs.feature_main.navigation.Screen
 import com.eventhngs.feature_notification.NotificationScreen
+import com.eventhngs.feature_profile.ProfileScreen
 import com.eventhngs.ui.theme.EventhngsTheme
 
 @ExperimentalFoundationApi
@@ -46,7 +47,9 @@ fun MainScreen(
             composable(Screen.Notification.route) {
                 NotificationScreen()
             }
-            composable(Screen.Profile.route) {}
+            composable(Screen.Profile.route) {
+                ProfileScreen()
+            }
         }
     }
 }
