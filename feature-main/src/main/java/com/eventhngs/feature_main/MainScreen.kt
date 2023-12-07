@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -36,7 +37,7 @@ fun MainScreen(
         NavHost(
             navController = navController,
             startDestination = Screen.Home.route,
-            modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding())
+            modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding() - 48.dp)
         ) {
             composable(Screen.Home.route) {
                 HomeScreen()

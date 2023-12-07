@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -38,6 +39,7 @@ import com.eventhngs.feature_home.domain.MenuItem
 import com.eventhngs.ui.theme.EventhngsTheme
 import com.eventhngs.ui.theme.poppinsFontFamily
 import com.eventhngs.ui.R
+import com.eventhngs.ui.component.button.TertiaryButton
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalLayoutApi
@@ -126,18 +128,24 @@ fun HomeScreen(
                 Spacer(modifier = Modifier.height(20.dp))
             }
             itemsIndexed(items = eventNeedItems, key = { _, event -> event.id }) { index, eventNeedItem ->
-                val modifier = if (index % 2 == 0) {
+                val modifierItem = if (index % 2 == 0) {
                     Modifier.padding(start = 20.dp, bottom = 8.dp)
                 } else {
                     Modifier.padding(end = 20.dp, bottom = 8.dp)
                 }
                 EventNeedItem(
                     eventNeedItem = eventNeedItem,
-                    modifier = modifier
+                    modifier = modifierItem
                 )
             }
             item(span = { GridItemSpan(maxLineSpan) }) {
                 Spacer(modifier = Modifier.height(20.dp))
+            }
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                TertiaryButton(
+                    text = "See All",
+                    modifier = Modifier.wrapContentWidth()
+                )
             }
             item(span = { GridItemSpan(maxLineSpan) }) {
                 HomeFooter(
