@@ -2,9 +2,15 @@ package com.eventhngs.feature_main
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,6 +20,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.eventhngs.feature_chat.list.ListChatScreen
 import com.eventhngs.feature_home.HomeScreen
 import com.eventhngs.feature_main.component.BottomBar
 import com.eventhngs.feature_main.navigation.Screen
@@ -33,6 +40,18 @@ fun MainScreen(
         bottomBar = {
             BottomBar(navController = navController)
         },
+        floatingActionButton = {
+            SmallFloatingActionButton(
+                onClick = { /*TODO*/ },
+                modifier = Modifier.offset(y = 30.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Add,
+                    contentDescription = "Add"
+                )
+            }
+        },
+        floatingActionButtonPosition = FabPosition.Center,
         modifier = modifier
     ) { paddingValues ->
         NavHost(
@@ -43,7 +62,9 @@ fun MainScreen(
             composable(Screen.Home.route) {
                 HomeScreen()
             }
-            composable(Screen.Chat.route) {}
+            composable(Screen.Chat.route) {
+                ListChatScreen()
+            }
             composable(Screen.Notification.route) {
                 NotificationScreen()
             }

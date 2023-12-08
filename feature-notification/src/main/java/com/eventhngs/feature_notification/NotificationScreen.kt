@@ -34,7 +34,7 @@ fun NotificationScreen(
 
     Scaffold(
         topBar = {
-            BaseTopAppBar(title = "Notification")
+            BaseTopAppBar(title = "Notifications")
         },
         modifier = modifier
     ) { paddingValues ->
