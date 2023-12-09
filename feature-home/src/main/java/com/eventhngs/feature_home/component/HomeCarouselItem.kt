@@ -50,7 +50,7 @@ fun HomeCarouselItem(
                 ambientColor = MaterialTheme.colorScheme.primary
             )
             .fillMaxWidth()
-            .background(color = MaterialTheme.colorScheme.primary)
+            .background(color = Color(0xFF9365CD), shape = RoundedCornerShape(size = 10.dp))
             .padding(
                 start = 20.dp,
                 top = 20.dp,
