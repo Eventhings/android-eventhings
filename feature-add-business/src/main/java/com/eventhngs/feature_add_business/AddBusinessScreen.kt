@@ -72,6 +72,7 @@ fun AddBusinessScreen(
                 .padding(paddingValues)
                 .verticalScroll(scrollState)
         ) {
+            Spacer(modifier = Modifier.height(16.dp))
             TextTitle(
                 text = "Upload your event related businesses at Eventh!ngs and enjoy the benefits!",
                 modifier = Modifier.padding(horizontal = 20.dp)

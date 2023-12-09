@@ -166,6 +166,9 @@ fun HomeScreen(
                     modifier = Modifier.padding(20.dp)
                 )
             }
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                Spacer(modifier = Modifier.height(40.dp))
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ import androidx.navigation.NavDeepLink
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
-fun NavGraphBuilder.composableWithSlideAnimation(
+fun NavGraphBuilder.composableWithSlideHorizontalAnimation(
     route: String,
     arguments: List<NamedNavArgument> = emptyList(),
     deepLinks: List<NavDeepLink> = emptyList(),
@@ -42,6 +42,45 @@ fun NavGraphBuilder.composableWithSlideAnimation(
             slideOutOfContainer(
                 towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
                 animationSpec = tween(700)
+            )
+        }
+    ) {
+        content.invoke(this, it)
+    }
+}
+
+fun NavGraphBuilder.composableWithSlideVerticalAnimation(
+    route: String,
+    arguments: List<NamedNavArgument> = emptyList(),
+    deepLinks: List<NavDeepLink> = emptyList(),
+    content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit
+) {
+    composable(
+        route = route,
+        arguments = arguments,
+        deepLinks = deepLinks,
+        enterTransition = {
+            slideIntoContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Up,
+                animationSpec = tween(1000)
+            )
+        },
+        exitTransition = {
+            slideOutOfContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Up,
+                animationSpec = tween(1000)
+            )
+        },
+        popEnterTransition = {
+            slideIntoContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Down,
+                animationSpec = tween(1000)
+            )
+        },
+        popExitTransition = {
+            slideOutOfContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Down,
+                animationSpec = tween(1000)
             )
         }
     ) {

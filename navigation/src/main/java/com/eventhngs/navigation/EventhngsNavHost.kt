@@ -34,76 +34,76 @@ fun EventhngsNavHost(
     val startDestinationRoute = startDestination.route
 
     NavHost(navController = navController, startDestination = startDestinationRoute) {
-        composableWithSlideAnimation(Screen.SplashScreen.route) {
+        composableWithSlideHorizontalAnimation(Screen.SplashScreen.route) {
             SplashScreen(
                 navController
             )
         }
-        composableWithSlideAnimation(Screen.Login.route) {
+        composableWithSlideHorizontalAnimation(Screen.Login.route) {
             LoginScreen(
                 navigateToMainScreen = navController::navigateToMainScreen,
                 navigateToRegisterScreen = navController::navigateToRegisterScreen,
                 navigateToForgotPasswordScreen = navController::navigateToForgotPasswordScreen
             )
         }
-        composableWithSlideAnimation(Screen.Register.route) { }
-        composableWithSlideAnimation(Screen.ForgotPassword.route) {
+        composableWithSlideHorizontalAnimation(Screen.Register.route) { }
+        composableWithSlideHorizontalAnimation(Screen.ForgotPassword.route) {
             ForgotPasswordScreen(
                 navigateToEnterOtpScreen = navController::navigateToEnterOtpScreen
             )
         }
-        composableWithSlideAnimation(Screen.EnterOtp.route) {
+        composableWithSlideHorizontalAnimation(Screen.EnterOtp.route) {
             EnterOtpScreen(
                 navigateToResetPasswordScreen = navController::navigateToResetPasswordScreen
             )
         }
-        composableWithSlideAnimation(Screen.ResetPassword.route) {
+        composableWithSlideHorizontalAnimation(Screen.ResetPassword.route) {
             ResetPasswordScreen(
                 navigateToResetPasswordSuccessScreen = navController::navigateToResetPasswordSuccessScreen
             )
         }
-        composableWithSlideAnimation(Screen.ResetPasswordSuccess.route) {
+        composableWithSlideHorizontalAnimation(Screen.ResetPasswordSuccess.route) {
             ResetPasswordSuccessScreen(
                 navigateToLoginScreen = { navController.navigateToLoginScreen(from = Screen.Login) }
             )
         }
-        composableWithSlideAnimation(Screen.Register.route) {
+        composableWithSlideHorizontalAnimation(Screen.Register.route) {
             RegisterScreen(
                navController
            )
         }
-        composableWithSlideAnimation(Screen.Main.route) {
+        composableWithSlideHorizontalAnimation(Screen.Main.route) {
             val mainNavigator = MainNavigator(navController)
             MainScreen(
                 mainNavigator = mainNavigator
             )
         }
-        composableWithSlideAnimation(Screen.AddBusiness.route) {
+        composableWithSlideVerticalAnimation(Screen.AddBusiness.route) {
             AddBusinessScreen(
                 navigateUp = navController::navigateUp
             )
         }
-        composableWithSlideAnimation(Screen.AllMenu.route) {
+        composableWithSlideHorizontalAnimation(Screen.AllMenu.route) {
             AllMenuScreen(
                 navigateUp = navController::navigateUp
             )
         }
-        composableWithSlideAnimation(Screen.MediaPartnerMenu.route) {
+        composableWithSlideHorizontalAnimation(Screen.MediaPartnerMenu.route) {
             MediaPartnerMenuScreen(
                 navigateUp = navController::navigateUp
             )
         }
-        composableWithSlideAnimation(Screen.SponsorMenu.route) {
+        composableWithSlideHorizontalAnimation(Screen.SponsorMenu.route) {
             SponsorMenuScreen(
                 navigateUp = navController::navigateUp
             )
         }
-        composableWithSlideAnimation(Screen.EquipmentRentalMenu.route) {
+        composableWithSlideHorizontalAnimation(Screen.EquipmentRentalMenu.route) {
             EquipmentRentalMenuScreen(
                 navigateUp = navController::navigateUp
             )
         }
-        composableWithSlideAnimation(Screen.EditProfile.route) {
+        composableWithSlideHorizontalAnimation(Screen.EditProfile.route) {
             EditProfileScreen(
                 navigateUp = navController::navigateUp
             )

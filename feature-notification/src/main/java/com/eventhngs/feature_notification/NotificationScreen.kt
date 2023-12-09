@@ -1,5 +1,7 @@
 package com.eventhngs.feature_notification
 
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -47,6 +49,7 @@ fun NotificationScreen(
                     modifier = Modifier.padding(horizontal = 20.dp)
                 )
             }
+            item { Spacer(modifier = Modifier.height(40.dp)) }
         }
     }
 }

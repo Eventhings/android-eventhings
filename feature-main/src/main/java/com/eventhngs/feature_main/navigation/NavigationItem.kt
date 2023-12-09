@@ -1,9 +1,12 @@
 package com.eventhngs.feature_main.navigation
 
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.annotation.DrawableRes
 
 class NavigationItem (
     val title: String,
-    val icon: ImageVector,
-    val screen: Screen
+    val screen: Screen,
+    @DrawableRes
+    val icon: Int,
+    @DrawableRes
+    val iconActive: Int
 )

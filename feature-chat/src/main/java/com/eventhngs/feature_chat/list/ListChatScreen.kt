@@ -79,6 +79,7 @@ fun ListChatScreen(
                         .padding(horizontal = 20.dp, vertical = 10.dp)
                 )
             }
+            item { Spacer(modifier = Modifier.height(40.dp)) }
         }
     }
 }
