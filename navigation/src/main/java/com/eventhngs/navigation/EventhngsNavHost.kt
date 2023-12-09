@@ -18,6 +18,7 @@ import com.eventhngs.feature_auth.resetpasswordsuccess.ResetPasswordSuccessScree
 import com.eventhngs.feature_equipment_rental_menu.EquipmentRentalMenuScreen
 import com.eventhngs.feature_main.MainScreen
 import com.eventhngs.feature_media_partner_menu.MediaPartnerMenuScreen
+import com.eventhngs.feature_profile.editprofile.EditProfileScreen
 import com.eventhngs.feature_sponsor_menu.SponsorMenuScreen
 import com.eventhngs.splashscreen.SplashScreen
 
@@ -99,6 +100,11 @@ fun EventhngsNavHost(
         }
         composableWithSlideAnimation(Screen.EquipmentRentalMenu.route) {
             EquipmentRentalMenuScreen(
+                navigateUp = navController::navigateUp
+            )
+        }
+        composableWithSlideAnimation(Screen.EditProfile.route) {
+            EditProfileScreen(
                 navigateUp = navController::navigateUp
             )
         }

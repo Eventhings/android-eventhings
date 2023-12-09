@@ -6,6 +6,7 @@ interface MainNavigator {
     fun navigateToSponsorMenuScreen()
     fun navigateToEquipmentRentalMenuScreen()
     fun navigateToAddBusinessMenuScreen()
+    fun navigateToEditProfileScreen()
 }
 
 object EmptyMainNavigator : MainNavigator {
@@ -14,4 +15,5 @@ object EmptyMainNavigator : MainNavigator {
     override fun navigateToSponsorMenuScreen() {}
     override fun navigateToEquipmentRentalMenuScreen() {}
     override fun navigateToAddBusinessMenuScreen() {}
+    override fun navigateToEditProfileScreen() {}
 }

@@ -1,4 +1,4 @@
-package com.eventhngs.feature_profile
+package com.eventhngs.feature_profile.profile
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.eventhngs.feature_profile.R
 import com.eventhngs.feature_profile.component.ProfileHeader
 import com.eventhngs.feature_profile.component.ProfileMenuSection
 import com.eventhngs.feature_profile.domain.Profile
@@ -25,7 +26,8 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @ExperimentalMaterial3Api
 @Composable
 fun ProfileScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToEditProfileScreen: () -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
     val profile = Profile(
@@ -66,7 +68,8 @@ fun ProfileScreen(
         ) {
             ProfileHeader(
                 profile = profile,
-                modifier = Modifier.padding(horizontal = 20.dp)
+                modifier = Modifier.padding(horizontal = 20.dp),
+                onEditProfileClick = navigateToEditProfileScreen
             )
             Spacer(modifier = Modifier.height(16.dp))
             ProfileMenuSection(

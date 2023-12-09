@@ -12,6 +12,7 @@ class MainNavigator(
     override fun navigateToSponsorMenuScreen() { navController.navigateToSponsorMenuScreen() }
     override fun navigateToEquipmentRentalMenuScreen() { navController.navigateToEquipmentRentalMenuScreen() }
     override fun navigateToAddBusinessMenuScreen() { navController.navigateToAddBusinessScreen() }
+    override fun navigateToEditProfileScreen() { navController.navigateToEditProfileScreen() }
 }
 
 @Throws(IllegalArgumentException::class)
@@ -104,5 +105,10 @@ fun NavHostController.navigateToSponsorMenuScreen() {
 @Throws(IllegalArgumentException::class)
 fun NavHostController.navigateToEquipmentRentalMenuScreen() {
     navigate(Screen.EquipmentRentalMenu.route)
+}
+
+@Throws(IllegalArgumentException::class)
+fun NavHostController.navigateToEditProfileScreen() {
+    navigate(Screen.EditProfile.route)
 }
 

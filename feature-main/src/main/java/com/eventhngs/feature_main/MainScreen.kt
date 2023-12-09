@@ -27,7 +27,7 @@ import com.eventhngs.feature_main.navigation.EmptyMainNavigator
 import com.eventhngs.feature_main.navigation.MainNavigator
 import com.eventhngs.feature_main.navigation.Screen
 import com.eventhngs.feature_notification.NotificationScreen
-import com.eventhngs.feature_profile.ProfileScreen
+import com.eventhngs.feature_profile.profile.ProfileScreen
 import com.eventhngs.ui.theme.EventhngsTheme
 
 @ExperimentalFoundationApi
@@ -77,7 +77,9 @@ fun MainScreen(
                 NotificationScreen()
             }
             composable(Screen.Profile.route) {
-                ProfileScreen()
+                ProfileScreen(
+                    navigateToEditProfileScreen = mainNavigator::navigateToEditProfileScreen
+                )
             }
         }
     }

@@ -27,51 +27,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.eventhngs.ui.theme.EventhngsTheme
 
-//@ExperimentalMaterial3Api
-//@Composable
-//fun SmallTextField(
-//    modifier: Modifier = Modifier,
-//    value: String = "",
-//    leadingIcon: (@Composable () -> Unit)? = null,
-//    trailingIcon: (@Composable () -> Unit)? = null,
-//    placeholder: String = "placeholder",
-//) {
-//    BasicTextField(
-//        modifier = modifier
-//            .background(
-//                MaterialTheme.colorScheme.surface,
-//                MaterialTheme.shapes.small,
-//            ),
-//        value = value,
-//        onValueChange = {},
-//        singleLine = true,
-//        cursorBrush = SolidColor(MaterialTheme.colorScheme.primary),
-//        textStyle = LocalTextStyle.current.copy(
-//            color = MaterialTheme.colorScheme.onSurface,
-//            fontSize = 12.sp
-//        ),
-//        decorationBox = { innerTextField ->
-//            Row(
-//                modifier,
-//                verticalAlignment = Alignment.CenterVertically
-//            ) {
-//                if (leadingIcon != null) leadingIcon()
-//                Box(Modifier.weight(1f)) {
-//                    if (value.isEmpty()) Text(
-//                        placeholder,
-//                        style = LocalTextStyle.current.copy(
-//                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
-//                            fontSize = 12.sp
-//                        )
-//                    )
-//                    innerTextField()
-//                }
-//                if (trailingIcon != null) trailingIcon()
-//            }
-//        }
-//    )
-//}
-
 @ExperimentalMaterial3Api
 @Composable
 fun SmallTextField(
@@ -167,13 +122,6 @@ fun PreviewSmallTextField() {
                     unfocusedBorderColor = Color.Transparent,
                     containerColor = Color(0xFFF5F2F8)
                 ),
-//                leadingIcon = {
-//                    Icon(
-//                        painter = painterResource(id = R.drawable.ic_search),
-//                        contentDescription = null,
-//                        tint = Color(0xFF9365CD)
-//                    )
-//                },
                 singleLine = true,
                 contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp)
             )
