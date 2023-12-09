@@ -1,5 +1,8 @@
 import java.net.URI
 
+include(":feature-sponsor-menu")
+
+
 include(":feature-media-partner-menu")
 
 

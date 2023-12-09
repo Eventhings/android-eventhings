@@ -12,4 +12,5 @@ sealed class Screen(val route: String) {
     object AddBusiness : Screen(route = "add-business")
     object AllMenu : Screen(route = "all-menu")
     object MediaPartnerMenu : Screen(route = "media-partner-menu")
+    object SponsorMenu : Screen(route = "sponsor-menu")
 }

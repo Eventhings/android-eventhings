@@ -85,3 +85,8 @@ fun NavHostController.navigateToMediaPartnerScreen() {
     navigate(Screen.MediaPartnerMenu.route)
 }
 
+@Throws(IllegalArgumentException::class)
+fun NavHostController.navigateToSponsorScreen() {
+    navigate(Screen.MediaPartnerMenu.route)
+}
+

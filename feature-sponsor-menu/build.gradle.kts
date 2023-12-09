@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.eventhngs.navigation"
+    namespace = "com.eventhngs.feature_sponsor_menu"
     compileSdk = 34
 
     defaultConfig {
@@ -30,6 +30,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     buildFeatures {
         compose = true
     }
@@ -46,14 +49,7 @@ android {
 dependencies {
 
     implementation(project(":ui"))
-    implementation(project(":feature-auth"))
-    implementation(project(":feature-main"))
-    implementation(project(":feature-add-business"))
-    implementation(project(":feature-all-menu"))
-    implementation(project(":feature-media-partner-menu"))
-    implementation(project(":feature-sponsor-menu"))
-
-    api("androidx.navigation:navigation-compose:2.7.5")
+    implementation(project(":domain"))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
