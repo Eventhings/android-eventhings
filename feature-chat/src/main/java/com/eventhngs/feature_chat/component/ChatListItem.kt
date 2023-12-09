@@ -46,7 +46,7 @@ fun ChatListItem(
             contentDescription = chatList.name,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .shadow(elevation = 5.dp, shape = CircleShape)
+                .shadow(elevation = 2.dp, shape = CircleShape)
                 .clip(CircleShape)
                 .size(55.dp)
                 .background(MaterialTheme.colorScheme.background)
