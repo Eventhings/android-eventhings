@@ -81,12 +81,17 @@ fun NavHostController.navigateToAllMenuScreen() {
 }
 
 @Throws(IllegalArgumentException::class)
-fun NavHostController.navigateToMediaPartnerScreen() {
+fun NavHostController.navigateToMediaPartnerMenuScreen() {
     navigate(Screen.MediaPartnerMenu.route)
 }
 
 @Throws(IllegalArgumentException::class)
-fun NavHostController.navigateToSponsorScreen() {
+fun NavHostController.navigateToSponsorMenuScreen() {
     navigate(Screen.MediaPartnerMenu.route)
+}
+
+@Throws(IllegalArgumentException::class)
+fun NavHostController.navigateToEquipmentRentalMenuScreen() {
+    navigate(Screen.EquipmentRentalMenu.route)
 }
 

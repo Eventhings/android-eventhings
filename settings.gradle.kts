@@ -1,5 +1,8 @@
 import java.net.URI
 
+include(":feature-equipment-rental-menu")
+
+
 include(":feature-sponsor-menu")
 
 
