@@ -47,7 +47,11 @@ import com.eventhngs.ui.theme.poppinsFontFamily
 @ExperimentalMaterial3Api
 @Composable
 fun HomeScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToAllMenuScreen: () -> Unit = {},
+    navigateToMediaPartnerMenuScreen: () -> Unit = {},
+    navigateToSponsorMenuScreen: () -> Unit = {},
+    navigateToEquipmentMenuScreen: () -> Unit = {},
 ) {
 
     val user by remember { mutableStateOf("Abdul Hafiz Ramadan") }
@@ -81,6 +85,15 @@ fun HomeScreen(
         )
     }
 
+    val onMenuClick: (MenuItem) -> Unit = { menu ->
+        when (menu.label) {
+            R.string.label_all -> navigateToAllMenuScreen()
+            R.string.label_media_partner -> navigateToMediaPartnerMenuScreen()
+            R.string.label_sponsor -> navigateToSponsorMenuScreen()
+            R.string.label_equipment -> navigateToEquipmentMenuScreen()
+        }
+    }
+
     Scaffold(modifier = modifier) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
@@ -105,9 +118,10 @@ fun HomeScreen(
             item(span = { GridItemSpan(maxLineSpan) }) {
                 HomeMenu(
                     menuItems = menuItems,
+                    onClick = onMenuClick,
                     modifier = Modifier
                         .padding(horizontal = 36.dp)
-                        .fillMaxWidth()
+                        .fillMaxWidth(),
                 )
             }
             item(span = { GridItemSpan(maxLineSpan) }) {

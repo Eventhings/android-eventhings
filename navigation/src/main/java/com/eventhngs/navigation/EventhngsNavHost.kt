@@ -26,7 +26,7 @@ import com.eventhngs.splashscreen.SplashScreen
 @ExperimentalMaterial3Api
 @Composable
 fun EventhngsNavHost(
-    startDestination: Screen = Screen.EquipmentRentalMenu,
+    startDestination: Screen = Screen.Main,
     navController: NavHostController = rememberNavController()
 ) {
 
@@ -72,22 +72,35 @@ fun EventhngsNavHost(
            )
         }
         composableWithSlideAnimation(Screen.Main.route) {
-            MainScreen()
+            val mainNavigator = MainNavigator(navController)
+            MainScreen(
+                mainNavigator = mainNavigator
+            )
         }
         composableWithSlideAnimation(Screen.AddBusiness.route) {
-            AddBusinessScreen()
+            AddBusinessScreen(
+                navigateUp = navController::navigateUp
+            )
         }
         composableWithSlideAnimation(Screen.AllMenu.route) {
-            AllMenuScreen()
+            AllMenuScreen(
+                navigateUp = navController::navigateUp
+            )
         }
         composableWithSlideAnimation(Screen.MediaPartnerMenu.route) {
-            MediaPartnerMenuScreen()
+            MediaPartnerMenuScreen(
+                navigateUp = navController::navigateUp
+            )
         }
         composableWithSlideAnimation(Screen.SponsorMenu.route) {
-            SponsorMenuScreen()
+            SponsorMenuScreen(
+                navigateUp = navController::navigateUp
+            )
         }
         composableWithSlideAnimation(Screen.EquipmentRentalMenu.route) {
-            EquipmentRentalMenuScreen()
+            EquipmentRentalMenuScreen(
+                navigateUp = navController::navigateUp
+            )
         }
     }
 }

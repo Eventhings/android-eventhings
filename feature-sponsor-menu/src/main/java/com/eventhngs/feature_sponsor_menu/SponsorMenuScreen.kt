@@ -32,7 +32,8 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @ExperimentalMaterial3Api
 @Composable
 fun SponsorMenuScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateUp: () -> Unit = {}
 ) {
 
     var query by remember { mutableStateOf("") }
@@ -50,7 +51,10 @@ fun SponsorMenuScreen(
 
     Scaffold(
         topBar = {
-            DetailTopAppBar(title = "Sponsor")
+            DetailTopAppBar(
+                title = "Sponsor",
+                onNavigationClick = navigateUp
+            )
         },
         modifier = modifier
     ) { paddingValues ->

@@ -24,7 +24,8 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @ExperimentalMaterial3Api
 @Composable
 fun AddBusinessScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateUp: () -> Unit = {}
 ) {
 
     val scrollState = rememberScrollState()
@@ -50,7 +51,7 @@ fun AddBusinessScreen(
         topBar = {
             DetailTopAppBar(
                 title = "Market Your Businesses",
-                onNavigationClick = {}
+                onNavigationClick = navigateUp
             )
         },
         bottomBar = {

@@ -23,6 +23,8 @@ import androidx.navigation.compose.rememberNavController
 import com.eventhngs.feature_chat.list.ListChatScreen
 import com.eventhngs.feature_home.HomeScreen
 import com.eventhngs.feature_main.component.BottomBar
+import com.eventhngs.feature_main.navigation.EmptyMainNavigator
+import com.eventhngs.feature_main.navigation.MainNavigator
 import com.eventhngs.feature_main.navigation.Screen
 import com.eventhngs.feature_notification.NotificationScreen
 import com.eventhngs.feature_profile.ProfileScreen
@@ -34,7 +36,8 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    mainNavigator: MainNavigator
 ) {
     Scaffold(
         bottomBar = {
@@ -42,7 +45,7 @@ fun MainScreen(
         },
         floatingActionButton = {
             SmallFloatingActionButton(
-                onClick = { /*TODO*/ },
+                onClick = mainNavigator::navigateToAddBusinessMenuScreen,
                 modifier = Modifier.offset(y = 30.dp)
             ) {
                 Icon(
@@ -60,7 +63,12 @@ fun MainScreen(
             modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding() - 48.dp)
         ) {
             composable(Screen.Home.route) {
-                HomeScreen()
+                HomeScreen(
+                    navigateToAllMenuScreen = mainNavigator::navigateToAllMenuScreen,
+                    navigateToMediaPartnerMenuScreen = mainNavigator::navigateToMediaPartnerMenuScreen,
+                    navigateToSponsorMenuScreen = mainNavigator::navigateToSponsorMenuScreen,
+                    navigateToEquipmentMenuScreen = mainNavigator::navigateToEquipmentRentalMenuScreen
+                )
             }
             composable(Screen.Chat.route) {
                 ListChatScreen()
@@ -83,7 +91,9 @@ fun MainScreen(
 fun PreviewMainScreen() {
     EventhngsTheme {
         Surface {
-            MainScreen()
+            MainScreen(
+                mainNavigator = EmptyMainNavigator
+            )
         }
     }
 }

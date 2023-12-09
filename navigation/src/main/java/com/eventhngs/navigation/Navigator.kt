@@ -1,7 +1,18 @@
 package com.eventhngs.navigation
 
 import androidx.navigation.NavHostController
+import com.eventhngs.feature_main.navigation.MainNavigator
 import kotlin.jvm.Throws
+
+class MainNavigator(
+    private val navController: NavHostController
+) :  MainNavigator {
+    override fun navigateToAllMenuScreen() { navController.navigateToAllMenuScreen() }
+    override fun navigateToMediaPartnerMenuScreen() { navController.navigateToMediaPartnerMenuScreen() }
+    override fun navigateToSponsorMenuScreen() { navController::navigateToSponsorMenuScreen }
+    override fun navigateToEquipmentRentalMenuScreen() { navController.navigateToEquipmentRentalMenuScreen() }
+    override fun navigateToAddBusinessMenuScreen() { navController.navigateToAddBusinessScreen() }
+}
 
 @Throws(IllegalArgumentException::class)
 fun NavHostController.navigateToLoginScreen(

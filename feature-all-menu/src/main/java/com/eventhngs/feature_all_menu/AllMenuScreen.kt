@@ -32,7 +32,8 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @ExperimentalMaterial3Api
 @Composable
 fun AllMenuScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateUp: () -> Unit = {}
 ) {
 
     var query by remember { mutableStateOf("") }
@@ -50,7 +51,10 @@ fun AllMenuScreen(
 
     Scaffold(
         topBar = {
-            DetailTopAppBar(title = "All")
+            DetailTopAppBar(
+                title = "All",
+                onNavigationClick = navigateUp
+            )
         },
         modifier = modifier
     ) { paddingValues ->

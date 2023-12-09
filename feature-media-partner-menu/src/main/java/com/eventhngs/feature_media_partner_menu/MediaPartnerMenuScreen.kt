@@ -32,7 +32,8 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @ExperimentalMaterial3Api
 @Composable
 fun MediaPartnerMenuScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateUp: () -> Unit = {}
 ) {
 
     var query by remember { mutableStateOf("") }
@@ -50,7 +51,10 @@ fun MediaPartnerMenuScreen(
 
     Scaffold(
         topBar = {
-            DetailTopAppBar(title = "Media Partner")
+            DetailTopAppBar(
+                title = "Media Partner",
+                onNavigationClick = navigateUp
+            )
         },
         modifier = modifier
     ) { paddingValues ->

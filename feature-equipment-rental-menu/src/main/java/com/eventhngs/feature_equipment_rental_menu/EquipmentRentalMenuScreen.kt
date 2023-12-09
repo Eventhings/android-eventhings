@@ -32,7 +32,8 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @ExperimentalMaterial3Api
 @Composable
 fun EquipmentRentalMenuScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateUp: () -> Unit = {}
 ) {
 
     var query by remember { mutableStateOf("") }
@@ -50,7 +51,10 @@ fun EquipmentRentalMenuScreen(
 
     Scaffold(
         topBar = {
-            DetailTopAppBar(title = "Equipment Rental")
+            DetailTopAppBar(
+                title = "Equipment Rental",
+                onNavigationClick = navigateUp
+            )
         },
         modifier = modifier
     ) { paddingValues ->
