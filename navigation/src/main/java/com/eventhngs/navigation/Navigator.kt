@@ -9,7 +9,7 @@ class MainNavigator(
 ) :  MainNavigator {
     override fun navigateToAllMenuScreen() { navController.navigateToAllMenuScreen() }
     override fun navigateToMediaPartnerMenuScreen() { navController.navigateToMediaPartnerMenuScreen() }
-    override fun navigateToSponsorMenuScreen() { navController::navigateToSponsorMenuScreen }
+    override fun navigateToSponsorMenuScreen() { navController.navigateToSponsorMenuScreen() }
     override fun navigateToEquipmentRentalMenuScreen() { navController.navigateToEquipmentRentalMenuScreen() }
     override fun navigateToAddBusinessMenuScreen() { navController.navigateToAddBusinessScreen() }
 }
