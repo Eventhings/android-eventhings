@@ -28,18 +28,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.eventhngs.feature_home.component.EventNeedItem
+import com.eventhngs.domain.model.EventNeedItem
 import com.eventhngs.feature_home.component.HomeCarousel
 import com.eventhngs.feature_home.component.HomeFooter
 import com.eventhngs.feature_home.component.HomeHeader
 import com.eventhngs.feature_home.component.HomeMenu
 import com.eventhngs.feature_home.domain.CarouselItem
-import com.eventhngs.feature_home.domain.EventNeedItem
 import com.eventhngs.feature_home.domain.MenuItem
-import com.eventhngs.ui.theme.EventhngsTheme
-import com.eventhngs.ui.theme.poppinsFontFamily
 import com.eventhngs.ui.R
 import com.eventhngs.ui.component.button.TertiaryButton
+import com.eventhngs.ui.component.event.EventNeedItem
+import com.eventhngs.ui.theme.EventhngsTheme
+import com.eventhngs.ui.theme.poppinsFontFamily
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalLayoutApi

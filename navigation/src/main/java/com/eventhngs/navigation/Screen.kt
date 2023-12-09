@@ -10,4 +10,5 @@ sealed class Screen(val route: String) {
     object ResetPasswordSuccess : Screen(route = "reset-password-success")
     object Main : Screen(route = "main")
     object AddBusiness : Screen(route = "add-business")
+    object AllMenu : Screen(route = "all-menu")
 }

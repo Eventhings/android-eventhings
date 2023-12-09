@@ -1,5 +1,8 @@
 import java.net.URI
 
+include(":feature-all-menu")
+
+
 include(":feature-chat")
 
 

@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.eventhngs.feature_add_business.AddBusinessScreen
+import com.eventhngs.feature_all_menu.AllMenuScreen
 import com.eventhngs.feature_auth.enterotp.EnterOtpScreen
 import com.eventhngs.feature_auth.forgotpassword.ForgotPasswordScreen
 import com.eventhngs.feature_auth.login.LoginScreen
@@ -22,7 +23,7 @@ import com.eventhngs.splashscreen.SplashScreen
 @ExperimentalMaterial3Api
 @Composable
 fun EventhngsNavHost(
-    startDestination: Screen = Screen.SplashScreen,
+    startDestination: Screen = Screen.AllMenu,
     navController: NavHostController = rememberNavController()
 ) {
 
@@ -73,6 +74,8 @@ fun EventhngsNavHost(
         composableWithSlideAnimation(Screen.AddBusiness.route) {
             AddBusinessScreen()
         }
-
+        composableWithSlideAnimation(Screen.AllMenu.route) {
+            AllMenuScreen()
+        }
     }
 }

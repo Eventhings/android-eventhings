@@ -1,4 +1,4 @@
-package com.eventhngs.feature_home.domain
+package com.eventhngs.domain.model
 
 data class EventNeedItem(
     val id: Int = 0,

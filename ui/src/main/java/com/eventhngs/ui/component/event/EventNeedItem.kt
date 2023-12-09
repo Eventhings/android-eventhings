@@ -1,4 +1,4 @@
-package com.eventhngs.feature_home.component
+package com.eventhngs.ui.component.event
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -30,7 +30,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.eventhngs.common.utils.toRupiah
-import com.eventhngs.feature_home.domain.EventNeedItem
+import com.eventhngs.domain.model.EventNeedItem
+import com.eventhngs.ui.component.text.TextLabel
+import com.eventhngs.ui.component.text.TextLabelSize
+import com.eventhngs.ui.component.text.generateLabelType
 import com.eventhngs.ui.theme.EventhngsTheme
 import com.eventhngs.ui.theme.poppinsFontFamily
 

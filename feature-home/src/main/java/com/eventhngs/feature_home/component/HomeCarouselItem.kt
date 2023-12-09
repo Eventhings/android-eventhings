@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.eventhngs.common.utils.toRupiah
 import com.eventhngs.feature_home.domain.CarouselItem
+import com.eventhngs.ui.component.text.TextLabel
 import com.eventhngs.ui.theme.EventhngsTheme
 import com.eventhngs.ui.theme.poppinsFontFamily
 

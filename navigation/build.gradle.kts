@@ -49,6 +49,7 @@ dependencies {
     implementation(project(":feature-auth"))
     implementation(project(":feature-main"))
     implementation(project(":feature-add-business"))
+    implementation(project(":feature-all-menu"))
 
     api("androidx.navigation:navigation-compose:2.7.5")
 

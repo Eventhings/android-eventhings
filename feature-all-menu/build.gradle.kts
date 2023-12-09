@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.eventhngs.feature_home"
+    namespace = "com.eventhngs.feature_all_menu"
     compileSdk = 34
 
     defaultConfig {
@@ -47,7 +47,6 @@ dependencies {
 
     implementation(project(":ui"))
     implementation(project(":domain"))
-    implementation(project(":common"))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

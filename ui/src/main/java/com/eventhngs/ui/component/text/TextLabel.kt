@@ -1,4 +1,4 @@
-package com.eventhngs.feature_home.component
+package com.eventhngs.ui.component.text
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
