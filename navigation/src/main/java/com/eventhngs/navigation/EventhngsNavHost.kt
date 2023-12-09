@@ -16,6 +16,7 @@ import com.eventhngs.feature_auth.register.RegisterScreen
 import com.eventhngs.feature_auth.resetpassword.ResetPasswordScreen
 import com.eventhngs.feature_auth.resetpasswordsuccess.ResetPasswordSuccessScreen
 import com.eventhngs.feature_main.MainScreen
+import com.eventhngs.feature_media_partner_menu.MediaPartnerMenuScreen
 import com.eventhngs.splashscreen.SplashScreen
 
 @ExperimentalFoundationApi
@@ -23,7 +24,7 @@ import com.eventhngs.splashscreen.SplashScreen
 @ExperimentalMaterial3Api
 @Composable
 fun EventhngsNavHost(
-    startDestination: Screen = Screen.AllMenu,
+    startDestination: Screen = Screen.Login,
     navController: NavHostController = rememberNavController()
 ) {
 
@@ -76,6 +77,9 @@ fun EventhngsNavHost(
         }
         composableWithSlideAnimation(Screen.AllMenu.route) {
             AllMenuScreen()
+        }
+        composableWithSlideAnimation(Screen.MediaPartnerMenu.route) {
+            MediaPartnerMenuScreen()
         }
     }
 }

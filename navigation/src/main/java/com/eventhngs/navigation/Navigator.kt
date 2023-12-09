@@ -17,21 +17,6 @@ fun NavHostController.navigateToLoginScreen(
 }
 
 @Throws(IllegalArgumentException::class)
-fun NavHostController.navigateToRegisterScreen() {
-    navigate(Screen.Register.route)
-}
-
-@Throws(IllegalArgumentException::class)
-fun NavHostController.navigateToForgotPasswordScreen() {
-    navigate(Screen.ForgotPassword.route)
-}
-
-@Throws(IllegalArgumentException::class)
-fun NavHostController.navigateToEnterOtpScreen() {
-    navigate(Screen.EnterOtp.route)
-}
-
-@Throws(IllegalArgumentException::class)
 fun NavHostController.navigateToResetPasswordScreen(
     clearBackStack: Boolean = true,
     from: Screen = Screen.EnterOtp
@@ -71,6 +56,21 @@ fun NavHostController.navigateToMainScreen(
 }
 
 @Throws(IllegalArgumentException::class)
+fun NavHostController.navigateToRegisterScreen() {
+    navigate(Screen.Register.route)
+}
+
+@Throws(IllegalArgumentException::class)
+fun NavHostController.navigateToForgotPasswordScreen() {
+    navigate(Screen.ForgotPassword.route)
+}
+
+@Throws(IllegalArgumentException::class)
+fun NavHostController.navigateToEnterOtpScreen() {
+    navigate(Screen.EnterOtp.route)
+}
+
+@Throws(IllegalArgumentException::class)
 fun NavHostController.navigateToAddBusinessScreen() {
     navigate(Screen.AddBusiness.route)
 }
@@ -78,5 +78,10 @@ fun NavHostController.navigateToAddBusinessScreen() {
 @Throws(IllegalArgumentException::class)
 fun NavHostController.navigateToAllMenuScreen() {
     navigate(Screen.AllMenu.route)
+}
+
+@Throws(IllegalArgumentException::class)
+fun NavHostController.navigateToMediaPartnerScreen() {
+    navigate(Screen.MediaPartnerMenu.route)
 }
 
