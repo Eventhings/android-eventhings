@@ -3,6 +3,7 @@ package com.eventhngs.ui.component.button
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
@@ -34,6 +35,7 @@ fun SmallPrimaryButton(
                 ambientColor = Color(0xFF9365CD)
             )
             .clip(RoundedCornerShape(12.dp))
+            .height(39.dp)
             .clickable { onClick() }
             .background(color = Color(0xFF9365CD))
             .padding(horizontal = 8.dp, vertical = 10.dp),
