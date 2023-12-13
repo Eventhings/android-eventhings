@@ -27,7 +27,7 @@ import com.eventhngs.splashscreen.SplashScreen
 @ExperimentalMaterial3Api
 @Composable
 fun EventhngsNavHost(
-    startDestination: Screen = Screen.Main,
+    startDestination: Screen = Screen.SplashScreen,
     navController: NavHostController = rememberNavController()
 ) {
 
@@ -36,7 +36,7 @@ fun EventhngsNavHost(
     NavHost(navController = navController, startDestination = startDestinationRoute) {
         composableWithSlideHorizontalAnimation(Screen.SplashScreen.route) {
             SplashScreen(
-                navController
+                navigateToNextScreen = { navController.navigateToLoginScreen(from = Screen.SplashScreen) }
             )
         }
         composableWithSlideHorizontalAnimation(Screen.Login.route) {
@@ -46,7 +46,11 @@ fun EventhngsNavHost(
                 navigateToForgotPasswordScreen = navController::navigateToForgotPasswordScreen
             )
         }
-        composableWithSlideHorizontalAnimation(Screen.Register.route) { }
+        composableWithSlideHorizontalAnimation(Screen.Register.route) {
+            RegisterScreen(
+                navController
+            )
+        }
         composableWithSlideHorizontalAnimation(Screen.ForgotPassword.route) {
             ForgotPasswordScreen(
                 navigateToEnterOtpScreen = navController::navigateToEnterOtpScreen
@@ -66,11 +70,6 @@ fun EventhngsNavHost(
             ResetPasswordSuccessScreen(
                 navigateToLoginScreen = { navController.navigateToLoginScreen(from = Screen.Login) }
             )
-        }
-        composableWithSlideHorizontalAnimation(Screen.Register.route) {
-            RegisterScreen(
-               navController
-           )
         }
         composableWithSlideHorizontalAnimation(Screen.Main.route) {
             val mainNavigator = MainNavigator(navController)

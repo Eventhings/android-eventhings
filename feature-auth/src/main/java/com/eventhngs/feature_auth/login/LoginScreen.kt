@@ -1,8 +1,6 @@
 package com.eventhngs.feature_auth.login
 
 import android.widget.Toast
-import androidx.activity.OnBackPressedDispatcherOwner
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,7 +18,6 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -33,10 +30,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -46,9 +40,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.eventhngs.feature_auth.R
 import com.eventhngs.ui.theme.Purple1
 import com.eventhngs.ui.theme.black1
@@ -69,12 +61,6 @@ fun LoginScreen(
 
     val passwordVisible = remember{ mutableStateOf(false) }
     val context = LocalContext.current
-
-    BackHandler(enabled = true) {
-        // Aksi yang ingin dilakukan saat tombol kembali ditekan
-        // Di sini, keluar dari aplikasi saat tombol kembali ditekan
-        (context as? OnBackPressedDispatcherOwner)?.onBackPressedDispatcher?.onBackPressed()
-    }
 
     val forgotPassword = stringResource(R.string.forgot_password) + stringResource(R.string.space)
     val registerText = stringResource(R.string.register)
