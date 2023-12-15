@@ -23,6 +23,7 @@ import com.eventhngs.feature_media_partner_menu.MediaPartnerMenuScreen
 import com.eventhngs.feature_media_partner_menu.detail.DetailMediaPartnerScreen
 import com.eventhngs.feature_profile.editprofile.EditProfileScreen
 import com.eventhngs.feature_sponsor_menu.SponsorMenuScreen
+import com.eventhngs.feature_sponsor_menu.detail.DetailSponsorScreen
 import com.eventhngs.splashscreen.SplashScreen
 
 @ExperimentalFoundationApi
@@ -35,7 +36,7 @@ fun EventhngsNavHost(
 ) {
 
 //    val startDestinationRoute = startDestination.route
-    val startDestinationRoute = Screen.MediaPartnerDetail.generateRoute(1)
+    val startDestinationRoute = Screen.SponsorDetail.generateRoute(1)
 
     NavHost(navController = navController, startDestination = startDestinationRoute) {
         composableWithSlideHorizontalAnimation(Screen.SplashScreen.route) {
@@ -125,5 +126,20 @@ fun EventhngsNavHost(
                 mediaPartnerId = mediaPartnerId
             )
         }
+        composableWithSlideHorizontalAnimation(
+            route = Screen.SponsorDetail.route,
+            arguments = listOf(
+                navArgument(Screen.SPONSOR_ID) {
+                    type = NavType.IntType
+                }
+            )
+        ) {
+            val sponsorId = it.arguments?.getInt(Screen.SPONSOR_ID) ?: 0
+            DetailSponsorScreen(
+                navigateUp = navController::navigateUp,
+                sponsorId = sponsorId
+            )
+        }
+
     }
 }

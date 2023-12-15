@@ -4,6 +4,7 @@ sealed class Screen(val route: String) {
 
     companion object {
         const val MEDIA_PARTNER_ID = "media_partner_id"
+        const val SPONSOR_ID = "sponsor_id"
     }
 
     object SplashScreen : Screen(route = "splash-screen")
@@ -23,6 +24,11 @@ sealed class Screen(val route: String) {
     object MediaPartnerDetail : Screen(route = "media-partner-detail/{$MEDIA_PARTNER_ID}") {
         fun generateRoute(mediaPartnerId: Int): String {
             return "media-partner-detail/$mediaPartnerId"
+        }
+    }
+    object SponsorDetail : Screen(route = "sponsor-detail/{$SPONSOR_ID}") {
+        fun generateRoute(mediaPartnerId: Int): String {
+            return "sponsor-detail/$mediaPartnerId"
         }
     }
 }
