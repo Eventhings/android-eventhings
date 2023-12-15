@@ -45,6 +45,8 @@ android {
 
 dependencies {
 
+    implementation(project(":common"))
+    implementation(project(":domain"))
 
     api("androidx.core:core-ktx:1.12.0")
     api("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
