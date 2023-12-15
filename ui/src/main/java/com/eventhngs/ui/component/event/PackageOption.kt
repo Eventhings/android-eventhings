@@ -51,7 +51,7 @@ fun PackageOption(
         modifier = modifier
             .border(
                 width = 1.5.dp,
-                color = Color(0xFFEBE5F2),
+                color = Color(0xFFA1D8D6),
                 shape = RoundedCornerShape(size = 10.dp)
             )
             .padding(10.dp)
@@ -66,7 +66,7 @@ fun PackageOption(
                 .width(8.dp)
                 .height(height = containerHeight)
                 .background(
-                    color = Color(0xFFEBE5F2),
+                    color = Color(0xFFA1D8D6),
                     shape = RoundedCornerShape(size = 10.dp)
                 )
         )
