@@ -93,7 +93,7 @@ fun DetailMediaPartnerDetailSection(
 
 @Preview
 @Composable
-fun PreviewDetailMediaPartnerDetailSection() {
+fun PreviewDetailMediaPartnerInformationSection() {
     EventhngsTheme {
         Surface {
             val detail = MediaPartnerDetail(
