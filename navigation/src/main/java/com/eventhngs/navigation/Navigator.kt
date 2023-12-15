@@ -99,7 +99,7 @@ fun NavHostController.navigateToMediaPartnerMenuScreen() {
 
 @Throws(IllegalArgumentException::class)
 fun NavHostController.navigateToSponsorMenuScreen() {
-    navigate(Screen.MediaPartnerMenu.route)
+    navigate(Screen.SponsorMenu.route)
 }
 
 @Throws(IllegalArgumentException::class)
@@ -119,7 +119,7 @@ fun NavHostController.navigateToMediaPartnerDetailScreen(id: Int) {
 
 @Throws(IllegalArgumentException::class)
 fun NavHostController.navigateToSponsorDetailScreen(id: Int) {
-    navigate(Screen.MediaPartnerDetail.generateRoute(id))
+    navigate(Screen.SponsorDetail.generateRoute(id))
 }
 
 @Throws(IllegalArgumentException::class)

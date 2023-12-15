@@ -33,7 +33,8 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @Composable
 fun EquipmentRentalMenuScreen(
     modifier: Modifier = Modifier,
-    navigateUp: () -> Unit = {}
+    navigateUp: () -> Unit = {},
+    navigateToEquipmentDetail: (Int) -> Unit = {},
 ) {
 
     var query by remember { mutableStateOf("") }
@@ -85,6 +86,7 @@ fun EquipmentRentalMenuScreen(
                 }
                 EventNeedItem(
                     eventNeedItem = eventNeedItem,
+                    onClick = { navigateToEquipmentDetail(it.id) },
                     modifier = modifierItem
                 )
             }

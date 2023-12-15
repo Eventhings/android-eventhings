@@ -36,8 +36,8 @@ fun EventhngsNavHost(
     navController: NavHostController = rememberNavController()
 ) {
 
-//    val startDestinationRoute = startDestination.route
-    val startDestinationRoute = Screen.EquipmentDetail.generateRoute(1)
+    val startDestinationRoute = startDestination.route
+//    val startDestinationRoute = Screen.EquipmentDetail.generateRoute(1)
 
     NavHost(navController = navController, startDestination = startDestinationRoute) {
         composableWithSlideHorizontalAnimation(Screen.SplashScreen.route) {
@@ -90,22 +90,28 @@ fun EventhngsNavHost(
         }
         composableWithSlideHorizontalAnimation(Screen.AllMenu.route) {
             AllMenuScreen(
-                navigateUp = navController::navigateUp
+                navigateUp = navController::navigateUp,
+                navigateToMediaPartnerDetail = navController::navigateToMediaPartnerDetailScreen,
+                navigateToSponsorDetailScreen = navController::navigateToSponsorDetailScreen,
+                navigateToEquipmentDetail = navController::navigateToEquipmentDetailScreen
             )
         }
         composableWithSlideHorizontalAnimation(Screen.MediaPartnerMenu.route) {
             MediaPartnerMenuScreen(
-                navigateUp = navController::navigateUp
+                navigateUp = navController::navigateUp,
+                navigateToMediaPartnerDetail = navController::navigateToMediaPartnerDetailScreen
             )
         }
         composableWithSlideHorizontalAnimation(Screen.SponsorMenu.route) {
             SponsorMenuScreen(
-                navigateUp = navController::navigateUp
+                navigateUp = navController::navigateUp,
+                navigateToSponsorDetailScreen = navController::navigateToSponsorDetailScreen
             )
         }
         composableWithSlideHorizontalAnimation(Screen.EquipmentRentalMenu.route) {
             EquipmentRentalMenuScreen(
-                navigateUp = navController::navigateUp
+                navigateUp = navController::navigateUp,
+                navigateToEquipmentDetail = navController::navigateToEquipmentDetailScreen
             )
         }
         composableWithSlideHorizontalAnimation(Screen.EditProfile.route) {

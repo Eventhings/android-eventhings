@@ -33,7 +33,8 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @Composable
 fun MediaPartnerMenuScreen(
     modifier: Modifier = Modifier,
-    navigateUp: () -> Unit = {}
+    navigateUp: () -> Unit = {},
+    navigateToMediaPartnerDetail: (Int) -> Unit = {}
 ) {
 
     var query by remember { mutableStateOf("") }
@@ -85,6 +86,7 @@ fun MediaPartnerMenuScreen(
                 }
                 EventNeedItem(
                     eventNeedItem = eventNeedItem,
+                    onClick = { navigateToMediaPartnerDetail(it.id) },
                     modifier = modifierItem
                 )
             }

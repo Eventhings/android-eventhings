@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.eventhngs.domain.model.EventNeedItem
+import com.eventhngs.domain.model.EventNeedItemType
 import com.eventhngs.ui.component.event.EventNeedItem
 import com.eventhngs.ui.component.searchbar.SearchBarWithFilter
 import com.eventhngs.ui.component.topappbar.DetailTopAppBar
@@ -33,20 +34,33 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @Composable
 fun AllMenuScreen(
     modifier: Modifier = Modifier,
-    navigateUp: () -> Unit = {}
+    navigateUp: () -> Unit = {},
+    navigateToMediaPartnerDetail: (Int) -> Unit = {},
+    navigateToSponsorDetailScreen: (Int) -> Unit = {},
+    navigateToEquipmentDetail: (Int) -> Unit = {}
 ) {
 
     var query by remember { mutableStateOf("") }
 
     val eventNeedItems = (1..10).map {
+        val type = if (it % 2 == 0) EventNeedItemType.EQUIPMENT else EventNeedItemType.SPONSOR
         EventNeedItem(
             id = it,
             logo = "",
             title = "Your Business Name Here",
             label = listOf("Equipment", "Sponsor", "Media Partner", "Photo Booth"),
             price = 100_000.0,
-            rating = 4.0
+            rating = 4.0,
+            type = type
         )
+    }
+
+    val onItemClick: (EventNeedItem) -> Unit = {
+        when (it.type) {
+            EventNeedItemType.MEDIA_PARTNER -> navigateToMediaPartnerDetail(it.id)
+            EventNeedItemType.SPONSOR -> navigateToSponsorDetailScreen(it.id)
+            EventNeedItemType.EQUIPMENT -> navigateToEquipmentDetail(it.id)
+        }
     }
 
     Scaffold(
@@ -85,7 +99,8 @@ fun AllMenuScreen(
                 }
                 EventNeedItem(
                     eventNeedItem = eventNeedItem,
-                    modifier = modifierItem
+                    modifier = modifierItem,
+                    onClick = onItemClick
                 )
             }
         }
