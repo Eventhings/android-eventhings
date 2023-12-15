@@ -88,7 +88,10 @@ fun MainScreen(
                     navigateToAllMenuScreen = mainNavigator::navigateToAllMenuScreen,
                     navigateToMediaPartnerMenuScreen = mainNavigator::navigateToMediaPartnerMenuScreen,
                     navigateToSponsorMenuScreen = mainNavigator::navigateToSponsorMenuScreen,
-                    navigateToEquipmentMenuScreen = mainNavigator::navigateToEquipmentRentalMenuScreen
+                    navigateToEquipmentMenuScreen = mainNavigator::navigateToEquipmentRentalMenuScreen,
+                    navigateToMediaPartnerDetailScreen = mainNavigator::navigateToMediaPartnerDetailScreen,
+                    navigateToSponsorDetailScreen = mainNavigator::navigateToSponsorDetailScreen,
+                    navigateToEquipmentDetailScreen = mainNavigator::navigateToEquipmentDetailScreen
                 )
             }
             composable(Screen.Chat.route) {

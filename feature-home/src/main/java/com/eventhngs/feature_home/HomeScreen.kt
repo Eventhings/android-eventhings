@@ -29,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.eventhngs.domain.model.EventNeedItem
+import com.eventhngs.domain.model.EventNeedItemType
 import com.eventhngs.feature_home.component.HomeCarousel
 import com.eventhngs.feature_home.component.HomeFooter
 import com.eventhngs.feature_home.component.HomeHeader
@@ -52,6 +53,9 @@ fun HomeScreen(
     navigateToMediaPartnerMenuScreen: () -> Unit = {},
     navigateToSponsorMenuScreen: () -> Unit = {},
     navigateToEquipmentMenuScreen: () -> Unit = {},
+    navigateToMediaPartnerDetailScreen: (Int) -> Unit = {},
+    navigateToSponsorDetailScreen: (Int) -> Unit = {},
+    navigateToEquipmentDetailScreen: (Int) -> Unit = {},
 ) {
 
     val user by remember { mutableStateOf("Abdul Hafiz Ramadan") }
@@ -83,6 +87,14 @@ fun HomeScreen(
             price = 100_000.0,
             rating = 4.0
         )
+    }
+
+    val onItemClick: (EventNeedItem) -> Unit = {
+        when (it.type) {
+            EventNeedItemType.MEDIA_PARTNER -> navigateToMediaPartnerDetailScreen(it.id)
+            EventNeedItemType.SPONSOR -> navigateToSponsorDetailScreen(it.id)
+            EventNeedItemType.EQUIPMENT -> navigateToEquipmentDetailScreen(it.id)
+        }
     }
 
     val onMenuClick: (MenuItem) -> Unit = { menu ->
@@ -149,7 +161,8 @@ fun HomeScreen(
                 }
                 EventNeedItem(
                     eventNeedItem = eventNeedItem,
-                    modifier = modifierItem
+                    modifier = modifierItem,
+                    onClick = onItemClick
                 )
             }
             item(span = { GridItemSpan(maxLineSpan) }) {
@@ -158,6 +171,7 @@ fun HomeScreen(
             item(span = { GridItemSpan(maxLineSpan) }) {
                 TertiaryButton(
                     text = "See All",
+                    onClick = navigateToAllMenuScreen,
                     modifier = Modifier.wrapContentWidth()
                 )
             }

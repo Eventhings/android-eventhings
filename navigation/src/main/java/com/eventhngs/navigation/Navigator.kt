@@ -13,6 +13,9 @@ class MainNavigator(
     override fun navigateToEquipmentRentalMenuScreen() { navController.navigateToEquipmentRentalMenuScreen() }
     override fun navigateToAddBusinessMenuScreen() { navController.navigateToAddBusinessScreen() }
     override fun navigateToEditProfileScreen() { navController.navigateToEditProfileScreen() }
+    override fun navigateToMediaPartnerDetailScreen(id: Int) { navController.navigateToMediaPartnerDetailScreen(id) }
+    override fun navigateToSponsorDetailScreen(id: Int) { navController.navigateToSponsorDetailScreen(id) }
+    override fun navigateToEquipmentDetailScreen(id: Int) { navController.navigateToEquipmentDetailScreen(id) }
 }
 
 @Throws(IllegalArgumentException::class)
