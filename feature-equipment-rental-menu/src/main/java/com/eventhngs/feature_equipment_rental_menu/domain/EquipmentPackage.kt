@@ -1,6 +1,6 @@
-package com.eventhngs.feature_sponsor_menu.domain
+package com.eventhngs.feature_equipment_rental_menu.domain
 
-data class SponsorPackage(
+data class EquipmentPackage(
     val id: Int = 0,
     val name: String = "",
     val benefits: List<String> = emptyList(),

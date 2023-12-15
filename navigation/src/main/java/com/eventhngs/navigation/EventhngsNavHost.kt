@@ -18,6 +18,7 @@ import com.eventhngs.feature_auth.register.RegisterScreen
 import com.eventhngs.feature_auth.resetpassword.ResetPasswordScreen
 import com.eventhngs.feature_auth.resetpasswordsuccess.ResetPasswordSuccessScreen
 import com.eventhngs.feature_equipment_rental_menu.EquipmentRentalMenuScreen
+import com.eventhngs.feature_equipment_rental_menu.detail.DetailEquipmentScreen
 import com.eventhngs.feature_main.MainScreen
 import com.eventhngs.feature_media_partner_menu.MediaPartnerMenuScreen
 import com.eventhngs.feature_media_partner_menu.detail.DetailMediaPartnerScreen
@@ -36,7 +37,7 @@ fun EventhngsNavHost(
 ) {
 
 //    val startDestinationRoute = startDestination.route
-    val startDestinationRoute = Screen.SponsorDetail.generateRoute(1)
+    val startDestinationRoute = Screen.EquipmentDetail.generateRoute(1)
 
     NavHost(navController = navController, startDestination = startDestinationRoute) {
         composableWithSlideHorizontalAnimation(Screen.SplashScreen.route) {
@@ -138,6 +139,20 @@ fun EventhngsNavHost(
             DetailSponsorScreen(
                 navigateUp = navController::navigateUp,
                 sponsorId = sponsorId
+            )
+        }
+        composableWithSlideHorizontalAnimation(
+            route = Screen.EquipmentDetail.route,
+            arguments = listOf(
+                navArgument(Screen.EQUIPMENT_ID) {
+                    type = NavType.IntType
+                }
+            )
+        ) {
+            val equipmentId = it.arguments?.getInt(Screen.EQUIPMENT_ID) ?: 0
+            DetailEquipmentScreen(
+                navigateUp = navController::navigateUp,
+                equipmentId = equipmentId
             )
         }
 

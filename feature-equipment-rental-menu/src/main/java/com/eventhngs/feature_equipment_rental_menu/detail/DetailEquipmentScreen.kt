@@ -1,4 +1,4 @@
-package com.eventhngs.feature_media_partner_menu.detail
+package com.eventhngs.feature_equipment_rental_menu.detail
 
 import android.content.Intent
 import android.net.Uri
@@ -38,11 +38,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.eventhngs.domain.model.EventNeedItem
-import com.eventhngs.feature_media_partner_menu.component.DetailMediaPartnerInformationSection
-import com.eventhngs.feature_media_partner_menu.component.DetailMediaPartnerHeader
-import com.eventhngs.feature_media_partner_menu.component.DetailMediaPartnerPackageSection
-import com.eventhngs.feature_media_partner_menu.domain.MediaPartnerDetail
-import com.eventhngs.feature_media_partner_menu.domain.MediaPartnerPackage
+import com.eventhngs.feature_equipment_rental_menu.component.DetailEquipmentHeader
+import com.eventhngs.feature_equipment_rental_menu.component.DetailEquipmentInformationSection
+import com.eventhngs.feature_equipment_rental_menu.component.DetailEquipmentPackageSection
+import com.eventhngs.feature_equipment_rental_menu.domain.EquipmentDetail
+import com.eventhngs.feature_equipment_rental_menu.domain.EquipmentPackage
 import com.eventhngs.ui.component.bottomnavigation.DetailBottomNavigation
 import com.eventhngs.ui.component.event.EventNeedItem
 import com.eventhngs.ui.component.text.TextWithSeeMoreButton
@@ -54,10 +54,10 @@ import kotlinx.coroutines.launch
 @ExperimentalLayoutApi
 @ExperimentalMaterial3Api
 @Composable
-fun DetailMediaPartnerScreen(
+fun DetailEquipmentScreen(
     modifier: Modifier = Modifier,
     navigateUp: () -> Unit = {},
-    mediaPartnerId: Int = 0
+    equipmentId: Int = 0
 ) {
 
     val context = LocalContext.current
@@ -68,7 +68,7 @@ fun DetailMediaPartnerScreen(
         if (pagerState.currentPage == 0) "Choose Package" else "Book Now"
     }
 
-    val detail = MediaPartnerDetail(
+    val detail = EquipmentDetail(
         id = 1,
         logo = "https://pbs.twimg.com/profile_images/1281601097581211648/ZUwX2det_400x400.jpg",
         name = "Your Business",
@@ -98,7 +98,7 @@ fun DetailMediaPartnerScreen(
     var packageOptions by remember {
         mutableStateOf(
             (1..5).map {
-                MediaPartnerPackage(
+                EquipmentPackage(
                     id = it,
                     name = "Paket Bronze",
                     benefits = listOf("1x Feed @seputarkampus", "1x IG Story @seputarkampus", "1x IG Story @magangupdate", "1x Twit @seputarkampus"),
@@ -134,7 +134,7 @@ fun DetailMediaPartnerScreen(
         context.startActivity(intent)
     }
 
-    val onPackageCounterClick: (MediaPartnerPackage) -> Unit = { updatedPackage ->
+    val onPackageCounterClick: (EquipmentPackage) -> Unit = { updatedPackage ->
         packageOptions = packageOptions.map {
             if (updatedPackage.id == it.id) updatedPackage
             else it
@@ -170,7 +170,7 @@ fun DetailMediaPartnerScreen(
             contentPadding = paddingValues
         ) {
             item {
-                DetailMediaPartnerHeader(
+                DetailEquipmentHeader(
                     detail = detail,
                     onWebsiteClick = onWebsiteClick,
                     onInstagramClick = onInstagramClick,
@@ -203,11 +203,11 @@ fun DetailMediaPartnerScreen(
                     verticalAlignment = Alignment.Top
                 ) { page ->
                     when (page) {
-                        0 -> DetailMediaPartnerInformationSection(
+                        0 -> DetailEquipmentInformationSection(
                             detail = detail,
                             modifier = Modifier.padding(horizontal = 20.dp)
                         )
-                        1 -> DetailMediaPartnerPackageSection(
+                        1 -> DetailEquipmentPackageSection(
                             modifier = Modifier.padding(horizontal = 20.dp),
                             packages = packageOptions,
                             onDecreaseClick = onPackageCounterClick,
@@ -256,10 +256,10 @@ fun DetailMediaPartnerScreen(
 @ExperimentalLayoutApi
 @Preview
 @Composable
-fun PreviewDetailMediaPartnerScreen() {
+fun PreviewDetailEquipmentScreen() {
     EventhngsTheme {
         Surface {
-            DetailMediaPartnerScreen()
+            DetailEquipmentScreen()
         }
     }
 }

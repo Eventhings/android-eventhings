@@ -122,3 +122,8 @@ fun NavHostController.navigateToSponsorDetailScreen(id: Int) {
     navigate(Screen.MediaPartnerDetail.generateRoute(id))
 }
 
+@Throws(IllegalArgumentException::class)
+fun NavHostController.navigateToEquipmentDetailScreen(id: Int) {
+    navigate(Screen.EquipmentDetail.generateRoute(id))
+}
+

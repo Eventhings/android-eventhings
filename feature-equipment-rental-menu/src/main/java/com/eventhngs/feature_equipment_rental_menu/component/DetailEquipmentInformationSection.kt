@@ -1,4 +1,4 @@
-package com.eventhngs.feature_media_partner_menu.component
+package com.eventhngs.feature_equipment_rental_menu.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,16 +14,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.eventhngs.feature_media_partner_menu.domain.MediaPartnerDetail
+import com.eventhngs.feature_equipment_rental_menu.domain.EquipmentDetail
 import com.eventhngs.ui.component.numbertext.TextWithBullet
 import com.eventhngs.ui.component.numbertext.TextWithNumber
 import com.eventhngs.ui.theme.EventhngsTheme
 import com.eventhngs.ui.theme.poppinsFontFamily
 
 @Composable
-fun DetailMediaPartnerInformationSection(
+fun DetailEquipmentInformationSection(
     modifier: Modifier = Modifier,
-    detail: MediaPartnerDetail
+    detail: EquipmentDetail
 ) {
     Column(modifier = modifier) {
         Text(
@@ -91,10 +91,10 @@ fun DetailMediaPartnerInformationSection(
 
 @Preview
 @Composable
-fun PreviewDetailMediaPartnerInformationSection() {
+fun PreviewDetailEquipmentInformationSection() {
     EventhngsTheme {
         Surface {
-            val detail = MediaPartnerDetail(
+            val detail = EquipmentDetail(
                 stepsToBook = listOf(
                     "Choose package",
                     "Add quantity",
@@ -110,7 +110,7 @@ fun PreviewDetailMediaPartnerInformationSection() {
                     "We have had and maintained relationships with 10+ Universities, 40+ Enterprise & Start-up, and 1000+ Event Partners"
                 )
             )
-            DetailMediaPartnerInformationSection(
+            DetailEquipmentInformationSection(
                 detail = detail,
                 modifier = Modifier.padding(16.dp)
             )
