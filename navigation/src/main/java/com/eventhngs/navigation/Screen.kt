@@ -1,6 +1,11 @@
 package com.eventhngs.navigation
 
 sealed class Screen(val route: String) {
+
+    companion object {
+        const val MEDIA_PARTNER_ID = "media_partner_id"
+    }
+
     object SplashScreen : Screen(route = "splash-screen")
     object Login : Screen(route = "login")
     object Register : Screen(route = "register")
@@ -15,4 +20,9 @@ sealed class Screen(val route: String) {
     object SponsorMenu : Screen(route = "sponsor-menu")
     object EquipmentRentalMenu : Screen(route = "equipment-rental-menu")
     object EditProfile : Screen(route = "edit-profile")
+    object MediaPartnerDetail : Screen(route = "media-partner-detail/{$MEDIA_PARTNER_ID}") {
+        fun generateRoute(mediaPartnerId: Int): String {
+            return "media-partner-detail/$mediaPartnerId"
+        }
+    }
 }

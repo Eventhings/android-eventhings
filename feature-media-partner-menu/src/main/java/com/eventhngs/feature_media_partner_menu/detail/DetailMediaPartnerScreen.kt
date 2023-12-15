@@ -25,6 +25,12 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -34,12 +40,15 @@ import androidx.compose.ui.unit.dp
 import com.eventhngs.domain.model.EventNeedItem
 import com.eventhngs.feature_media_partner_menu.component.DetailMediaPartnerDetailSection
 import com.eventhngs.feature_media_partner_menu.component.DetailMediaPartnerHeader
+import com.eventhngs.feature_media_partner_menu.component.DetailMediaPartnerPackageSection
 import com.eventhngs.feature_media_partner_menu.domain.MediaPartnerDetail
+import com.eventhngs.feature_media_partner_menu.domain.MediaPartnerPackage
 import com.eventhngs.ui.component.bottomnavigation.DetailBottomNavigation
 import com.eventhngs.ui.component.event.EventNeedItem
 import com.eventhngs.ui.component.text.TextWithSeeMoreButton
 import com.eventhngs.ui.component.topappbar.DetailTopAppBar
 import com.eventhngs.ui.theme.EventhngsTheme
+import kotlinx.coroutines.launch
 
 @ExperimentalFoundationApi
 @ExperimentalLayoutApi
@@ -47,11 +56,17 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @Composable
 fun DetailMediaPartnerScreen(
     modifier: Modifier = Modifier,
-    navigateUp: () -> Unit = {}
+    navigateUp: () -> Unit = {},
+    mediaPartnerId: Int = 0
 ) {
 
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
     val pagerState = rememberPagerState(pageCount = { 2 })
+
+    val buttonTitle = remember(key1 = pagerState.currentPage) {
+        if (pagerState.currentPage == 0) "Choose Package" else "Book Now"
+    }
 
     val detail = MediaPartnerDetail(
         id = 1,
@@ -80,6 +95,19 @@ fun DetailMediaPartnerScreen(
         )
     )
 
+    var packageOptions by remember {
+        mutableStateOf(
+            (1..5).map {
+                MediaPartnerPackage(
+                    id = it,
+                    name = "Paket Bronze",
+                    benefits = listOf("1x Feed @seputarkampus", "1x IG Story @seputarkampus", "1x IG Story @magangupdate", "1x Twit @seputarkampus"),
+                    price = 50_000.0
+                )
+            }
+        )
+    }
+
     val similarMediaPartners = (1..10).map {
         EventNeedItem(
             id = it,
@@ -106,6 +134,22 @@ fun DetailMediaPartnerScreen(
         context.startActivity(intent)
     }
 
+    val onPackageCounterClick: (MediaPartnerPackage) -> Unit = { updatedPackage ->
+        packageOptions = packageOptions.map {
+            if (updatedPackage.id == it.id) updatedPackage
+            else it
+        }
+    }
+
+    val onButtonClick: () -> Unit = {
+        scope.launch {
+            when (pagerState.currentPage) {
+                0 -> pagerState.animateScrollToPage(1)
+                1 -> {}
+            }
+        }
+    }
+
     Scaffold(
         topBar = {
             DetailTopAppBar(
@@ -115,10 +159,11 @@ fun DetailMediaPartnerScreen(
         },
         bottomBar = {
             DetailBottomNavigation(
-                text = "Choose Package",
+                text = buttonTitle,
+                onButtonClick = onButtonClick
             )
         },
-        modifier = modifier
+        modifier = modifier.navigationBarsPadding()
     ) { paddingValues ->
         LazyColumn(
             modifier = Modifier.navigationBarsPadding(),
@@ -153,13 +198,21 @@ fun DetailMediaPartnerScreen(
                 }
             }
             item {
-                HorizontalPager(state = pagerState) { page ->
+                HorizontalPager(
+                    state = pagerState,
+                    verticalAlignment = Alignment.Top
+                ) { page ->
                     when (page) {
                         0 -> DetailMediaPartnerDetailSection(
                             detail = detail,
-                            modifier = Modifier.padding(horizontal = 16.dp)
+                            modifier = Modifier.padding(horizontal = 20.dp)
                         )
-                        1 -> {}
+                        1 -> DetailMediaPartnerPackageSection(
+                            modifier = Modifier.padding(horizontal = 20.dp),
+                            packages = packageOptions,
+                            onDecreaseClick = onPackageCounterClick,
+                            onIncreaseClick = onPackageCounterClick
+                        )
                     }
                 }
             }

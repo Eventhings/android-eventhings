@@ -20,11 +20,12 @@ import com.eventhngs.ui.theme.poppinsFontFamily
 @Composable
 fun TextWithBullet(
     modifier: Modifier = Modifier,
+    bulletCharacter: String = "\uD83D\uDFE2",
     text: String
 ) {
     Row(modifier = modifier) {
         Text(
-            text = "\uD83D\uDFE2",
+            text = bulletCharacter,
             fontSize = 12.4.sp,
             lineHeight = 20.sp,
             fontFamily = poppinsFontFamily,

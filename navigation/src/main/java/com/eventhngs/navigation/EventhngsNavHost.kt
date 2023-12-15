@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.eventhngs.feature_add_business.AddBusinessScreen
 import com.eventhngs.feature_all_menu.AllMenuScreen
 import com.eventhngs.feature_auth.enterotp.EnterOtpScreen
@@ -18,6 +20,7 @@ import com.eventhngs.feature_auth.resetpasswordsuccess.ResetPasswordSuccessScree
 import com.eventhngs.feature_equipment_rental_menu.EquipmentRentalMenuScreen
 import com.eventhngs.feature_main.MainScreen
 import com.eventhngs.feature_media_partner_menu.MediaPartnerMenuScreen
+import com.eventhngs.feature_media_partner_menu.detail.DetailMediaPartnerScreen
 import com.eventhngs.feature_profile.editprofile.EditProfileScreen
 import com.eventhngs.feature_sponsor_menu.SponsorMenuScreen
 import com.eventhngs.splashscreen.SplashScreen
@@ -31,7 +34,8 @@ fun EventhngsNavHost(
     navController: NavHostController = rememberNavController()
 ) {
 
-    val startDestinationRoute = startDestination.route
+//    val startDestinationRoute = startDestination.route
+    val startDestinationRoute = Screen.MediaPartnerDetail.generateRoute(1)
 
     NavHost(navController = navController, startDestination = startDestinationRoute) {
         composableWithSlideHorizontalAnimation(Screen.SplashScreen.route) {
@@ -105,6 +109,20 @@ fun EventhngsNavHost(
         composableWithSlideHorizontalAnimation(Screen.EditProfile.route) {
             EditProfileScreen(
                 navigateUp = navController::navigateUp
+            )
+        }
+        composableWithSlideHorizontalAnimation(
+            route = Screen.MediaPartnerDetail.route,
+            arguments = listOf(
+                navArgument(Screen.MEDIA_PARTNER_ID) {
+                    type = NavType.IntType
+                }
+            )
+        ) {
+            val mediaPartnerId = it.arguments?.getInt(Screen.MEDIA_PARTNER_ID) ?: 0
+            DetailMediaPartnerScreen(
+                navigateUp = navController::navigateUp,
+                mediaPartnerId = mediaPartnerId
             )
         }
     }

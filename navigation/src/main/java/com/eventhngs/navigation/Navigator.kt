@@ -112,3 +112,8 @@ fun NavHostController.navigateToEditProfileScreen() {
     navigate(Screen.EditProfile.route)
 }
 
+@Throws(IllegalArgumentException::class)
+fun NavHostController.navigateToMediaPartnerDetailScreen(id: Int) {
+    navigate(Screen.MediaPartnerDetail.generateRoute(id))
+}
+
