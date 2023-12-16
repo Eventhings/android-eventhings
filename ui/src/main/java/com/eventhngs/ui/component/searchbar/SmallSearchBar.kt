@@ -29,6 +29,7 @@ import com.eventhngs.ui.theme.EventhngsTheme
 val smallTextFieldColors @Composable get() =  TextFieldDefaults.outlinedTextFieldColors(
     disabledBorderColor = Color.Transparent,
     unfocusedBorderColor = Color.Transparent,
+    focusedBorderColor = Color(0xFF9365CD),
     containerColor = Color(0xFFF5F2F8)
 )
 

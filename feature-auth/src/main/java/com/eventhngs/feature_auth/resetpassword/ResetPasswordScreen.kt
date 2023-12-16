@@ -1,11 +1,14 @@
 package com.eventhngs.feature_auth.resetpassword
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.rememberScrollState
@@ -22,10 +25,11 @@ import com.eventhngs.feature_auth.R
 import com.eventhngs.ui.component.button.PrimaryButton
 import com.eventhngs.ui.component.text.BodyText
 import com.eventhngs.ui.component.text.PrimaryText
-import com.eventhngs.ui.component.textfield.BaseOutlinedTextField
+import com.eventhngs.ui.component.textfield.BaseLargeTextField
 import com.eventhngs.ui.theme.EventhngsTheme
 import com.eventhngs.ui.theme.blue1
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalMaterial3Api
 @Composable
 fun ResetPasswordScreen(
@@ -33,14 +37,17 @@ fun ResetPasswordScreen(
     navigateToResetPasswordSuccessScreen: () -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
-    Scaffold(modifier = modifier.safeDrawingPadding()) { paddingValues ->
+    Scaffold(
+        modifier = modifier
+            .navigationBarsPadding()
+            .safeDrawingPadding()
+    ) { _ ->
         Column(
             modifier = Modifier
-                .padding(paddingValues)
                 .fillMaxSize()
-                .verticalScroll(scrollState)
+                .verticalScroll(scrollState),
+            verticalArrangement = Arrangement.Center
         ) {
-            Spacer(modifier = Modifier.height(64.dp))
             Image(
                 painter = painterResource(id = R.drawable.img_reset_password),
                 contentDescription = "reset password",
@@ -60,22 +67,20 @@ fun ResetPasswordScreen(
                 modifier = Modifier.padding(horizontal = 45.dp)
             )
             Spacer(modifier = Modifier.height(30.dp))
-            BaseOutlinedTextField(
+            BaseLargeTextField(
                 value = "",
                 onValueChange = {},
-//                label = "New  Password",
-//                placeholder = "New  Password",
+                placeholder = "New  Password",
                 modifier = Modifier
                     .padding(horizontal = 45.dp)
                     .fillMaxWidth()
 
             )
             Spacer(modifier = Modifier.height(22.dp))
-            BaseOutlinedTextField(
+            BaseLargeTextField(
                 value = "",
                 onValueChange = {},
-//                label = "Confirm Password",
-//                placeholder = "Confirm Password",
+                placeholder = "Confirm Password",
                 modifier = Modifier
                     .padding(horizontal = 45.dp)
                     .fillMaxWidth()

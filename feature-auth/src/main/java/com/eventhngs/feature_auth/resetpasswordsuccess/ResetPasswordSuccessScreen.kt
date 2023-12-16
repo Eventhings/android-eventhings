@@ -1,11 +1,13 @@
 package com.eventhngs.feature_auth.resetpasswordsuccess
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -32,15 +34,14 @@ fun ResetPasswordSuccessScreen(
     navigateToLoginScreen: () -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
-    Scaffold(
-        modifier = modifier
-    ) { paddingValues ->
+    Scaffold(modifier = modifier.navigationBarsPadding()) { paddingValues ->
         Column(
             modifier = Modifier
                 .padding(paddingValues)
                 .fillMaxSize()
                 .verticalScroll(scrollState),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
             Spacer(modifier = Modifier.height(137.dp))
             Image(
