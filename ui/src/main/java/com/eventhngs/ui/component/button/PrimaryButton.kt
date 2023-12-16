@@ -15,7 +15,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.eventhngs.ui.R
 import com.eventhngs.ui.theme.EventhngsTheme
+import com.eventhngs.ui.theme.Purple1
 import com.eventhngs.ui.theme.poppinsFontFamily
 
 @Composable
@@ -32,7 +34,7 @@ fun PrimaryButton(
         enabled = enabled,
         shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.primary,
+            containerColor = Purple1,
             contentColor = Color.White
         ),
         elevation = ButtonDefaults.buttonElevation(

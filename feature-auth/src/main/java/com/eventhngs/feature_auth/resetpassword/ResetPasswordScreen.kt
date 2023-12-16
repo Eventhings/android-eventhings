@@ -24,6 +24,7 @@ import com.eventhngs.ui.component.text.BodyText
 import com.eventhngs.ui.component.text.PrimaryText
 import com.eventhngs.ui.component.textfield.BaseOutlinedTextField
 import com.eventhngs.ui.theme.EventhngsTheme
+import com.eventhngs.ui.theme.blue1
 
 @ExperimentalMaterial3Api
 @Composable
@@ -50,6 +51,7 @@ fun ResetPasswordScreen(
             Spacer(modifier = Modifier.height(82.dp))
             PrimaryText(
                 text = "Reset Password",
+                color = blue1,
                 modifier = Modifier.padding(horizontal = 45.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
