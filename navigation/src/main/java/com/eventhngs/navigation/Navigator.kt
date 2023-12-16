@@ -16,6 +16,7 @@ class MainNavigator(
     override fun navigateToMediaPartnerDetailScreen(id: Int) { navController.navigateToMediaPartnerDetailScreen(id) }
     override fun navigateToSponsorDetailScreen(id: Int) { navController.navigateToSponsorDetailScreen(id) }
     override fun navigateToEquipmentDetailScreen(id: Int) { navController.navigateToEquipmentDetailScreen(id) }
+    override fun navigateToChatDetailScreen(id: Int) { navController.navigateToChatDetailScreen(id) }
 }
 
 @Throws(IllegalArgumentException::class)

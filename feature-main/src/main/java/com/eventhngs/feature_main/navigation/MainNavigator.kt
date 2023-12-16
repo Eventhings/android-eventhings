@@ -10,6 +10,7 @@ interface MainNavigator {
     fun navigateToMediaPartnerDetailScreen(id: Int)
     fun navigateToSponsorDetailScreen(id: Int)
     fun navigateToEquipmentDetailScreen(id: Int)
+    fun navigateToChatDetailScreen(id: Int)
 }
 
 object EmptyMainNavigator : MainNavigator {
@@ -22,4 +23,5 @@ object EmptyMainNavigator : MainNavigator {
     override fun navigateToMediaPartnerDetailScreen(id: Int) {}
     override fun navigateToSponsorDetailScreen(id: Int) {}
     override fun navigateToEquipmentDetailScreen(id: Int) {}
+    override fun navigateToChatDetailScreen(id: Int) {}
 }

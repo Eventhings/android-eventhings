@@ -37,8 +37,8 @@ fun EventhngsNavHost(
     navController: NavHostController = rememberNavController()
 ) {
 
-//    val startDestinationRoute = startDestination.route
-    val startDestinationRoute = Screen.ChatDetail.generateRoute(1)
+    val startDestinationRoute = startDestination.route
+//    val startDestinationRoute = Screen.ChatDetail.generateRoute(1)
 
     NavHost(navController = navController, startDestination = startDestinationRoute) {
         composableWithSlideHorizontalAnimation(Screen.SplashScreen.route) {

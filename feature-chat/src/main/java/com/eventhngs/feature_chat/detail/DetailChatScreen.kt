@@ -121,7 +121,8 @@ fun DetailChatScreen(
                 image = chatInfo.photo,
                 title = chatInfo.name,
                 subtitle = chatInfo.type,
-                modifier = Modifier.statusBarsPadding()
+                modifier = Modifier.statusBarsPadding(),
+                onNavigationClick = navigateUp
             )
         },
         bottomBar = {

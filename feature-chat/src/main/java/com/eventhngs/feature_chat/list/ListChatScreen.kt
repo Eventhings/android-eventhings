@@ -28,7 +28,8 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @ExperimentalMaterial3Api
 @Composable
 fun ListChatScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToChatDetailScreen: (Int) -> Unit = {}
 ) {
 
     var query by remember { mutableStateOf("") }
@@ -75,7 +76,9 @@ fun ListChatScreen(
             items(items = chats, key = { it.id }) { chatList ->
                 ChatListItem(
                     chatList = chatList,
-                    modifier = Modifier.fillMaxWidth()
+                    onClick = { navigateToChatDetailScreen(it.id) },
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .padding(horizontal = 20.dp, vertical = 10.dp)
                 )
             }

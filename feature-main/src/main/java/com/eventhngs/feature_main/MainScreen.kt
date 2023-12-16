@@ -95,7 +95,9 @@ fun MainScreen(
                 )
             }
             composable(Screen.Chat.route) {
-                ListChatScreen()
+                ListChatScreen(
+                    navigateToChatDetailScreen = mainNavigator::navigateToChatDetailScreen
+                )
             }
             composable(Screen.Notification.route) {
                 NotificationScreen()
