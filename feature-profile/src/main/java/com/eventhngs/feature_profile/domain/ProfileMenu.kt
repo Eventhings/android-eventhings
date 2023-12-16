@@ -6,6 +6,5 @@ import androidx.annotation.StringRes
 data class ProfileMenu(
     @DrawableRes
     val icon: Int,
-    @StringRes
-    val label: Int
+    val label: String
 )

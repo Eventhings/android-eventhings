@@ -47,7 +47,7 @@ fun EditProfileScreen(
     Scaffold(
         topBar = {
             DetailTopAppBar(
-                title = "Media Partner",
+                title = "Edit Profile",
                 onNavigationClick = navigateUp
             )
         },

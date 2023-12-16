@@ -4,4 +4,8 @@
     <string name="label_draft">Draft</string>
     <string name="label_active">Active</string>
     <string name="label_archive">Archive</string>
+    <string name="label_balance">Rp0</string>
+    <string name="label_topup">Top Up</string>
+    <string name="label_purchase">Purchased</string>
+    <string name="label_invoice">Invoice</string>
 </resources>

@@ -89,12 +89,12 @@ private fun ProfileMenuItem(
     ) {
         Image(
             painter = painterResource(id = menu.icon),
-            contentDescription = stringResource(id = menu.label),
+            contentDescription = menu.label,
             modifier = Modifier.size(28.dp)
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = stringResource(id = menu.label),
+            text = menu.label,
             fontSize = 12.5.sp,
             lineHeight = 15.sp,
             fontFamily = poppinsFontFamily,
@@ -114,12 +114,8 @@ fun PreviewProfileMenuSection() {
             val menuItems = listOf(
                 ProfileMenu(
                     icon = R.drawable.ic_saved,
-                    label = R.string.label_saved
-                ),
-                ProfileMenu(
-                    icon = R.drawable.ic_saved,
-                    label = R.string.label_saved
-                ),
+                    label = stringResource(id = R.string.label_saved)
+                )
             )
             ProfileMenuSection(
                 title = "My Eventh!ngs",
