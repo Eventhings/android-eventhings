@@ -35,8 +35,8 @@ import com.eventhngs.feature_main.component.BottomBar
 import com.eventhngs.feature_main.navigation.EmptyMainNavigator
 import com.eventhngs.feature_main.navigation.MainNavigator
 import com.eventhngs.feature_main.navigation.Screen
-import com.eventhngs.feature_notification.NotificationScreen
 import com.eventhngs.feature_profile.profile.ProfileScreen
+import com.eventhngs.feature_saved_item.SavedItemScreen
 import com.eventhngs.ui.theme.EventhngsTheme
 
 @ExperimentalFoundationApi
@@ -100,7 +100,11 @@ fun MainScreen(
                 )
             }
             composable(Screen.Notification.route) {
-                NotificationScreen()
+                SavedItemScreen(
+                    navigateToMediaPartnerDetailScreen = mainNavigator::navigateToMediaPartnerDetailScreen,
+                    navigateToSponsorDetailScreen = mainNavigator::navigateToSponsorDetailScreen,
+                    navigateToEquipmentDetailScreen = mainNavigator::navigateToEquipmentDetailScreen
+                )
             }
             composable(Screen.Profile.route) {
                 ProfileScreen(

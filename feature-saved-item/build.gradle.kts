@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.eventhngs.feature_main"
+    namespace = "com.eventhngs.feature_saved_item"
     compileSdk = 34
 
     defaultConfig {
@@ -46,13 +46,8 @@ android {
 dependencies {
 
     implementation(project(":ui"))
-    implementation(project(":feature-home"))
-    implementation(project(":feature-chat"))
-    implementation(project(":feature-saved-item"))
-    implementation(project(":feature-notification"))
-    implementation(project(":feature-profile"))
-
-    implementation("androidx.navigation:navigation-compose:2.7.5")
+    implementation(project(":common"))
+    implementation(project(":domain"))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -1,5 +1,8 @@
 import java.net.URI
 
+include(":feature-saved-item")
+
+
 include(":feature-equipment-rental-menu")
 
 

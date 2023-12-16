@@ -33,7 +33,7 @@ import com.eventhngs.splashscreen.SplashScreen
 @ExperimentalMaterial3Api
 @Composable
 fun EventhngsNavHost(
-    startDestination: Screen = Screen.SplashScreen,
+    startDestination: Screen = Screen.Main,
     navController: NavHostController = rememberNavController()
 ) {
 

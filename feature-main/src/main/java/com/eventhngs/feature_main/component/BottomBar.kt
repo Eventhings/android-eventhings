@@ -47,8 +47,8 @@ fun BottomBar(
     val notification = NavigationItem(
         title = "Notification",
         screen = Screen.Notification,
-        icon = R.drawable.ic_notification,
-        iconActive = R.drawable.ic_notification_active
+        icon = R.drawable.ic_saved_item,
+        iconActive = R.drawable.ic_saved_item_active
     )
     val profile = NavigationItem(
         title = "Profile",
