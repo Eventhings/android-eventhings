@@ -6,6 +6,7 @@ sealed class Screen(val route: String) {
         const val MEDIA_PARTNER_ID = "media_partner_id"
         const val SPONSOR_ID = "sponsor_id"
         const val EQUIPMENT_ID = "equipment_id"
+        const val CHAT_ID = "equipment_id"
     }
 
     object SplashScreen : Screen(route = "splash-screen")
@@ -28,13 +29,18 @@ sealed class Screen(val route: String) {
         }
     }
     object SponsorDetail : Screen(route = "sponsor-detail/{$SPONSOR_ID}") {
-        fun generateRoute(mediaPartnerId: Int): String {
-            return "sponsor-detail/$mediaPartnerId"
+        fun generateRoute(sponsorId: Int): String {
+            return "sponsor-detail/$sponsorId"
         }
     }
     object EquipmentDetail : Screen(route = "equipment-detail/{$EQUIPMENT_ID}") {
-        fun generateRoute(mediaPartnerId: Int): String {
-            return "equipment-detail/$mediaPartnerId"
+        fun generateRoute(equipmentId: Int): String {
+            return "equipment-detail/$equipmentId"
+        }
+    }
+    object ChatDetail : Screen(route = "chat-detail/{$CHAT_ID}") {
+        fun generateRoute(chatId: Int): String {
+            return "chat-detail/$chatId"
         }
     }
 }

@@ -17,6 +17,7 @@ import com.eventhngs.feature_auth.login.LoginScreen
 import com.eventhngs.feature_auth.register.RegisterScreen
 import com.eventhngs.feature_auth.resetpassword.ResetPasswordScreen
 import com.eventhngs.feature_auth.resetpasswordsuccess.ResetPasswordSuccessScreen
+import com.eventhngs.feature_chat.detail.DetailChatScreen
 import com.eventhngs.feature_equipment_rental_menu.EquipmentRentalMenuScreen
 import com.eventhngs.feature_equipment_rental_menu.detail.DetailEquipmentScreen
 import com.eventhngs.feature_main.MainScreen
@@ -36,8 +37,8 @@ fun EventhngsNavHost(
     navController: NavHostController = rememberNavController()
 ) {
 
-    val startDestinationRoute = startDestination.route
-//    val startDestinationRoute = Screen.EquipmentDetail.generateRoute(1)
+//    val startDestinationRoute = startDestination.route
+    val startDestinationRoute = Screen.ChatDetail.generateRoute(1)
 
     NavHost(navController = navController, startDestination = startDestinationRoute) {
         composableWithSlideHorizontalAnimation(Screen.SplashScreen.route) {
@@ -159,6 +160,20 @@ fun EventhngsNavHost(
             DetailEquipmentScreen(
                 navigateUp = navController::navigateUp,
                 equipmentId = equipmentId
+            )
+        }
+        composableWithSlideHorizontalAnimation(
+            route = Screen.ChatDetail.route,
+            arguments = listOf(
+                navArgument(Screen.CHAT_ID) {
+                    type = NavType.IntType
+                }
+            )
+        ) {
+            val chatId = it.arguments?.getInt(Screen.CHAT_ID) ?: 0
+            DetailChatScreen(
+                navigateUp = navController::navigateUp,
+                chatId = chatId
             )
         }
 

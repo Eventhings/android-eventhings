@@ -2,7 +2,6 @@ package com.eventhngs.feature_auth.login
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -81,8 +80,7 @@ fun LoginScreen(
     }
 
     Column(
-        modifier
-            .padding(top = 100.dp, start = 35.dp, end = 49.dp, bottom = 100.dp ),
+        modifier = modifier.padding(horizontal = 35.dp),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Center
     ) {

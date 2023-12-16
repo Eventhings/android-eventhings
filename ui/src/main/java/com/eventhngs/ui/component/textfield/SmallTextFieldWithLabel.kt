@@ -71,7 +71,7 @@ fun SmallTextFieldWithLabel(
             fontWeight = FontWeight.Medium,
             color = Color(0xFF404040),
         )
-        SmallTextField(
+        BaseOutlinedTextField(
             modifier = Modifier
                 .height(40.dp)
                 .fillMaxWidth(),

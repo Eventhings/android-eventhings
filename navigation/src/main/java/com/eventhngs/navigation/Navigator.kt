@@ -130,3 +130,8 @@ fun NavHostController.navigateToEquipmentDetailScreen(id: Int) {
     navigate(Screen.EquipmentDetail.generateRoute(id))
 }
 
+@Throws(IllegalArgumentException::class)
+fun NavHostController.navigateToChatDetailScreen(id: Int) {
+    navigate(Screen.ChatDetail.generateRoute(id))
+}
+
