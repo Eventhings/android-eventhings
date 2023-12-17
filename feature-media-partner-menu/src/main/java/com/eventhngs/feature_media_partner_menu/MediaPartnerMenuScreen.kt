@@ -55,8 +55,8 @@ fun MediaPartnerMenuScreen(
         initialValue = ModalBottomSheetValue.Hidden,
         skipHalfExpanded = true
     )
-
     val scope = rememberCoroutineScope()
+
     var query by remember { mutableStateOf("") }
 
     val subcategoryFilter = remember {

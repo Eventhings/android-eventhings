@@ -225,7 +225,7 @@ fun DetailEquipmentScreen(
             }
             item {
                 TextWithSeeMoreButton(
-                    text = "Similar Media Partner",
+                    text = "Similar Equipment",
                     modifier = Modifier
                         .padding(horizontal = 20.dp)
                         .fillMaxWidth()
