@@ -11,23 +11,37 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ModalBottomSheetLayout
+import androidx.compose.material.ModalBottomSheetValue
+import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.eventhngs.domain.model.EventNeedItem
+import com.eventhngs.ui.component.bottomsheet.ChipFilterType
+import com.eventhngs.ui.component.bottomsheet.FilterBottomSheetHeader
+import com.eventhngs.ui.component.bottomsheet.MultipleChipFilterWithLabel
+import com.eventhngs.ui.component.bottomsheet.SingleChipFilterWithLabel
+import com.eventhngs.ui.component.button.SmallPrimaryButton
 import com.eventhngs.ui.component.event.EventNeedItem
 import com.eventhngs.ui.component.searchbar.SearchBarWithFilter
 import com.eventhngs.ui.component.topappbar.DetailTopAppBar
 import com.eventhngs.ui.theme.EventhngsTheme
+import kotlinx.coroutines.launch
 
+@ExperimentalMaterialApi
 @ExperimentalLayoutApi
 @ExperimentalMaterial3Api
 @Composable
@@ -37,7 +51,35 @@ fun MediaPartnerMenuScreen(
     navigateToMediaPartnerDetail: (Int) -> Unit = {}
 ) {
 
+    val state = rememberModalBottomSheetState(
+        initialValue = ModalBottomSheetValue.Hidden,
+        skipHalfExpanded = true
+    )
+
+    val scope = rememberCoroutineScope()
     var query by remember { mutableStateOf("") }
+
+    val subcategoryFilter = remember {
+        listOf("Career", "Community", "Education", "Event", "Magazine", "Organization", "Technology", "TV & Radio")
+    }
+    val selectedSubcategoryFilter = remember {
+        mutableStateListOf("")
+    }
+    val onSubcategoryFilterSelected: (String) -> Unit = {
+        val contains = selectedSubcategoryFilter.contains(it)
+        if (contains) {
+            selectedSubcategoryFilter.remove(it)
+        } else {
+            selectedSubcategoryFilter.add(it)
+        }
+    }
+
+    val feesFilter = remember {
+        listOf("Paid", "Free")
+    }
+    var selectedFeesFilter by remember {
+        mutableStateOf("")
+    }
 
     val eventNeedItems = (1..10).map {
         EventNeedItem(
@@ -50,6 +92,84 @@ fun MediaPartnerMenuScreen(
         )
     }
 
+    val onFilterClick: () -> Unit = {
+        scope.launch {
+            if (state.isVisible) {
+                state.hide()
+                return@launch
+            }
+            state.show()
+        }
+    }
+
+    val onResetFilterClick: () -> Unit = {
+        selectedSubcategoryFilter.clear()
+        selectedFeesFilter = ""
+    }
+
+
+    ModalBottomSheetLayout(
+        sheetState = state,
+        sheetShape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp),
+        sheetContent = {
+            Spacer(modifier = Modifier.height(16.dp))
+            FilterBottomSheetHeader(
+                onResetClick = onResetFilterClick,
+                modifier = Modifier.padding(horizontal = 20.dp)
+            )
+            Spacer(modifier = Modifier.height(15.dp))
+            MultipleChipFilterWithLabel(
+                label = "Subcategory",
+                selectedOption = selectedSubcategoryFilter,
+                options = subcategoryFilter,
+                onClick = onSubcategoryFilterSelected,
+                type = ChipFilterType.MEDIA_PARTNER,
+                modifier = Modifier.padding(start = 20.dp)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            SingleChipFilterWithLabel(
+                label = "Fees",
+                selectedOption = selectedFeesFilter,
+                options = feesFilter,
+                onClick = { selectedFeesFilter = it },
+                type = ChipFilterType.MEDIA_PARTNER,
+                modifier = Modifier.padding(start = 20.dp)
+            )
+            Spacer(modifier = Modifier.height(42.dp))
+            SmallPrimaryButton(
+                text = "Active",
+                onClick = onFilterClick,
+                modifier = Modifier
+                    .padding(20.dp)
+                    .navigationBarsPadding()
+                    .fillMaxWidth()
+            )
+        },
+        modifier = modifier
+    ) {
+        MediaPartnerMenuContent(
+            navigateUp = navigateUp,
+            query = query,
+            onQueryChange = { query = it },
+            eventNeedItems = eventNeedItems,
+            onFilterClick = onFilterClick,
+            onEventClick = { navigateToMediaPartnerDetail(it.id) }
+        )
+    }
+}
+
+@ExperimentalLayoutApi
+@ExperimentalMaterial3Api
+@Composable
+fun MediaPartnerMenuContent(
+    modifier: Modifier = Modifier,
+    navigateUp: () -> Unit,
+    query: String,
+    onQueryChange: (String) -> Unit,
+    eventNeedItems: List<EventNeedItem>,
+    onFilterClick: () -> Unit,
+    onEventClick: (EventNeedItem) -> Unit
+) {
     Scaffold(
         topBar = {
             DetailTopAppBar(
@@ -68,8 +188,9 @@ fun MediaPartnerMenuScreen(
             item(span = { GridItemSpan(maxLineSpan) }) {
                 SearchBarWithFilter(
                     value = query,
-                    onValueChange = { query = it },
+                    onValueChange = onQueryChange,
                     placeholder = "Search Media Partner",
+                    onFilterClick = onFilterClick,
                     modifier = Modifier
                         .padding(horizontal = 20.dp)
                         .fillMaxWidth()
@@ -86,7 +207,7 @@ fun MediaPartnerMenuScreen(
                 }
                 EventNeedItem(
                     eventNeedItem = eventNeedItem,
-                    onClick = { navigateToMediaPartnerDetail(it.id) },
+                    onClick = onEventClick,
                     modifier = modifierItem
                 )
             }
@@ -94,6 +215,7 @@ fun MediaPartnerMenuScreen(
     }
 }
 
+@ExperimentalMaterialApi
 @ExperimentalMaterial3Api
 @ExperimentalLayoutApi
 @Preview

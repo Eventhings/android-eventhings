@@ -66,7 +66,7 @@ fun AllMenuScreen(
         listOf("Media Partner", "Sponsor", "Equipment Rental")
     }
     var selectedCategoryFilter by remember {
-        mutableStateOf(categoryFilter[0])
+        mutableStateOf("")
     }
     val type = remember(key1 = selectedCategoryFilter) {
         when (selectedCategoryFilter) {
@@ -132,7 +132,6 @@ fun AllMenuScreen(
         selectedCategoryFilter = ""
         selectedLocationFilter.clear()
         selectedFeesFilter = ""
-        onFilterClick()
     }
 
     val onItemClick: (EventNeedItem) -> Unit = {
