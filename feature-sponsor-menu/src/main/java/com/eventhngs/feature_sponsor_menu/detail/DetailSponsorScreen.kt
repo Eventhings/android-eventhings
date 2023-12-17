@@ -133,7 +133,7 @@ fun DetailSponsorScreen(
             }
             item {
                 TextWithSeeMoreButton(
-                    text = "Similar Media Partner",
+                    text = "Similar Sponsor",
                     modifier = Modifier
                         .padding(horizontal = 20.dp)
                         .fillMaxWidth()
