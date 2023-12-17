@@ -22,7 +22,7 @@ val dataModule = module {
 
     single<Retrofit> {
         Retrofit.Builder()
-            .baseUrl("google.com")
+            .baseUrl("https://rest-eventhings-api-southeast2-w4t7ews3vq-et.a.run.app/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(NetworkResponseAdapterFactory())
             .client(get<OkHttpClient>(named("chucker")))
