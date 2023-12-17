@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -19,6 +20,7 @@ import com.eventhngs.ui.theme.EventhngsTheme
 import org.koin.android.ext.koin.androidContext
 import org.koin.compose.KoinApplication
 
+@ExperimentalMaterialApi
 @ExperimentalMaterial3Api
 @ExperimentalFoundationApi
 @ExperimentalLayoutApi

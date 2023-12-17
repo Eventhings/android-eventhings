@@ -2,6 +2,7 @@ package com.eventhngs.navigation
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -28,6 +29,7 @@ import com.eventhngs.feature_sponsor_menu.SponsorMenuScreen
 import com.eventhngs.feature_sponsor_menu.detail.DetailSponsorScreen
 import com.eventhngs.splashscreen.SplashScreen
 
+@ExperimentalMaterialApi
 @ExperimentalFoundationApi
 @ExperimentalLayoutApi
 @ExperimentalMaterial3Api

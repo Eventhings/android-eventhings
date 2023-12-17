@@ -52,14 +52,17 @@ dependencies {
     api("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
     api("androidx.appcompat:appcompat:1.6.1")
-    api("com.google.android.material:material:1.10.0")
+//    api("com.google.android.material:material:1.10.0")
 
     api("androidx.activity:activity-compose:1.8.1")
-    api(platform("androidx.compose:compose-bom:2023.03.00"))
+    api(platform("androidx.compose:compose-bom:2023.10.01"))
     api("androidx.compose.ui:ui")
     api("androidx.compose.ui:ui-graphics")
     api("androidx.compose.ui:ui-tooling-preview")
+    api("androidx.compose.material:material")
     api("androidx.compose.material3:material3")
+    api("androidx.compose.material:material-icons-extended")
+
 
     api("io.coil-kt:coil-compose:2.5.0")
 
@@ -77,8 +80,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-    implementation("androidx.compose.material:material")
-    implementation("androidx.compose.material:material-icons-extended")
+//    implementation("androidx.compose.material:material")
 
     implementation("androidx.navigation:navigation-compose:2.6.0")
 }
