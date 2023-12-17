@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
@@ -67,12 +67,14 @@ fun RegisterScreen(
         ) {
 
             Image(
-                painter = painterResource(R.drawable.eventhings_logo),
+                painter = painterResource(R.drawable.eventhings_logo_small),
                 contentDescription = null,
                 contentScale = ContentScale.FillBounds,
-                modifier = Modifier.size(212.dp)
+                modifier = Modifier
+                    .width(255.dp)
+                    .height(90.dp)
             )
-            Spacer(modifier = Modifier.height(25.dp))
+            Spacer(modifier = Modifier.height(60.dp))
             BaseLargeTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = email,
