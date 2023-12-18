@@ -1,5 +1,8 @@
 import java.net.URI
 
+include(":feature-purchased")
+
+
 include(":feature-saved-item")
 
 
