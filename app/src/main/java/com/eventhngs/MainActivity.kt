@@ -14,6 +14,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import com.eventhngs.data.di.dataModule
+import com.eventhngs.di.authModule
 import com.eventhngs.domain.di.domainModule
 import com.eventhngs.navigation.EventhngsNavHost
 import com.eventhngs.ui.theme.EventhngsTheme
@@ -32,7 +33,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             KoinApplication(application = {
                 androidContext(applicationContext)
-                modules(dataModule, domainModule)
+                modules(dataModule, domainModule, authModule)
             }) {
                 EventhngsTheme {
                     // A surface container using the 'background' color from the theme

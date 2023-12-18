@@ -1,6 +1,7 @@
 package com.eventhngs.feature_auth.login
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,10 +19,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,6 +30,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.eventhngs.domain.model.Resource
 import com.eventhngs.feature_auth.R
 import com.eventhngs.ui.component.button.BaseClickableText
 import com.eventhngs.ui.component.button.PrimaryButton
@@ -38,6 +39,11 @@ import com.eventhngs.ui.component.textfield.BaseLargeTextField
 import com.eventhngs.ui.component.textfield.BasePasswordTextField
 import com.eventhngs.ui.theme.EventhngsTheme
 import com.eventhngs.ui.theme.poppinsFontFamily
+import com.maxkeppeker.sheets.core.CoreDialog
+import com.maxkeppeker.sheets.core.models.CoreSelection
+import com.maxkeppeker.sheets.core.models.base.SelectionButton
+import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
+import org.koin.androidx.compose.koinViewModel
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -45,15 +51,50 @@ import com.eventhngs.ui.theme.poppinsFontFamily
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
+    loginViewModel: LoginViewModel = koinViewModel(),
     navigateToMainScreen: () -> Unit = {},
     navigateToRegisterScreen: () -> Unit = {},
-    navigateToForgotPasswordScreen: () -> Unit = {}
+    navigateToForgotPasswordScreen: () -> Unit = {},
 ) {
 
     val scrollState = rememberScrollState()
+    val dialogState = rememberUseCaseState(visible = false)
 
-    var email by rememberSaveable { mutableStateOf("") }
-    var password by rememberSaveable { mutableStateOf("") }
+    val loginUiState by loginViewModel.loginUiState.collectAsStateWithLifecycle()
+
+    val email = loginUiState.email
+    val password = loginUiState.password
+    val loginResult = loginUiState.loginResult
+
+    val buttonLoginEnabled by loginViewModel.buttonLoginEnabled.collectAsStateWithLifecycle(
+        initialValue = false
+    )
+
+    val buttonLoginLoading by loginViewModel.buttonLoginLoading.collectAsStateWithLifecycle(
+        initialValue = false
+    )
+
+    LaunchedEffect(key1 = loginResult) {
+        when (loginResult) {
+            Resource.Idle -> {}
+            Resource.Loading -> Log.d("TAG", "LoginScreen: Loading...")
+            is Resource.Error -> Log.d("TAG", "LoginScreen: Error = ${loginResult.message}")
+            is Resource.Success -> navigateToMainScreen()
+        }
+    }
+
+    CoreDialog(
+        state = dialogState,
+        selection = CoreSelection(
+            positiveButton = SelectionButton(
+                text = "Ok"
+            ),
+            negativeButton = null
+        ),
+        body = {
+            Text(text = "Error")
+        }
+    )
 
     Scaffold(
         modifier = modifier
@@ -90,20 +131,22 @@ fun LoginScreen(
             BaseLargeTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = email,
-                onValueChange = { email = it },
+                onValueChange = loginViewModel::updateEmail,
                 placeholder = "Email"
             )
             Spacer(modifier = Modifier.height(20.dp))
             BasePasswordTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = password,
-                onValueChange = { password = it },
+                onValueChange = loginViewModel::updatePassword,
                 placeholder = "Password"
             )
             Spacer(modifier = Modifier.height(34.dp))
             PrimaryButton(
                 text = "Login",
-                onClick = navigateToMainScreen,
+                onClick = loginViewModel::login,
+                enabled = buttonLoginEnabled,
+                loading = buttonLoginLoading,
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(20.dp))

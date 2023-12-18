@@ -46,6 +46,7 @@ android {
 dependencies {
 
     implementation(project(":ui"))
+    implementation(project(":domain"))
     implementation("androidx.navigation:navigation-runtime-ktx:2.7.5")
 
     testImplementation("junit:junit:4.13.2")

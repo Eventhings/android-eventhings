@@ -29,7 +29,7 @@ val largeTextFieldColors @Composable get() =  TextFieldDefaults.outlinedTextFiel
 )
 
 val largeTextFieldStyle @Composable get() = MaterialTheme.typography.bodyMedium.copy(
-    fontWeight = FontWeight.SemiBold,
+    fontWeight = FontWeight.Medium,
     color = Color.Black.copy(0.7f),
     fontSize = 14.sp,
 )

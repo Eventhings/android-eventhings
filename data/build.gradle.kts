@@ -12,6 +12,9 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField(type = "String", name = "BASE_URL", value = providers.gradleProperty("BASE_URL").get())
+        buildConfigField(type = "String", name = "APP_TOKEN", value = providers.gradleProperty("APP_TOKEN").get())
     }
 
     buildTypes {
@@ -23,6 +26,7 @@ android {
             )
         }
     }
+    buildFeatures.buildConfig = true
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8

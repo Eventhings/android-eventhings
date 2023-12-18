@@ -63,8 +63,11 @@ dependencies {
     api("androidx.compose.material3:material3")
     api("androidx.compose.material:material-icons-extended")
 
+    api("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
 
     api("io.coil-kt:coil-compose:2.5.0")
+
+    api("com.maxkeppeler.sheets-compose-dialogs:core:1.2.0")
 
     api("io.insert-koin:koin-bom:3.5.1")
     api("io.insert-koin:koin-core")

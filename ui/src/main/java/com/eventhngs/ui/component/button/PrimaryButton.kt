@@ -8,6 +8,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -25,12 +26,16 @@ fun PrimaryButton(
     text: String,
     fontSize: TextUnit = 16.sp,
     onClick: () -> Unit = {},
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    loading: Boolean = false
 ) {
+    val buttonText = if (loading) "Loading..." else text
+    val buttonEnabled = if (loading) false else enabled
+
     Button(
         onClick = onClick,
         modifier = modifier.height(50.dp),
-        enabled = enabled,
+        enabled = buttonEnabled,
         shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = Purple1,
@@ -45,7 +50,7 @@ fun PrimaryButton(
         ),
     ) {
         Text(
-            text = text,
+            text = buttonText,
             fontSize = fontSize,
             fontFamily = poppinsFontFamily,
             fontWeight = FontWeight.Medium,
