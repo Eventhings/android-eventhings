@@ -1,7 +1,6 @@
 package com.eventhngs.feature_auth.login
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,6 +20,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -58,7 +60,9 @@ fun LoginScreen(
 ) {
 
     val scrollState = rememberScrollState()
+
     val dialogState = rememberUseCaseState(visible = false)
+    var errorMessage by remember { mutableStateOf("") }
 
     val loginUiState by loginViewModel.loginUiState.collectAsStateWithLifecycle()
 
@@ -75,11 +79,12 @@ fun LoginScreen(
     )
 
     LaunchedEffect(key1 = loginResult) {
-        when (loginResult) {
-            Resource.Idle -> {}
-            Resource.Loading -> Log.d("TAG", "LoginScreen: Loading...")
-            is Resource.Error -> Log.d("TAG", "LoginScreen: Error = ${loginResult.message}")
-            is Resource.Success -> navigateToMainScreen()
+        if (loginResult is Resource.Error) {
+            errorMessage = loginResult.message.toString()
+            dialogState.show()
+        }
+        if (loginResult is Resource.Success) {
+            navigateToMainScreen()
         }
     }
 
@@ -89,10 +94,11 @@ fun LoginScreen(
             positiveButton = SelectionButton(
                 text = "Ok"
             ),
+            onPositiveClick = { dialogState.hide() },
             negativeButton = null
         ),
         body = {
-            Text(text = "Error")
+            Text(text = errorMessage)
         }
     )
 
