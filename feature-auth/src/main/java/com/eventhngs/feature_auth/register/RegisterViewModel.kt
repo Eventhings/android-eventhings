@@ -1,4 +1,4 @@
-package com.eventhngs.feature_auth.login
+package com.eventhngs.feature_auth.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,40 +10,40 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class LoginViewModel(
+class RegisterViewModel(
     private val eventhngsUseCase: EventhngsUseCase
 ) : ViewModel() {
 
-    private val _loginUiState = MutableStateFlow(LoginUiState())
-    val loginUiState: StateFlow<LoginUiState> get() = _loginUiState
+    private val _registerUiState = MutableStateFlow(RegisterUiState())
+    val registerUiState: StateFlow<RegisterUiState> get() = _registerUiState
 
-    val buttonLoginEnabled get() = _loginUiState.map {
+    val buttonRegisterEnabled get() = _registerUiState.map {
         it.email.isNotBlank() && it.password.length >= 6
     }
 
-    val buttonLoginLoading get() = _loginUiState.map {
-        it.loginResult is Resource.Loading || it.loginResult is Resource.Success
+    val buttonRegisterLoading get() = _registerUiState.map {
+        it.registerResult is Resource.Loading
     }
 
     fun updateEmail(email: String) {
-        _loginUiState.update {
+        _registerUiState.update {
             it.copy(email = email)
         }
     }
 
     fun updatePassword(password: String) {
-        _loginUiState.update {
+        _registerUiState.update {
             it.copy(password = password)
         }
     }
 
-    fun login() {
+    fun register() {
         viewModelScope.launch {
-            val email = _loginUiState.value.email
-            val password = _loginUiState.value.password
-            eventhngsUseCase.login(email, password).collect { result ->
-                _loginUiState.update {
-                    it.copy(loginResult = result)
+            val email = _registerUiState.value.email
+            val password = _registerUiState.value.password
+            eventhngsUseCase.register(email, password).collect { result ->
+                _registerUiState.update {
+                    it.copy(registerResult = result)
                 }
             }
         }
