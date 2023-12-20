@@ -2,10 +2,10 @@ package com.eventhngs.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class DetailMediaPartnerResponse(
+data class EquipmentResponse(
 
 	@field:SerializedName("data")
-	val data: DetailMediaPartnerData? = null,
+	val data: EquipmentData? = null,
 
 	@field:SerializedName("success")
 	val success: Boolean? = null,
@@ -17,7 +17,25 @@ data class DetailMediaPartnerResponse(
 	val status: Int? = null
 )
 
-data class DetailMediaPartnerData(
+data class EquipmentData(
+
+	@field:SerializedName("total")
+	val total: Int? = null,
+
+	@field:SerializedName("data")
+	val data: List<EquipmentItem>? = null,
+
+	@field:SerializedName("limit")
+	val limit: Int? = null,
+
+	@field:SerializedName("total_page")
+	val totalPage: Int? = null,
+
+	@field:SerializedName("page")
+	val page: Int? = null
+)
+
+data class EquipmentItem(
 
 	@field:SerializedName("whatsapp")
 	val whatsapp: String? = null,
@@ -43,11 +61,11 @@ data class DetailMediaPartnerData(
 	@field:SerializedName("created_at")
 	val createdAt: String? = null,
 
+	@field:SerializedName("average_rating")
+	val averageRating: String? = null,
+
 	@field:SerializedName("instagram")
 	val instagram: String? = null,
-
-	@field:SerializedName("packages")
-	val packages: List<PackagesItem>? = null,
 
 	@field:SerializedName("created_by")
 	val createdBy: String? = null,
@@ -64,8 +82,8 @@ data class DetailMediaPartnerData(
 	@field:SerializedName("is_archived")
 	val isArchived: Boolean? = null,
 
-	@field:SerializedName("reviews")
-	val reviews: List<ReviewsItem>? = null,
+	@field:SerializedName("min_price")
+	val minPrice: Double? = null,
 
 	@field:SerializedName("name")
 	val name: String? = null,
@@ -77,7 +95,7 @@ data class DetailMediaPartnerData(
 	val isApproved: Boolean? = null,
 
 	@field:SerializedName("location")
-	val location: String? = null,
+	val location: Any? = null,
 
 	@field:SerializedName("id")
 	val id: String? = null,
@@ -86,8 +104,5 @@ data class DetailMediaPartnerData(
 	val value: String? = null,
 
 	@field:SerializedName("email")
-	val email: String? = null,
-
-	@field:SerializedName("average_rating")
-	val averageRating: Double? = null
+	val email: String? = null
 )

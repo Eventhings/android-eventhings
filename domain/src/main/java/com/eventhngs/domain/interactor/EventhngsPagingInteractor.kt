@@ -17,4 +17,9 @@ class EventhngsPagingInteractor(
     override fun getSponsor(): Flow<PagingData<EventNeedItem>> {
         return repository.getSponsor()
     }
+
+    override fun getEquipment(): Flow<PagingData<EventNeedItem>> {
+        return repository.getEquipment()
+    }
+
 }

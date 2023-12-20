@@ -2,6 +2,7 @@ package com.eventhngs.data
 
 import com.eventhngs.data.mapper.toDomain
 import com.eventhngs.data.remote.RemoteDataSource
+import com.eventhngs.domain.model.DetailEquipment
 import com.eventhngs.domain.model.DetailMediaPartner
 import com.eventhngs.domain.model.DetailSponsor
 import com.eventhngs.domain.model.LoginResult
@@ -72,6 +73,26 @@ class EventhngsRepositoryImpl(
     override fun getSponsorById(id: String): Flow<Resource<DetailSponsor>> = flow {
         emit(Resource.Loading)
         when (val response = remoteDataSource.getSponsorById(id)) {
+            is NetworkResponse.Success -> {
+                val result = response.body.data?.toDomain()
+                if (result == null) {
+                    emit(Resource.Error(message = "Data null"))
+                    return@flow
+                }
+                emit(Resource.Success(result))
+            }
+            is NetworkResponse.Error -> {
+                val message = response.body?.message ?: response.error?.message
+                emit(Resource.Error(message = message))
+            }
+        }
+    }.catch {
+        emit(Resource.Error(message = it.message))
+    }
+
+    override fun getEquipmentById(id: String): Flow<Resource<DetailEquipment>> = flow {
+        emit(Resource.Loading)
+        when (val response = remoteDataSource.getEquipmentById(id)) {
             is NetworkResponse.Success -> {
                 val result = response.body.data?.toDomain()
                 if (result == null) {

@@ -2,6 +2,7 @@ package com.eventhngs.feature_equipment_rental_menu.detail
 
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -9,7 +10,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -25,11 +28,11 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -37,18 +40,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.eventhngs.domain.model.EventNeedItem
+import com.eventhngs.domain.model.Resource
 import com.eventhngs.feature_equipment_rental_menu.component.DetailEquipmentHeader
 import com.eventhngs.feature_equipment_rental_menu.component.DetailEquipmentInformationSection
 import com.eventhngs.feature_equipment_rental_menu.component.DetailEquipmentPackageSection
-import com.eventhngs.feature_equipment_rental_menu.domain.EquipmentDetail
 import com.eventhngs.feature_equipment_rental_menu.domain.EquipmentPackage
+import com.eventhngs.feature_equipment_rental_menu.mapper.toUi
 import com.eventhngs.ui.component.bottomnavigation.DetailBottomNavigation
 import com.eventhngs.ui.component.event.EventNeedItem
+import com.eventhngs.ui.component.review.ReviewItem
 import com.eventhngs.ui.component.text.TextWithSeeMoreButton
 import com.eventhngs.ui.component.topappbar.DetailTopAppBar
 import com.eventhngs.ui.theme.EventhngsTheme
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 @ExperimentalFoundationApi
 @ExperimentalLayoutApi
@@ -56,6 +63,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun DetailEquipmentScreen(
     modifier: Modifier = Modifier,
+    viewModel: DetailEquipmentViewModel = koinViewModel(),
     navigateUp: () -> Unit = {},
     equipmentId: String = ""
 ) {
@@ -68,44 +76,42 @@ fun DetailEquipmentScreen(
         if (pagerState.currentPage == 0) "Choose Package" else "Book Now"
     }
 
-    val detail = EquipmentDetail(
-        id = 1,
-        logo = "https://pbs.twimg.com/profile_images/1281601097581211648/ZUwX2det_400x400.jpg",
-        name = "Your Business",
-        label = listOf("Equipment", "Sponsor", "Media Partner"),
-        price = 100_000.0,
-        rating = 4.0,
-        email = "marketing@seputarkampus.com",
-        website = "https://google.com",
-        instagram = "@abdulhafizramadan_",
-        whatsapp = "081327464575",
-        stepsToBook = listOf(
-            "Choose package",
-            "Add quantity",
-            "Invoice and payment",
-            "Send poster and caption"
-        ),
-        stepsAfterBook = listOf(
-            "Wait for the upload schedule and stay tune at our social media"
-        ),
-        about = "MagangUpdate Network is an informative and educative media about the world of internships. This media has been around since 2012 and has experience in collaborating with various event activities and companies.",
-        value = listOf(
-            "Top 1 Platform Sharing Internships and Jobs Information in Indonesia",
-            "We have had and maintained relationships with 10+ Universities, 40+ Enterprise & Start-up, and 1000+ Event Partners"
-        )
-    )
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val detail = uiState.detailEquipment
 
-    var packageOptions by remember {
-        mutableStateOf(
-            (1..5).map {
-                EquipmentPackage(
-                    id = it,
-                    name = "Paket Bronze",
-                    benefits = listOf("1x Feed @seputarkampus", "1x IG Story @seputarkampus", "1x IG Story @magangupdate", "1x Twit @seputarkampus"),
-                    price = 50_000.0
-                )
-            }
-        )
+    LaunchedEffect(key1 = Unit) {
+        viewModel.getDetailEquipment(equipmentId)
+    }
+
+//    val detail = EquipmentDetail(
+//        id = 1,
+//        logoUrl = "https://pbs.twimg.com/profile_images/1281601097581211648/ZUwX2det_400x400.jpg",
+//        name = "Your Business",
+//        label = listOf("Equipment", "Sponsor", "Media Partner"),
+//        price = 100_000.0,
+//        rating = 4.0,
+//        email = "marketing@seputarkampus.com",
+//        website = "https://google.com",
+//        instagram = "@abdulhafizramadan_",
+//        whatsapp = "081327464575",
+//        stepsToBook = listOf(
+//            "Choose package",
+//            "Add quantity",
+//            "Invoice and payment",
+//            "Send poster and caption"
+//        ),
+//        stepsAfterBook = listOf(
+//            "Wait for the upload schedule and stay tune at our social media"
+//        ),
+//        description = "MagangUpdate Network is an informative and educative media about the world of internships. This media has been around since 2012 and has experience in collaborating with various event activities and companies.",
+//        value = listOf(
+//            "Top 1 Platform Sharing Internships and Jobs Information in Indonesia",
+//            "We have had and maintained relationships with 10+ Universities, 40+ Enterprise & Start-up, and 1000+ Event Partners"
+//        )
+//    )
+
+    val packageOptions = remember {
+        mutableStateListOf<EquipmentPackage>()
     }
 
     val similarMediaPartners = (1..10).map {
@@ -135,10 +141,12 @@ fun DetailEquipmentScreen(
     }
 
     val onPackageCounterClick: (EquipmentPackage) -> Unit = { updatedPackage ->
-        packageOptions = packageOptions.map {
+        val packages = packageOptions.map {
             if (updatedPackage.id == it.id) updatedPackage
             else it
         }
+        packageOptions.clear()
+        packageOptions.addAll(packages)
     }
 
     val onButtonClick: () -> Unit = {
@@ -166,17 +174,22 @@ fun DetailEquipmentScreen(
         modifier = modifier.navigationBarsPadding()
     ) { paddingValues ->
         LazyColumn(
-            modifier = Modifier.navigationBarsPadding(),
+            modifier = Modifier
+                .navigationBarsPadding()
+                .animateContentSize(),
             contentPadding = paddingValues
         ) {
-            item {
-                DetailEquipmentHeader(
-                    detail = detail,
-                    onWebsiteClick = onWebsiteClick,
-                    onInstagramClick = onInstagramClick,
-                    onWhatsappClick = onWhatsappClick,
-                    modifier = Modifier.padding(horizontal = 20.dp)
-                )
+            if (detail is Resource.Success) {
+                val detailUi = detail.data.toUi()
+                item {
+                    DetailEquipmentHeader(
+                        detail = detailUi,
+                        onWebsiteClick = onWebsiteClick,
+                        onInstagramClick = onInstagramClick,
+                        onWhatsappClick = onWhatsappClick,
+                        modifier = Modifier.padding(horizontal = 20.dp)
+                    )
+                }
             }
             item {
                 Row(
@@ -197,22 +210,36 @@ fun DetailEquipmentScreen(
                     }
                 }
             }
-            item {
-                HorizontalPager(
-                    state = pagerState,
-                    verticalAlignment = Alignment.Top
-                ) { page ->
-                    when (page) {
-                        0 -> DetailEquipmentInformationSection(
-                            detail = detail,
-                            modifier = Modifier.padding(horizontal = 20.dp)
+            if (detail is Resource.Success) {
+                val detailUi = detail.data.toUi()
+                packageOptions.addAll(
+                    detail.data.packages.map {
+                        EquipmentPackage(
+                            id = it.id,
+                            name = it.name,
+                            benefits = it.description.split("\n"),
+                            price = it.price
                         )
-                        1 -> DetailEquipmentPackageSection(
-                            modifier = Modifier.padding(horizontal = 20.dp),
-                            packages = packageOptions,
-                            onDecreaseClick = onPackageCounterClick,
-                            onIncreaseClick = onPackageCounterClick
-                        )
+                    }
+                )
+                item {
+                    HorizontalPager(
+                        state = pagerState,
+                        verticalAlignment = Alignment.Top
+                    ) { page ->
+                        when (page) {
+                            0 -> DetailEquipmentInformationSection(
+                                detail = detailUi,
+                                modifier = Modifier.padding(horizontal = 20.dp)
+                            )
+
+                            1 -> DetailEquipmentPackageSection(
+                                modifier = Modifier.padding(horizontal = 20.dp),
+                                packages = packageOptions,
+                                onDecreaseClick = onPackageCounterClick,
+                                onIncreaseClick = onPackageCounterClick
+                            )
+                        }
                     }
                 }
             }
@@ -223,6 +250,24 @@ fun DetailEquipmentScreen(
                     modifier = Modifier.padding(horizontal = 20.dp, vertical = 16.dp)
                 )
             }
+            item { Spacer(modifier = Modifier.height(15.dp)) }
+            item {
+                TextWithSeeMoreButton(
+                    text = "Service Ratings",
+                    modifier = Modifier
+                        .padding(horizontal = 20.dp)
+                        .fillMaxWidth()
+                )
+            }
+            if (detail is Resource.Success) {
+                items(items = detail.data.reviews, key = { it.id }) {
+                    ReviewItem(
+                        reviewItem = it,
+                        modifier = Modifier.padding(horizontal = 20.dp)
+                    )
+                    Spacer(modifier = Modifier.height(15.dp))
+                }
+            }
             item {
                 TextWithSeeMoreButton(
                     text = "Similar Equipment",
@@ -231,19 +276,21 @@ fun DetailEquipmentScreen(
                         .fillMaxWidth()
                 )
             }
-            item {
-                LazyRow(
-                    contentPadding = PaddingValues(16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    items(items = similarMediaPartners, key = { it.id }) { eventNeedItem ->
-                        EventNeedItem(
-                            eventNeedItem = eventNeedItem,
-                            modifier = Modifier.widthIn(
-                                min = 175.dp,
-                                max = 230.dp
+            if (detail is Resource.Success) {
+                item {
+                    LazyRow(
+                        contentPadding = PaddingValues(16.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        items(items = similarMediaPartners, key = { it.id }) { eventNeedItem ->
+                            EventNeedItem(
+                                eventNeedItem = eventNeedItem,
+                                modifier = Modifier.widthIn(
+                                    min = 175.dp,
+                                    max = 230.dp
+                                )
                             )
-                        )
+                        }
                     }
                 }
             }

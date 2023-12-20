@@ -51,9 +51,11 @@ fun DetailEquipmentHeader(
     Column(modifier = modifier) {
         Row(modifier = Modifier.fillMaxWidth()) {
             AsyncImage(
-                model = detail.logo,
+                model = detail.logoUrl,
                 contentDescription = detail.name,
                 contentScale = ContentScale.FillBounds,
+                placeholder = painterResource(id = com.eventhngs.ui.R.drawable.ic_menu_equipment),
+                error = painterResource(id = com.eventhngs.ui.R.drawable.ic_menu_equipment),
                 modifier = Modifier
                     .clip(RoundedCornerShape(10.dp))
                     .size(100.dp)
@@ -171,8 +173,8 @@ fun PreviewDetailEquipmentHeader() {
     EventhngsTheme {
         Surface {
             val detail = EquipmentDetail(
-                id = 1,
-                logo = "",
+                id = "",
+                logoUrl = "",
                 name = "Your Business Name Here",
                 label = listOf("Equipment", "Sponsor", "Media Partner"),
                 price = 100_000.0,

@@ -10,4 +10,6 @@ interface EventhngsPagingUseCase {
 
     fun getSponsor(): Flow<PagingData<EventNeedItem>>
 
+    fun getEquipment(): Flow<PagingData<EventNeedItem>>
+
 }

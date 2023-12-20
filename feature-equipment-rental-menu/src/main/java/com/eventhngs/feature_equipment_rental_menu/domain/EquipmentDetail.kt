@@ -1,8 +1,8 @@
 package com.eventhngs.feature_equipment_rental_menu.domain
 
 data class EquipmentDetail(
-    val id: Int = 0,
-    val logo: String = "",
+    val id: String = "",
+    val logoUrl: String = "",
     val name: String = "",
     val label: List<String> = emptyList(),
     val price: Double = 0.0,
@@ -13,6 +13,6 @@ data class EquipmentDetail(
     val whatsapp: String = "",
     val stepsToBook: List<String> = emptyList(),
     val stepsAfterBook: List<String> = emptyList(),
-    val about: String = "",
+    val description: String = "",
     val value: List<String> = emptyList(),
 )

@@ -2,10 +2,10 @@ package com.eventhngs.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class DetailMediaPartnerResponse(
+data class DetailEquipmentResponse(
 
 	@field:SerializedName("data")
-	val data: DetailMediaPartnerData? = null,
+	val data: DetailEquipmentData? = null,
 
 	@field:SerializedName("success")
 	val success: Boolean? = null,
@@ -17,7 +17,7 @@ data class DetailMediaPartnerResponse(
 	val status: Int? = null
 )
 
-data class DetailMediaPartnerData(
+data class DetailEquipmentData(
 
 	@field:SerializedName("whatsapp")
 	val whatsapp: String? = null,

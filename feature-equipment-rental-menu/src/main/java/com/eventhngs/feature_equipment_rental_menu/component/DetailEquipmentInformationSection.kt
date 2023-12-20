@@ -64,7 +64,7 @@ fun DetailEquipmentInformationSection(
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = detail.about,
+            text = detail.description,
             fontSize = 12.4.sp,
             lineHeight = 20.sp,
             fontFamily = poppinsFontFamily,
@@ -104,7 +104,7 @@ fun PreviewDetailEquipmentInformationSection() {
                 stepsAfterBook = listOf(
                     "Wait for the upload schedule and stay tune at our social media"
                 ),
-                about = "MagangUpdate Network is an informative and educative media about the world of internships. This media has been around since 2012 and has experience in collaborating with various event activities and companies.",
+                description = "MagangUpdate Network is an informative and educative media about the world of internships. This media has been around since 2012 and has experience in collaborating with various event activities and companies.",
                 value = listOf(
                     "Top 1 Platform Sharing Internships and Jobs Information in Indonesia",
                     "We have had and maintained relationships with 10+ Universities, 40+ Enterprise & Start-up, and 1000+ Event Partners"

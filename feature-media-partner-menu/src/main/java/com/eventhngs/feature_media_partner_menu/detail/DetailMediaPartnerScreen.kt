@@ -199,7 +199,10 @@ fun DetailMediaPartnerScreen(
                     horizontalArrangement = Arrangement.Center
                 ) {
                     repeat(pagerState.pageCount) { iteration ->
-                        val color = if (pagerState.currentPage == iteration) Color(0xFF9365CD) else Color(0xFFEBE5F2)
+                        val color =
+                            if (pagerState.currentPage == iteration) Color(0xFF9365CD) else Color(
+                                0xFFEBE5F2
+                            )
                         Box(
                             modifier = Modifier
                                 .padding(4.dp)
@@ -210,19 +213,19 @@ fun DetailMediaPartnerScreen(
                     }
                 }
             }
-            item {
-                if (detail is Resource.Success) {
-                    val detailUi = detail.data.toUi()
-                    packageOptions.addAll(
-                        detail.data.packages.map {
-                            MediaPartnerPackage(
-                                id = it.id,
-                                name = it.name,
-                                benefits = it.description.split("\n"),
-                                price = it.price
-                            )
-                        }
-                    )
+            if (detail is Resource.Success) {
+                val detailUi = detail.data.toUi()
+                packageOptions.addAll(
+                    detail.data.packages.map {
+                        MediaPartnerPackage(
+                            id = it.id,
+                            name = it.name,
+                            benefits = it.description.split("\n"),
+                            price = it.price
+                        )
+                    }
+                )
+                item {
                     HorizontalPager(
                         state = pagerState,
                         verticalAlignment = Alignment.Top
@@ -232,6 +235,7 @@ fun DetailMediaPartnerScreen(
                                 detail = detailUi,
                                 modifier = Modifier.padding(horizontal = 20.dp)
                             )
+
                             1 -> DetailMediaPartnerPackageSection(
                                 modifier = Modifier.padding(horizontal = 20.dp),
                                 packages = packageOptions,

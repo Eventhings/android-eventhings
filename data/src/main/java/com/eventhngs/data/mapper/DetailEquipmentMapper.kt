@@ -1,10 +1,10 @@
 package com.eventhngs.data.mapper
 
-import com.eventhngs.data.remote.response.DetailMediaPartnerData
-import com.eventhngs.domain.model.DetailMediaPartner
+import com.eventhngs.data.remote.response.DetailEquipmentData
+import com.eventhngs.domain.model.DetailEquipment
 
-fun DetailMediaPartnerData.toDomain(): DetailMediaPartner {
-    return DetailMediaPartner(
+fun DetailEquipmentData.toDomain(): DetailEquipment {
+    return DetailEquipment(
         whatsapp = whatsapp ?: "",
         lastUpdated = lastUpdated ?: "",
         website = website ?: "",

@@ -27,7 +27,7 @@ fun DetailEquipmentPackageSection(
 ) {
     Column(modifier = modifier) {
         Text(
-            text = "Steps to Book",
+            text = "Packages",
             fontSize = 14.sp,
             lineHeight = 20.sp,
             fontFamily = poppinsFontFamily,
@@ -56,7 +56,7 @@ fun PreviewDetailEquipmentPackageSection() {
         Surface {
             val packageOptions = (1..5).map {
                 EquipmentPackage(
-                    id = it,
+                    id = it.toString(),
                     name = "Paket Bronze",
                     benefits = listOf("1x Feed @seputarkampus", "1x IG Story @seputarkampus", "1x IG Story @magangupdate", "1x Twit @seputarkampus"),
                     price = 50_000.0

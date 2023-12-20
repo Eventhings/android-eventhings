@@ -1,5 +1,6 @@
 package com.eventhngs.domain.repository
 
+import com.eventhngs.domain.model.DetailEquipment
 import com.eventhngs.domain.model.DetailMediaPartner
 import com.eventhngs.domain.model.DetailSponsor
 import com.eventhngs.domain.model.LoginResult
@@ -26,5 +27,9 @@ interface EventhngsRepository {
     fun getSponsorById(
         id: String
     ): Flow<Resource<DetailSponsor>>
+
+    fun getEquipmentById(
+        id: String
+    ): Flow<Resource<DetailEquipment>>
 
 }
