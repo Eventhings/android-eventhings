@@ -1,6 +1,7 @@
 package com.eventhngs.data.remote.service
 
 import com.eventhngs.data.remote.response.DetailMediaPartnerResponse
+import com.eventhngs.data.remote.response.DetailSponsorResponse
 import com.eventhngs.data.remote.response.ErrorResponse
 import com.eventhngs.data.remote.response.LoginResponse
 import com.eventhngs.data.remote.response.MediaPartnerResponse
@@ -41,10 +42,15 @@ interface EventhngsService {
         @Path("id") id: String
     ): NetworkResponse<DetailMediaPartnerResponse, ErrorResponse>
 
-    @GET("event/sponsor")
+    @GET("event/sponsorship")
     suspend fun getSponsor(
         @Query("limit") limit: Int = 10,
         @Query("page") page: Int = 0
     ): NetworkResponse<SponsorResponse, ErrorResponse>
+
+    @GET("event/sponsorship/{id}")
+    suspend fun getSponsorById(
+        @Path("id") id: String
+    ): NetworkResponse<DetailSponsorResponse, ErrorResponse>
 
 }

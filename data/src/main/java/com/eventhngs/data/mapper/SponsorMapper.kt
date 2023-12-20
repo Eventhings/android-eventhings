@@ -13,7 +13,7 @@ fun SponsorItem.toEventNeed(): EventNeedItem {
         id = id ?: "",
         logo = logoUrl ?: "",
         title = name ?: "",
-        label = listOf("Media Partner", field ?: ""),
+        label = listOf("Sponsor", field ?: ""),
         price = 0.0,
         rating = averageRating?.toDoubleOrNull() ?: 0.0,
         type = EventNeedItemType.SPONSOR

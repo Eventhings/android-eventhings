@@ -2,10 +2,10 @@ package com.eventhngs.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class DetailMediaPartnerResponse(
+data class DetailSponsorResponse(
 
 	@field:SerializedName("data")
-	val data: DetailMediaPartnerData? = null,
+	val data: DetailSponsorData? = null,
 
 	@field:SerializedName("success")
 	val success: Boolean? = null,
@@ -17,7 +17,7 @@ data class DetailMediaPartnerResponse(
 	val status: Int? = null
 )
 
-data class DetailMediaPartnerData(
+data class DetailSponsorData(
 
 	@field:SerializedName("whatsapp")
 	val whatsapp: String? = null,
@@ -45,9 +45,6 @@ data class DetailMediaPartnerData(
 
 	@field:SerializedName("instagram")
 	val instagram: String? = null,
-
-	@field:SerializedName("packages")
-	val packages: List<PackagesItem>? = null,
 
 	@field:SerializedName("created_by")
 	val createdBy: String? = null,
@@ -90,22 +87,4 @@ data class DetailMediaPartnerData(
 
 	@field:SerializedName("average_rating")
 	val averageRating: Double? = null
-)
-
-data class PackagesItem(
-
-	@field:SerializedName("mp_id")
-	val mpId: String? = null,
-
-	@field:SerializedName("price")
-	val price: Double? = null,
-
-	@field:SerializedName("name")
-	val name: String? = null,
-
-	@field:SerializedName("description")
-	val description: String? = null,
-
-	@field:SerializedName("id")
-	val id: String? = null
 )

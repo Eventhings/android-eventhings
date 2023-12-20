@@ -33,7 +33,8 @@ fun DetailMediaPartnerData.toDomain(): DetailMediaPartner {
         location = location ?: "",
         id = id ?: "",
         value = value ?: "",
-        email = email ?: ""
+        email = email ?: "",
+        averageRating = averageRating ?: 0.0
     )
 }
 

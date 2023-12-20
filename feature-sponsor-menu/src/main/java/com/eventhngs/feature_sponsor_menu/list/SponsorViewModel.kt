@@ -24,7 +24,7 @@ class SponsorViewModel(
     fun getSponsor() {
         viewModelScope.launch {
             _uiState.update {
-                it.copy(sponsors = eventhngsPagingUseCase.getMediaPartner())
+                it.copy(sponsors = eventhngsPagingUseCase.getSponsor())
             }
         }
     }

@@ -1,6 +1,6 @@
 package com.eventhngs.domain.model
 
-data class DetailMediaPartner(
+data class DetailSponsor(
 
     val whatsapp: String = "",
 

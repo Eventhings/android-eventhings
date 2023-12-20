@@ -1,6 +1,7 @@
 package com.eventhngs.data.remote
 
 import com.eventhngs.data.remote.response.DetailMediaPartnerResponse
+import com.eventhngs.data.remote.response.DetailSponsorResponse
 import com.eventhngs.data.remote.response.ErrorResponse
 import com.eventhngs.data.remote.response.LoginResponse
 import com.eventhngs.data.remote.response.MediaPartnerResponse
@@ -43,6 +44,12 @@ class RemoteDataSource(private val service: EventhngsService) {
         page: Int = 0
     ): NetworkResponse<SponsorResponse, ErrorResponse> {
         return service.getSponsor(limit, page)
+    }
+
+    suspend fun getSponsorById(
+        id: String
+    ): NetworkResponse<DetailSponsorResponse, ErrorResponse> {
+        return service.getSponsorById(id)
     }
 
 }
