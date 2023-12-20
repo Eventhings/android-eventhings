@@ -5,7 +5,7 @@ enum class EventNeedItemType {
 }
 
 data class EventNeedItem(
-    val id: Int = 0,
+    val id: String = "",
     val logo: String = "",
     val title: String = "",
     val label: List<String> = emptyList(),

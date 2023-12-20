@@ -29,14 +29,14 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @Composable
 fun ListChatScreen(
     modifier: Modifier = Modifier,
-    navigateToChatDetailScreen: (Int) -> Unit = {}
+    navigateToChatDetailScreen: (String) -> Unit = {}
 ) {
 
     var query by remember { mutableStateOf("") }
     val chats = remember {
         (1..10).map {
             ChatList(
-                id = it,
+                id = it.toString(),
                 photo = "https://i.pinimg.com/474x/98/51/1e/98511ee98a1930b8938e42caf0904d2d.jpg    ",
                 name = "Magang Update",
                 lastChat = "Lorem ipsum dolor sit amet, consectetur adipiscin"

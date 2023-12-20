@@ -2,9 +2,11 @@ package com.eventhngs.data.remote
 
 import com.eventhngs.data.remote.response.ErrorResponse
 import com.eventhngs.data.remote.response.LoginResponse
+import com.eventhngs.data.remote.response.MediaPartnerResponse
 import com.eventhngs.data.remote.response.RegisterResponse
 import com.eventhngs.data.remote.service.EventhngsService
 import com.haroldadmin.cnradapter.NetworkResponse
+import retrofit2.http.Query
 
 class RemoteDataSource(private val service: EventhngsService) {
 
@@ -20,6 +22,13 @@ class RemoteDataSource(private val service: EventhngsService) {
         password: String
     ): NetworkResponse<RegisterResponse, ErrorResponse> {
         return service.register(email, password)
+    }
+
+    suspend fun getMediaPartner(
+        @Query("limit") limit: Int = 10,
+        @Query("page") page: Int = 0
+    ): NetworkResponse<MediaPartnerResponse, ErrorResponse> {
+        return service.getMediaPartner(limit, page)
     }
 
 }

@@ -49,9 +49,9 @@ import kotlinx.coroutines.launch
 fun AllMenuScreen(
     modifier: Modifier = Modifier,
     navigateUp: () -> Unit = {},
-    navigateToMediaPartnerDetail: (Int) -> Unit = {},
-    navigateToSponsorDetailScreen: (Int) -> Unit = {},
-    navigateToEquipmentDetail: (Int) -> Unit = {}
+    navigateToMediaPartnerDetail: (String) -> Unit = {},
+    navigateToSponsorDetailScreen: (String) -> Unit = {},
+    navigateToEquipmentDetail: (String) -> Unit = {}
 ) {
 
     val state = rememberModalBottomSheetState(
@@ -108,7 +108,7 @@ fun AllMenuScreen(
     val eventNeedItems = (1..10).map {
         val needItemType = if (it % 2 == 0) EventNeedItemType.EQUIPMENT else EventNeedItemType.SPONSOR
         EventNeedItem(
-            id = it,
+            id = it.toString(),
             logo = "",
             title = "Your Business Name Here",
             label = listOf("Equipment", "Sponsor", "Media Partner", "Photo Booth"),

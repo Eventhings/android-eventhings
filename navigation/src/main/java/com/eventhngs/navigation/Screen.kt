@@ -24,22 +24,22 @@ sealed class Screen(val route: String) {
     object EquipmentRentalMenu : Screen(route = "equipment-rental-menu")
     object EditProfile : Screen(route = "edit-profile")
     object MediaPartnerDetail : Screen(route = "media-partner-detail/{$MEDIA_PARTNER_ID}") {
-        fun generateRoute(mediaPartnerId: Int): String {
+        fun generateRoute(mediaPartnerId: String): String {
             return "media-partner-detail/$mediaPartnerId"
         }
     }
     object SponsorDetail : Screen(route = "sponsor-detail/{$SPONSOR_ID}") {
-        fun generateRoute(sponsorId: Int): String {
+        fun generateRoute(sponsorId: String): String {
             return "sponsor-detail/$sponsorId"
         }
     }
     object EquipmentDetail : Screen(route = "equipment-detail/{$EQUIPMENT_ID}") {
-        fun generateRoute(equipmentId: Int): String {
+        fun generateRoute(equipmentId: String): String {
             return "equipment-detail/$equipmentId"
         }
     }
     object ChatDetail : Screen(route = "chat-detail/{$CHAT_ID}") {
-        fun generateRoute(chatId: Int): String {
+        fun generateRoute(chatId: String): String {
             return "chat-detail/$chatId"
         }
     }

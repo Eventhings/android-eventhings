@@ -52,8 +52,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun RegisterScreen(
     modifier: Modifier = Modifier,
-    viewModel: RegisterViewModel = koinViewModel(),
-    navigateToLoginScreen: () -> Unit = {}
+    viewModel: RegisterViewModel = koinViewModel()
 ) {
 
     val scrollState = rememberScrollState()

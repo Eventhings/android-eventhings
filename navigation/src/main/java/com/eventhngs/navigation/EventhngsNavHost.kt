@@ -22,7 +22,7 @@ import com.eventhngs.feature_chat.detail.DetailChatScreen
 import com.eventhngs.feature_equipment_rental_menu.EquipmentRentalMenuScreen
 import com.eventhngs.feature_equipment_rental_menu.detail.DetailEquipmentScreen
 import com.eventhngs.feature_main.MainScreen
-import com.eventhngs.feature_media_partner_menu.MediaPartnerMenuScreen
+import com.eventhngs.feature_media_partner_menu.list.MediaPartnerMenuScreen
 import com.eventhngs.feature_media_partner_menu.detail.DetailMediaPartnerScreen
 import com.eventhngs.feature_profile.editprofile.EditProfileScreen
 import com.eventhngs.feature_sponsor_menu.SponsorMenuScreen
@@ -35,7 +35,7 @@ import com.eventhngs.splashscreen.SplashScreen
 @ExperimentalMaterial3Api
 @Composable
 fun EventhngsNavHost(
-    startDestination: Screen = Screen.SplashScreen,
+    startDestination: Screen = Screen.MediaPartnerMenu,
     navController: NavHostController = rememberNavController()
 ) {
 
@@ -56,9 +56,7 @@ fun EventhngsNavHost(
             )
         }
         composableWithSlideHorizontalAnimation(Screen.Register.route) {
-            RegisterScreen(
-                navigateToLoginScreen = { navController.navigateToLoginScreen(from = Screen.Login) }
-            )
+            RegisterScreen()
         }
         composableWithSlideHorizontalAnimation(Screen.ForgotPassword.route) {
             ForgotPasswordScreen(
@@ -130,7 +128,7 @@ fun EventhngsNavHost(
                 }
             )
         ) {
-            val mediaPartnerId = it.arguments?.getInt(Screen.MEDIA_PARTNER_ID) ?: 0
+            val mediaPartnerId = it.arguments?.getString(Screen.MEDIA_PARTNER_ID) ?: ""
             DetailMediaPartnerScreen(
                 navigateUp = navController::navigateUp,
                 mediaPartnerId = mediaPartnerId
@@ -144,7 +142,7 @@ fun EventhngsNavHost(
                 }
             )
         ) {
-            val sponsorId = it.arguments?.getInt(Screen.SPONSOR_ID) ?: 0
+            val sponsorId = it.arguments?.getString(Screen.SPONSOR_ID) ?: ""
             DetailSponsorScreen(
                 navigateUp = navController::navigateUp,
                 sponsorId = sponsorId
@@ -158,7 +156,7 @@ fun EventhngsNavHost(
                 }
             )
         ) {
-            val equipmentId = it.arguments?.getInt(Screen.EQUIPMENT_ID) ?: 0
+            val equipmentId = it.arguments?.getString(Screen.EQUIPMENT_ID) ?: ""
             DetailEquipmentScreen(
                 navigateUp = navController::navigateUp,
                 equipmentId = equipmentId

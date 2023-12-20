@@ -82,7 +82,7 @@ fun PreviewChatListItem() {
     EventhngsTheme {
         Surface {
             val chatList = ChatList(
-                id = 1,
+                id = "1",
                 photo = "https://i.pinimg.com/474x/98/51/1e/98511ee98a1930b8938e42caf0904d2d.jpg    ",
                 name = "Magang Update",
                 lastChat = "Lorem ipsum dolor sit amet, consectetur adipiscin"

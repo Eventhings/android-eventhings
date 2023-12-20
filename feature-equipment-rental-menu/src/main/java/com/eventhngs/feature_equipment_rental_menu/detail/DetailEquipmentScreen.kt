@@ -57,7 +57,7 @@ import kotlinx.coroutines.launch
 fun DetailEquipmentScreen(
     modifier: Modifier = Modifier,
     navigateUp: () -> Unit = {},
-    equipmentId: Int = 0
+    equipmentId: String = ""
 ) {
 
     val context = LocalContext.current
@@ -110,7 +110,7 @@ fun DetailEquipmentScreen(
 
     val similarMediaPartners = (1..10).map {
         EventNeedItem(
-            id = it,
+            id = it.toString(),
             logo = "",
             title = "Your Business Name Here",
             label = listOf("Equipment", "Sponsor"),

@@ -1,6 +1,5 @@
 package com.eventhngs.ui.component.event
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,13 +22,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.eventhngs.common.utils.toRatingFormat
 import com.eventhngs.common.utils.toRupiah
 import com.eventhngs.domain.model.EventNeedItem
+import com.eventhngs.domain.model.EventNeedItemType
+import com.eventhngs.ui.R
 import com.eventhngs.ui.component.text.TextLabel
 import com.eventhngs.ui.component.text.TextLabelSize
 import com.eventhngs.ui.component.text.generateLabelType
@@ -44,6 +46,11 @@ fun EventNeedItem(
     eventNeedItem: EventNeedItem,
     onClick: (EventNeedItem) -> Unit = {}
 ) {
+    val logo = when (eventNeedItem.type) {
+        EventNeedItemType.MEDIA_PARTNER -> R.drawable.logo_default_mp
+        EventNeedItemType.SPONSOR -> R.drawable.logo_default_sp
+        EventNeedItemType.EQUIPMENT -> R.drawable.logo_default_ep
+    }
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(10.dp))
@@ -79,8 +86,9 @@ fun EventNeedItem(
                         ambientColor = Color(0x40000000)
                     )
                     .clip(RoundedCornerShape(10.dp))
-                    .size(50.dp)
-                    .background(MaterialTheme.colorScheme.primaryContainer)
+                    .size(50.dp),
+                placeholder = painterResource(id = logo),
+                error = painterResource(id = logo)
             )
             Spacer(modifier = Modifier.width(10.dp))
             Text(
@@ -106,7 +114,7 @@ fun EventNeedItem(
                 color = Color(0xFF9365CD),
             )
             Text(
-                text = "⭐ ${eventNeedItem.rating}",
+                text = "⭐ ${eventNeedItem.rating.toRatingFormat()}",
                 fontSize = 12.sp,
                 lineHeight = 20.sp,
                 fontFamily = poppinsFontFamily,
@@ -123,7 +131,7 @@ fun EventNeedItem(
 fun PreviewEventNeedItem() {
     EventhngsTheme {
         val eventNeedItem = EventNeedItem(
-            id = 1,
+            id = "1",
             logo = "",
             title = "Your Business Name Here",
             label = listOf("Equipment", "Sponsor", "Media Partner", "Photo Booth"),

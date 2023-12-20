@@ -36,9 +36,9 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @Composable
 fun SavedItemScreen(
     modifier: Modifier = Modifier,
-    navigateToMediaPartnerDetailScreen: (Int) -> Unit = {},
-    navigateToSponsorDetailScreen: (Int) -> Unit = {},
-    navigateToEquipmentDetailScreen: (Int) -> Unit = {},
+    navigateToMediaPartnerDetailScreen: (String) -> Unit = {},
+    navigateToSponsorDetailScreen: (String) -> Unit = {},
+    navigateToEquipmentDetailScreen: (String) -> Unit = {},
 ) {
 
     var query by remember { mutableStateOf("") }
@@ -53,7 +53,7 @@ fun SavedItemScreen(
 
     val eventNeedItems = (1..10).map {
         EventNeedItem(
-            id = it,
+            id = it.toString(),
             logo = "",
             title = "Your Business Name Here",
             label = listOf("Equipment", "Sponsor", "Media Partner", "Photo Booth"),

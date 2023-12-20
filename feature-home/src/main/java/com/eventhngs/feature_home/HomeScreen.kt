@@ -53,9 +53,9 @@ fun HomeScreen(
     navigateToMediaPartnerMenuScreen: () -> Unit = {},
     navigateToSponsorMenuScreen: () -> Unit = {},
     navigateToEquipmentMenuScreen: () -> Unit = {},
-    navigateToMediaPartnerDetailScreen: (Int) -> Unit = {},
-    navigateToSponsorDetailScreen: (Int) -> Unit = {},
-    navigateToEquipmentDetailScreen: (Int) -> Unit = {},
+    navigateToMediaPartnerDetailScreen: (String) -> Unit = {},
+    navigateToSponsorDetailScreen: (String) -> Unit = {},
+    navigateToEquipmentDetailScreen: (String) -> Unit = {},
 ) {
 
     val user by remember { mutableStateOf("Abdul Hafiz Ramadan") }
@@ -80,7 +80,7 @@ fun HomeScreen(
 
     val eventNeedItems = (1..10).map {
         EventNeedItem(
-            id = it,
+            id = it.toString(),
             logo = "",
             title = "Your Business Name Here",
             label = listOf("Equipment", "Sponsor", "Media Partner", "Photo Booth"),

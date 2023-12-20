@@ -2,9 +2,11 @@ package com.eventhngs.data.di
 
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.eventhngs.data.BuildConfig
+import com.eventhngs.data.EventhngsPagingRepositoryImpl
 import com.eventhngs.data.EventhngsRepositoryImpl
 import com.eventhngs.data.remote.RemoteDataSource
 import com.eventhngs.data.remote.service.EventhngsService
+import com.eventhngs.domain.repository.EventhngsPagingRepository
 import com.eventhngs.domain.repository.EventhngsRepository
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import okhttp3.Interceptor
@@ -49,5 +51,7 @@ val dataModule = module {
     single { RemoteDataSource(get()) }
 
     single<EventhngsRepository> { EventhngsRepositoryImpl(get()) }
+
+    single<EventhngsPagingRepository> { EventhngsPagingRepositoryImpl(get()) }
 
 }

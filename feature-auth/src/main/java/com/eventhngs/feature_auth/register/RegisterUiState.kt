@@ -1,6 +1,5 @@
 package com.eventhngs.feature_auth.register
 
-import com.eventhngs.domain.model.LoginResult
 import com.eventhngs.domain.model.RegisterResult
 import com.eventhngs.domain.model.Resource
 

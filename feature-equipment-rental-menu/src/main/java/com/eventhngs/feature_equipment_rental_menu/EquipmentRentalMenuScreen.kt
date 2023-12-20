@@ -47,7 +47,7 @@ import kotlinx.coroutines.launch
 fun EquipmentRentalMenuScreen(
     modifier: Modifier = Modifier,
     navigateUp: () -> Unit = {},
-    navigateToEquipmentDetail: (Int) -> Unit = {},
+    navigateToEquipmentDetail: (String) -> Unit = {},
 ) {
 
     val state = rememberModalBottomSheetState(
@@ -90,7 +90,7 @@ fun EquipmentRentalMenuScreen(
 
     val eventNeedItems = (1..10).map {
         EventNeedItem(
-            id = it,
+            id = it.toString(),
             logo = "",
             title = "Your Business Name Here",
             label = listOf("Equipment", "Sponsor", "Media Partner", "Photo Booth"),

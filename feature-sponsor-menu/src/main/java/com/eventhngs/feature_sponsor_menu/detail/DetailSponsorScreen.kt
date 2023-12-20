@@ -40,7 +40,7 @@ import com.eventhngs.ui.theme.EventhngsTheme
 fun DetailSponsorScreen(
     modifier: Modifier = Modifier,
     navigateUp: () -> Unit = {},
-    sponsorId: Int = 0
+    sponsorId: String = ""
 ) {
 
     val context = LocalContext.current
@@ -64,7 +64,7 @@ fun DetailSponsorScreen(
 
     val similarMediaPartners = (1..10).map {
         EventNeedItem(
-            id = it,
+            id = it.toString(),
             logo = "",
             title = "Your Business Name Here",
             label = listOf("Equipment", "Sponsor"),

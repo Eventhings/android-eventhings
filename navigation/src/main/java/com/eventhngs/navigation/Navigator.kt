@@ -13,10 +13,10 @@ class MainNavigator(
     override fun navigateToEquipmentRentalMenuScreen() { navController.navigateToEquipmentRentalMenuScreen() }
     override fun navigateToAddBusinessMenuScreen() { navController.navigateToAddBusinessScreen() }
     override fun navigateToEditProfileScreen() { navController.navigateToEditProfileScreen() }
-    override fun navigateToMediaPartnerDetailScreen(id: Int) { navController.navigateToMediaPartnerDetailScreen(id) }
-    override fun navigateToSponsorDetailScreen(id: Int) { navController.navigateToSponsorDetailScreen(id) }
-    override fun navigateToEquipmentDetailScreen(id: Int) { navController.navigateToEquipmentDetailScreen(id) }
-    override fun navigateToChatDetailScreen(id: Int) { navController.navigateToChatDetailScreen(id) }
+    override fun navigateToMediaPartnerDetailScreen(id: String) { navController.navigateToMediaPartnerDetailScreen(id) }
+    override fun navigateToSponsorDetailScreen(id: String) { navController.navigateToSponsorDetailScreen(id) }
+    override fun navigateToEquipmentDetailScreen(id: String) { navController.navigateToEquipmentDetailScreen(id) }
+    override fun navigateToChatDetailScreen(id: String) { navController.navigateToChatDetailScreen(id) }
 }
 
 @Throws(IllegalArgumentException::class)
@@ -117,22 +117,22 @@ fun NavHostController.navigateToEditProfileScreen() {
 }
 
 @Throws(IllegalArgumentException::class)
-fun NavHostController.navigateToMediaPartnerDetailScreen(id: Int) {
+fun NavHostController.navigateToMediaPartnerDetailScreen(id: String) {
     navigate(Screen.MediaPartnerDetail.generateRoute(id))
 }
 
 @Throws(IllegalArgumentException::class)
-fun NavHostController.navigateToSponsorDetailScreen(id: Int) {
+fun NavHostController.navigateToSponsorDetailScreen(id: String) {
     navigate(Screen.SponsorDetail.generateRoute(id))
 }
 
 @Throws(IllegalArgumentException::class)
-fun NavHostController.navigateToEquipmentDetailScreen(id: Int) {
+fun NavHostController.navigateToEquipmentDetailScreen(id: String) {
     navigate(Screen.EquipmentDetail.generateRoute(id))
 }
 
 @Throws(IllegalArgumentException::class)
-fun NavHostController.navigateToChatDetailScreen(id: Int) {
+fun NavHostController.navigateToChatDetailScreen(id: String) {
     navigate(Screen.ChatDetail.generateRoute(id))
 }
 

@@ -47,7 +47,7 @@ import kotlinx.coroutines.launch
 fun SponsorMenuScreen(
     modifier: Modifier = Modifier,
     navigateUp: () -> Unit = {},
-    navigateToSponsorDetailScreen: (Int) -> Unit = {}
+    navigateToSponsorDetailScreen: (String) -> Unit = {}
 ) {
 
     val state = rememberModalBottomSheetState(
@@ -75,7 +75,7 @@ fun SponsorMenuScreen(
 
     val eventNeedItems = (1..10).map {
         EventNeedItem(
-            id = it,
+            id = it.toString(),
             logo = "",
             title = "Your Business Name Here",
             label = listOf("Equipment", "Sponsor", "Media Partner", "Photo Booth"),

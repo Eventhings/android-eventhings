@@ -59,6 +59,7 @@ dependencies {
     implementation(project(":navigation"))
 
     implementation(project(":feature-auth"))
+    implementation(project(":feature-media-partner-menu"))
 
     implementation("androidx.navigation:navigation-compose:2.7.5")
 
