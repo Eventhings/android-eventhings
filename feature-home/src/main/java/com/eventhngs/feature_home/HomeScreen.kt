@@ -63,11 +63,11 @@ fun HomeScreen(
     val carouselItems = (1..3).map {
         CarouselItem(
             id = it,
-            logo = "",
-            title = "Your Business Name Here",
+            logo = "https://secure.gravatar.com/avatar/019341b43c34bb322f316e57312ecaef?s=500&d=blank&r=g",
+            title = "Dicoding Akademi Indonesia",
             label = "Eventh!ngs of the Day!",
             price = 100_000.0,
-            rating = 4.0
+            rating = 4.8
         )
     }
 
@@ -78,16 +78,62 @@ fun HomeScreen(
         MenuItem(icon = R.drawable.ic_menu_equipment, label = R.string.label_equipment),
     )
 
-    val eventNeedItems = (1..10).map {
+    val eventNeedItems = listOf(
         EventNeedItem(
-            id = it.toString(),
-            logo = "",
-            title = "Your Business Name Here",
-            label = listOf("Equipment", "Sponsor", "Media Partner", "Photo Booth"),
+            id = "1",
+            logo = "https://pbs.twimg.com/profile_images/1281601097581211648/ZUwX2det_400x400.jpg",
+            title = "Magang Update",
+            label = listOf("Media Partner", "Career"),
             price = 100_000.0,
-            rating = 4.0
+            rating = 4.9,
+            type = EventNeedItemType.MEDIA_PARTNER
+        ),
+        EventNeedItem(
+            id = "2",
+            logo = "https://upload.wikimedia.org/wikipedia/commons/3/3b/Nutrifood.png",
+            title = "Nutrifood",
+            label = listOf("Equipment", "Bouquet"),
+            price = 0.0,
+            rating = 5.0,
+            type = EventNeedItemType.EQUIPMENT
+        ),
+        EventNeedItem(
+            id = "3",
+            logo = "https://media.licdn.com/dms/image/C4E0BAQG_rgylSaTLoA/company-logo_200_200/0/1630628774592/indonesian_event_logo?e=2147483647&v=beta&t=L_gC2hWXLZQZY9wpBzsu1sg57-MLAnV7L7MYVJoqzuA",
+            title = "Indonesian Event",
+            label = listOf("Media Partner", "Event"),
+            price = 25_000.0,
+            rating = 4.9,
+            type = EventNeedItemType.MEDIA_PARTNER
+        ),
+        EventNeedItem(
+            id = "4",
+            logo = "https://asset.kompas.com/crop/0x0:0x0/720x360/data/photo/2022/01/05/61d5532faf8e8.jpg",
+            title = "Indosat Ooredoo Hutchison",
+            label = listOf("Sponsor", "Telecommunication"),
+            price = 0.0,
+            rating = 5.0,
+            type = EventNeedItemType.EQUIPMENT
+        ),
+        EventNeedItem(
+            id = "5",
+            logo = "https://alexandra.bridestory.com/image/upload/assets/bride-S18nqs9SH.jpg",
+            title = "Owl Florist",
+            label = listOf("Equipment", "Bouquet"),
+            price = 100_000.0,
+            rating = 4.8,
+            type = EventNeedItemType.EQUIPMENT
+        ),
+        EventNeedItem(
+            id = "6",
+            logo = "https://st3.depositphotos.com/1050070/13129/i/450/depositphotos_131293830-stock-photo-coca-cola-logo-on-computer.jpg",
+            title = "Coca-Cola",
+            label = listOf("Sponsor", "Food & Beverage"),
+            price = 0.0,
+            rating = 4.5,
+            type = EventNeedItemType.SPONSOR
         )
-    }
+    )
 
     val onItemClick: (EventNeedItem) -> Unit = {
         when (it.type) {

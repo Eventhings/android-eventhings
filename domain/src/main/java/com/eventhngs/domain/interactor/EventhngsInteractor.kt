@@ -1,5 +1,6 @@
 package com.eventhngs.domain.interactor
 
+import com.eventhngs.domain.model.DetailMediaPartner
 import com.eventhngs.domain.model.LoginResult
 import com.eventhngs.domain.model.RegisterResult
 import com.eventhngs.domain.model.Resource
@@ -19,4 +20,7 @@ class EventhngsInteractor(
         return repository.register(email, password)
     }
 
+    override fun getMediaPartnerById(id: String): Flow<Resource<DetailMediaPartner>> {
+        return repository.getMediaPartnerById(id)
+    }
 }

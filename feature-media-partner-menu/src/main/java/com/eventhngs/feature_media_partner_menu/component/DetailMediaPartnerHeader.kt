@@ -51,9 +51,11 @@ fun DetailMediaPartnerHeader(
     Column(modifier = modifier) {
         Row(modifier = Modifier.fillMaxWidth()) {
             AsyncImage(
-                model = detail.logo,
+                model = detail.logoUrl,
                 contentDescription = detail.name,
                 contentScale = ContentScale.FillBounds,
+                placeholder = painterResource(id = com.eventhngs.ui.R.drawable.ic_menu_media_partner),
+                error = painterResource(id = com.eventhngs.ui.R.drawable.ic_menu_media_partner),
                 modifier = Modifier
                     .clip(RoundedCornerShape(10.dp))
                     .size(100.dp)
@@ -171,8 +173,8 @@ fun PreviewDetailMediaPartnerHeader() {
     EventhngsTheme {
         Surface {
             val detail = MediaPartnerDetail(
-                id = 1,
-                logo = "",
+                id = "1",
+                logoUrl = "",
                 name = "Your Business Name Here",
                 label = listOf("Equipment", "Sponsor", "Media Partner"),
                 price = 100_000.0,

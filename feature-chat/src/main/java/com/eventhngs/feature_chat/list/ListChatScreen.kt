@@ -34,14 +34,20 @@ fun ListChatScreen(
 
     var query by remember { mutableStateOf("") }
     val chats = remember {
-        (1..10).map {
+        listOf(
             ChatList(
-                id = it.toString(),
-                photo = "https://i.pinimg.com/474x/98/51/1e/98511ee98a1930b8938e42caf0904d2d.jpg    ",
+                id = "1",
+                photo = "https://pbs.twimg.com/profile_images/1281601097581211648/ZUwX2det_400x400.jpg    ",
                 name = "Magang Update",
-                lastChat = "Lorem ipsum dolor sit amet, consectetur adipiscin"
-            )
-        }
+                lastChat = "Hi, Magang Update, currently I’m looking for sponsorship for a startup, are you available?"
+            ),
+            ChatList(
+                id = "2",
+                photo = "https://play-lh.googleusercontent.com/pmh5szForuPHhODR8NreJwujicywqb7PY1Kf66jyHO9qkEbbnSR_r9eVuo5ZdHWHwg=w240-h480-rw    ",
+                name = "1000 Startup Digital",
+                lastChat = "Hi! yes we are actually open for sponsoship"
+            ),
+        )
     }
 
     Scaffold(

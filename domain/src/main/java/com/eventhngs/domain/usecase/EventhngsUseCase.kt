@@ -1,5 +1,6 @@
 package com.eventhngs.domain.usecase
 
+import com.eventhngs.domain.model.DetailMediaPartner
 import com.eventhngs.domain.model.LoginResult
 import com.eventhngs.domain.model.RegisterResult
 import com.eventhngs.domain.model.Resource
@@ -16,5 +17,9 @@ interface EventhngsUseCase {
         email: String,
         password: String
     ): Flow<Resource<RegisterResult>>
+
+    fun getMediaPartnerById(
+        id: String
+    ): Flow<Resource<DetailMediaPartner>>
 
 }

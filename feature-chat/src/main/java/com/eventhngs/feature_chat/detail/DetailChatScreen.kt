@@ -45,7 +45,7 @@ import com.eventhngs.ui.theme.EventhngsTheme
 fun DetailChatScreen(
     modifier: Modifier = Modifier,
     navigateUp: () -> Unit = {},
-    chatId: Int = 0
+    chatId: String = ""
 ) {
 
     val userId = "user123"

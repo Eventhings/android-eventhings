@@ -35,12 +35,12 @@ import com.eventhngs.splashscreen.SplashScreen
 @ExperimentalMaterial3Api
 @Composable
 fun EventhngsNavHost(
-    startDestination: Screen = Screen.MediaPartnerMenu,
+    startDestination: Screen = Screen.Main,
     navController: NavHostController = rememberNavController()
 ) {
 
     val startDestinationRoute = startDestination.route
-//    val startDestinationRoute = Screen.ChatDetail.generateRoute(1)
+//    val startDestinationRoute = Screen.MediaPartnerDetail.generateRoute("002ad707-8006-4c7f-9d98-19e0650cff0d")
 
     NavHost(navController = navController, startDestination = startDestinationRoute) {
         composableWithSlideHorizontalAnimation(Screen.SplashScreen.route) {
@@ -124,7 +124,7 @@ fun EventhngsNavHost(
             route = Screen.MediaPartnerDetail.route,
             arguments = listOf(
                 navArgument(Screen.MEDIA_PARTNER_ID) {
-                    type = NavType.IntType
+                    type = NavType.StringType
                 }
             )
         ) {
@@ -138,7 +138,7 @@ fun EventhngsNavHost(
             route = Screen.SponsorDetail.route,
             arguments = listOf(
                 navArgument(Screen.SPONSOR_ID) {
-                    type = NavType.IntType
+                    type = NavType.StringType
                 }
             )
         ) {
@@ -152,7 +152,7 @@ fun EventhngsNavHost(
             route = Screen.EquipmentDetail.route,
             arguments = listOf(
                 navArgument(Screen.EQUIPMENT_ID) {
-                    type = NavType.IntType
+                    type = NavType.StringType
                 }
             )
         ) {
@@ -166,11 +166,11 @@ fun EventhngsNavHost(
             route = Screen.ChatDetail.route,
             arguments = listOf(
                 navArgument(Screen.CHAT_ID) {
-                    type = NavType.IntType
+                    type = NavType.StringType
                 }
             )
         ) {
-            val chatId = it.arguments?.getInt(Screen.CHAT_ID) ?: 0
+            val chatId = it.arguments?.getString(Screen.CHAT_ID) ?: ""
             DetailChatScreen(
                 navigateUp = navController::navigateUp,
                 chatId = chatId

@@ -51,16 +51,45 @@ fun SavedItemScreen(
         }
     }
 
-    val eventNeedItems = (1..10).map {
+    val eventNeedItems = listOf(
         EventNeedItem(
-            id = it.toString(),
-            logo = "",
-            title = "Your Business Name Here",
-            label = listOf("Equipment", "Sponsor", "Media Partner", "Photo Booth"),
+            id = "1",
+            logo = "https://pbs.twimg.com/profile_images/1281601097581211648/ZUwX2det_400x400.jpg",
+            title = "Magang Update",
+            label = listOf("Media Partner", "Career"),
             price = 100_000.0,
-            rating = 4.0
+            rating = 4.9,
+            type = EventNeedItemType.MEDIA_PARTNER
+        ),
+        EventNeedItem(
+            id = "2",
+            logo = "https://upload.wikimedia.org/wikipedia/commons/3/3b/Nutrifood.png",
+            title = "Nutrifood",
+            label = listOf("Equipment", "Bouquet"),
+            price = 0.0,
+            rating = 5.0,
+            type = EventNeedItemType.EQUIPMENT
+        ),
+        EventNeedItem(
+            id = "3",
+            logo = "https://media.licdn.com/dms/image/C4E0BAQG_rgylSaTLoA/company-logo_200_200/0/1630628774592/indonesian_event_logo?e=2147483647&v=beta&t=L_gC2hWXLZQZY9wpBzsu1sg57-MLAnV7L7MYVJoqzuA",
+            title = "Indonesian Event",
+            label = listOf("Media Partner", "Event"),
+            price = 25_000.0,
+            rating = 4.9,
+            type = EventNeedItemType.MEDIA_PARTNER
+        ),
+        EventNeedItem(
+            id = "4",
+            logo = "https://asset.kompas.com/crop/0x0:0x0/720x360/data/photo/2022/01/05/61d5532faf8e8.jpg",
+            title = "Indosat Ooredoo Hutchison",
+            label = listOf("Sponsor", "Telecommunication"),
+            price = 0.0,
+            rating = 5.0,
+            type = EventNeedItemType.EQUIPMENT
         )
-    }
+    )
+
 
     Scaffold(
         topBar = {

@@ -58,7 +58,7 @@ fun PreviewDetailMediaPartnerPackageSection() {
         Surface {
             val packageOptions = (1..5).map {
                 MediaPartnerPackage(
-                    id = it,
+                    id = it.toString(),
                     name = "Paket Bronze",
                     benefits = listOf("1x Feed @seputarkampus", "1x IG Story @seputarkampus", "1x IG Story @magangupdate", "1x Twit @seputarkampus"),
                     price = 50_000.0

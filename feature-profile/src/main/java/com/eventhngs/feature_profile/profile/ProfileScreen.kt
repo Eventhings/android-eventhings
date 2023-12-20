@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.eventhngs.common.utils.toRupiah
 import com.eventhngs.feature_profile.R
 import com.eventhngs.feature_profile.component.ProfileHeader
 import com.eventhngs.feature_profile.component.ProfileMenuSection
@@ -42,16 +41,16 @@ fun ProfileScreen(
 
     val balance by remember { mutableDoubleStateOf(0.0) }
 
-    val eventhingsPay = listOf(
-        ProfileMenu(
-            icon = R.drawable.ic_balance,
-            label = balance.toRupiah()
-        ),
-        ProfileMenu(
-            icon = R.drawable.ic_top_up,
-            label = stringResource(id = R.string.label_topup)
-        ),
-    )
+//    val eventhingsPay = listOf(
+//        ProfileMenu(
+//            icon = R.drawable.ic_balance,
+//            label = balance.toRupiah()
+//        ),
+//        ProfileMenu(
+//            icon = R.drawable.ic_top_up,
+//            label = stringResource(id = R.string.label_topup)
+//        ),
+//    )
     val myEventhingsMenus = listOf(
         ProfileMenu(
             icon = R.drawable.ic_purchase,
@@ -93,12 +92,12 @@ fun ProfileScreen(
                 modifier = Modifier.padding(horizontal = 20.dp),
                 onEditProfileClick = navigateToEditProfileScreen
             )
-            Spacer(modifier = Modifier.height(16.dp))
-            ProfileMenuSection(
-                title = "Eventh!ngs Pay",
-                menuItems = eventhingsPay,
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
+//            Spacer(modifier = Modifier.height(16.dp))
+//            ProfileMenuSection(
+//                title = "Eventh!ngs Pay",
+//                menuItems = eventhingsPay,
+//                modifier = Modifier.padding(horizontal = 16.dp)
+//            )
             Spacer(modifier = Modifier.height(16.dp))
             ProfileMenuSection(
                 title = "My Eventh!ngs",
