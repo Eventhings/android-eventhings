@@ -60,6 +60,8 @@ dependencies {
 
     implementation(project(":feature-auth"))
     implementation(project(":feature-media-partner-menu"))
+    implementation(project(":feature-sponsor-menu"))
+    implementation(project(":feature-equipment-rental-menu"))
 
     implementation("androidx.navigation:navigation-compose:2.7.5")
 

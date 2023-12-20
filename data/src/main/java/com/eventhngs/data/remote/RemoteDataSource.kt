@@ -5,6 +5,7 @@ import com.eventhngs.data.remote.response.ErrorResponse
 import com.eventhngs.data.remote.response.LoginResponse
 import com.eventhngs.data.remote.response.MediaPartnerResponse
 import com.eventhngs.data.remote.response.RegisterResponse
+import com.eventhngs.data.remote.response.SponsorResponse
 import com.eventhngs.data.remote.service.EventhngsService
 import com.haroldadmin.cnradapter.NetworkResponse
 
@@ -35,6 +36,13 @@ class RemoteDataSource(private val service: EventhngsService) {
         id: String
     ): NetworkResponse<DetailMediaPartnerResponse, ErrorResponse> {
         return service.getMediaPartnerById(id)
+    }
+
+    suspend fun getSponsor(
+        limit: Int = 10,
+        page: Int = 0
+    ): NetworkResponse<SponsorResponse, ErrorResponse> {
+        return service.getSponsor(limit, page)
     }
 
 }

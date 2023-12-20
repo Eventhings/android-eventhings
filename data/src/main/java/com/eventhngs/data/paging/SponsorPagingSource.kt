@@ -7,7 +7,7 @@ import com.eventhngs.data.remote.RemoteDataSource
 import com.eventhngs.domain.model.EventNeedItem
 import com.haroldadmin.cnradapter.NetworkResponse
 
-class MediaPartnerPagingSource(
+class SponsorPagingSource(
     private val remoteDataSource: RemoteDataSource
 ) : PagingSource<Int, EventNeedItem>() {
 
@@ -27,7 +27,7 @@ class MediaPartnerPagingSource(
         return try {
             val page = params.key ?: DEFAULT_PAGE
             val size = params.loadSize
-            val response = remoteDataSource.getMediaPartner(size, page)
+            val response = remoteDataSource.getSponsor(size, page)
             when (response) {
                 is NetworkResponse.Success -> {
                     val data = response.body.data?.data?.toEventNeeds() ?: emptyList()

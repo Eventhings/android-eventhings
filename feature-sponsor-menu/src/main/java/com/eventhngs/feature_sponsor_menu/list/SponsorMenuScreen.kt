@@ -1,4 +1,4 @@
-package com.eventhngs.feature_sponsor_menu
+package com.eventhngs.feature_sponsor_menu.list
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
@@ -20,15 +19,17 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.eventhngs.domain.model.EventNeedItem
 import com.eventhngs.ui.component.bottomsheet.ChipFilterType
 import com.eventhngs.ui.component.bottomsheet.FilterBottomSheetHeader
@@ -39,6 +40,7 @@ import com.eventhngs.ui.component.searchbar.SearchBarWithFilter
 import com.eventhngs.ui.component.topappbar.DetailTopAppBar
 import com.eventhngs.ui.theme.EventhngsTheme
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 @ExperimentalMaterialApi
 @ExperimentalLayoutApi
@@ -46,6 +48,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun SponsorMenuScreen(
     modifier: Modifier = Modifier,
+    viewModel: SponsorViewModel = koinViewModel(),
     navigateUp: () -> Unit = {},
     navigateToSponsorDetailScreen: (String) -> Unit = {}
 ) {
@@ -56,7 +59,13 @@ fun SponsorMenuScreen(
     )
     val scope = rememberCoroutineScope()
 
-    var query by remember { mutableStateOf("") }
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val query = uiState.query
+    val sponsors = uiState.sponsors.collectAsLazyPagingItems()
+
+    LaunchedEffect(key1 = Unit) {
+        viewModel.getSponsor()
+    }
 
     val subcategoryFilter = remember {
         listOf("Airline", "Automobiles & Components", "Bank", "Distribution & Retail", "E-Commerce", "Education", "Electronics", "Finance", "Food & Beverage", "Hospitality & Tourism", "Household", "Media & Entertainment", "Personal & Beauty", "Technology", "Telecommunication", "Textiles & Apparel", "Utilities")
@@ -71,17 +80,6 @@ fun SponsorMenuScreen(
         } else {
             selectedSubcategoryFilter.add(it)
         }
-    }
-
-    val eventNeedItems = (1..10).map {
-        EventNeedItem(
-            id = it.toString(),
-            logo = "",
-            title = "Your Business Name Here",
-            label = listOf("Equipment", "Sponsor", "Media Partner", "Photo Booth"),
-            price = 100_000.0,
-            rating = 4.0
-        )
     }
 
     val onFilterClick: () -> Unit = {
@@ -131,8 +129,8 @@ fun SponsorMenuScreen(
         SponsorMenuContent(
             navigateUp = navigateUp,
             query = query,
-            onQueryChange = { query = it },
-            eventNeedItems = eventNeedItems,
+            onQueryChange = viewModel::updateQuery,
+            eventNeedItems = sponsors,
             onFilterClick = onFilterClick,
             onEventClick = { navigateToSponsorDetailScreen(it.id) }
         )
@@ -147,7 +145,7 @@ fun SponsorMenuContent(
     navigateUp: () -> Unit,
     query: String,
     onQueryChange: (String) -> Unit,
-    eventNeedItems: List<EventNeedItem>,
+    eventNeedItems: LazyPagingItems<EventNeedItem>,
     onFilterClick: () -> Unit,
     onEventClick: (EventNeedItem) -> Unit
 ) {
@@ -180,12 +178,13 @@ fun SponsorMenuContent(
             item(span = { GridItemSpan(maxLineSpan) }) {
                 Spacer(modifier = Modifier.height(16.dp))
             }
-            itemsIndexed(items = eventNeedItems, key = { _, event -> event.id }) { index, eventNeedItem ->
+            items(eventNeedItems.itemCount) { index ->
                 val modifierItem = if (index % 2 == 0) {
                     Modifier.padding(start = 20.dp, bottom = 8.dp)
                 } else {
                     Modifier.padding(end = 20.dp, bottom = 8.dp)
                 }
+                val eventNeedItem = eventNeedItems[index] ?: return@items
                 EventNeedItem(
                     eventNeedItem = eventNeedItem,
                     onClick = onEventClick,

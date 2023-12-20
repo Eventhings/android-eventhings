@@ -25,7 +25,7 @@ import com.eventhngs.feature_main.MainScreen
 import com.eventhngs.feature_media_partner_menu.list.MediaPartnerMenuScreen
 import com.eventhngs.feature_media_partner_menu.detail.DetailMediaPartnerScreen
 import com.eventhngs.feature_profile.editprofile.EditProfileScreen
-import com.eventhngs.feature_sponsor_menu.SponsorMenuScreen
+import com.eventhngs.feature_sponsor_menu.list.SponsorMenuScreen
 import com.eventhngs.feature_sponsor_menu.detail.DetailSponsorScreen
 import com.eventhngs.splashscreen.SplashScreen
 

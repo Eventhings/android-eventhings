@@ -14,4 +14,7 @@ class EventhngsPagingInteractor(
         return repository.getMediaPartner()
     }
 
+    override fun getSponsor(): Flow<PagingData<EventNeedItem>> {
+        return repository.getSponsor()
+    }
 }

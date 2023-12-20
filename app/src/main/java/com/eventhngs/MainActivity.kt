@@ -17,6 +17,7 @@ import com.eventhngs.data.di.dataModule
 import com.eventhngs.di.authModule
 import com.eventhngs.domain.di.domainModule
 import com.eventhngs.feature_media_partner_menu.di.mediaPartnerModule
+import com.eventhngs.feature_sponsor_menu.di.sponsorModule
 import com.eventhngs.navigation.EventhngsNavHost
 import com.eventhngs.ui.theme.EventhngsTheme
 import org.koin.android.ext.koin.androidContext
@@ -34,7 +35,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             KoinApplication(application = {
                 androidContext(applicationContext)
-                modules(dataModule, domainModule, authModule, mediaPartnerModule)
+                modules(
+                    dataModule,
+                    domainModule,
+                    authModule,
+                    mediaPartnerModule,
+                    sponsorModule
+                )
             }) {
                 EventhngsTheme {
                     // A surface container using the 'background' color from the theme

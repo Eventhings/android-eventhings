@@ -5,6 +5,7 @@ import com.eventhngs.data.remote.response.ErrorResponse
 import com.eventhngs.data.remote.response.LoginResponse
 import com.eventhngs.data.remote.response.MediaPartnerResponse
 import com.eventhngs.data.remote.response.RegisterResponse
+import com.eventhngs.data.remote.response.SponsorResponse
 import com.haroldadmin.cnradapter.NetworkResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -39,5 +40,11 @@ interface EventhngsService {
     suspend fun getMediaPartnerById(
         @Path("id") id: String
     ): NetworkResponse<DetailMediaPartnerResponse, ErrorResponse>
+
+    @GET("event/sponsor")
+    suspend fun getSponsor(
+        @Query("limit") limit: Int = 10,
+        @Query("page") page: Int = 0
+    ): NetworkResponse<SponsorResponse, ErrorResponse>
 
 }

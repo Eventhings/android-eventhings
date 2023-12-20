@@ -8,4 +8,6 @@ interface EventhngsPagingUseCase {
 
     fun getMediaPartner(): Flow<PagingData<EventNeedItem>>
 
+    fun getSponsor(): Flow<PagingData<EventNeedItem>>
+
 }
