@@ -16,7 +16,9 @@ import androidx.core.view.WindowCompat
 import com.eventhngs.data.di.dataModule
 import com.eventhngs.di.authModule
 import com.eventhngs.domain.di.domainModule
+import com.eventhngs.feature_all_menu.allMenuModule
 import com.eventhngs.feature_equipment_rental_menu.di.equipmentModule
+import com.eventhngs.feature_home.di.homeModule
 import com.eventhngs.feature_media_partner_menu.di.mediaPartnerModule
 import com.eventhngs.feature_sponsor_menu.di.sponsorModule
 import com.eventhngs.navigation.EventhngsNavHost
@@ -42,7 +44,9 @@ class MainActivity : ComponentActivity() {
                     authModule,
                     mediaPartnerModule,
                     sponsorModule,
-                    equipmentModule
+                    equipmentModule,
+                    allMenuModule,
+                    homeModule
                 )
             }) {
                 EventhngsTheme {

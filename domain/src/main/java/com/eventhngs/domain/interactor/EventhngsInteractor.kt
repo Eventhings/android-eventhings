@@ -3,6 +3,7 @@ package com.eventhngs.domain.interactor
 import com.eventhngs.domain.model.DetailEquipment
 import com.eventhngs.domain.model.DetailMediaPartner
 import com.eventhngs.domain.model.DetailSponsor
+import com.eventhngs.domain.model.EventNeedItem
 import com.eventhngs.domain.model.LoginResult
 import com.eventhngs.domain.model.RegisterResult
 import com.eventhngs.domain.model.Resource
@@ -32,5 +33,9 @@ class EventhngsInteractor(
 
     override fun getEquipmentById(id: String): Flow<Resource<DetailEquipment>> {
         return repository.getEquipmentById(id)
+    }
+
+    override fun getRecommendation(): Flow<Resource<List<EventNeedItem>>> {
+        return repository.getRecommendation()
     }
 }

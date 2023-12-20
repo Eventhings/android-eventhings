@@ -19,6 +19,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,8 +29,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.eventhngs.domain.model.EventNeedItem
 import com.eventhngs.domain.model.EventNeedItemType
+import com.eventhngs.domain.model.Resource
 import com.eventhngs.feature_home.component.HomeCarousel
 import com.eventhngs.feature_home.component.HomeFooter
 import com.eventhngs.feature_home.component.HomeHeader
@@ -41,6 +44,7 @@ import com.eventhngs.ui.component.button.TertiaryButton
 import com.eventhngs.ui.component.event.EventNeedItem
 import com.eventhngs.ui.theme.EventhngsTheme
 import com.eventhngs.ui.theme.poppinsFontFamily
+import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalLayoutApi
@@ -49,6 +53,7 @@ import com.eventhngs.ui.theme.poppinsFontFamily
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
+    viewModel: HomeViewModel = koinViewModel(),
     navigateToAllMenuScreen: () -> Unit = {},
     navigateToMediaPartnerMenuScreen: () -> Unit = {},
     navigateToSponsorMenuScreen: () -> Unit = {},
@@ -58,7 +63,10 @@ fun HomeScreen(
     navigateToEquipmentDetailScreen: (String) -> Unit = {},
 ) {
 
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val user by remember { mutableStateOf("Abdul Hafiz Ramadan") }
+
+    val recommendations = uiState.recommendations
 
     val carouselItems = (1..3).map {
         CarouselItem(
@@ -78,62 +86,66 @@ fun HomeScreen(
         MenuItem(icon = R.drawable.ic_menu_equipment, label = R.string.label_equipment),
     )
 
-    val eventNeedItems = listOf(
-        EventNeedItem(
-            id = "1",
-            logo = "https://pbs.twimg.com/profile_images/1281601097581211648/ZUwX2det_400x400.jpg",
-            title = "Magang Update",
-            label = listOf("Media Partner", "Career"),
-            price = 100_000.0,
-            rating = 4.9,
-            type = EventNeedItemType.MEDIA_PARTNER
-        ),
-        EventNeedItem(
-            id = "2",
-            logo = "https://upload.wikimedia.org/wikipedia/commons/3/3b/Nutrifood.png",
-            title = "Nutrifood",
-            label = listOf("Equipment", "Bouquet"),
-            price = 0.0,
-            rating = 5.0,
-            type = EventNeedItemType.EQUIPMENT
-        ),
-        EventNeedItem(
-            id = "3",
-            logo = "https://media.licdn.com/dms/image/C4E0BAQG_rgylSaTLoA/company-logo_200_200/0/1630628774592/indonesian_event_logo?e=2147483647&v=beta&t=L_gC2hWXLZQZY9wpBzsu1sg57-MLAnV7L7MYVJoqzuA",
-            title = "Indonesian Event",
-            label = listOf("Media Partner", "Event"),
-            price = 25_000.0,
-            rating = 4.9,
-            type = EventNeedItemType.MEDIA_PARTNER
-        ),
-        EventNeedItem(
-            id = "4",
-            logo = "https://asset.kompas.com/crop/0x0:0x0/720x360/data/photo/2022/01/05/61d5532faf8e8.jpg",
-            title = "Indosat Ooredoo Hutchison",
-            label = listOf("Sponsor", "Telecommunication"),
-            price = 0.0,
-            rating = 5.0,
-            type = EventNeedItemType.EQUIPMENT
-        ),
-        EventNeedItem(
-            id = "5",
-            logo = "https://alexandra.bridestory.com/image/upload/assets/bride-S18nqs9SH.jpg",
-            title = "Owl Florist",
-            label = listOf("Equipment", "Bouquet"),
-            price = 100_000.0,
-            rating = 4.8,
-            type = EventNeedItemType.EQUIPMENT
-        ),
-        EventNeedItem(
-            id = "6",
-            logo = "https://st3.depositphotos.com/1050070/13129/i/450/depositphotos_131293830-stock-photo-coca-cola-logo-on-computer.jpg",
-            title = "Coca-Cola",
-            label = listOf("Sponsor", "Food & Beverage"),
-            price = 0.0,
-            rating = 4.5,
-            type = EventNeedItemType.SPONSOR
-        )
-    )
+    LaunchedEffect(key1 = Unit) {
+        viewModel.getRecommendations()
+    }
+
+//    val eventNeedItems = listOf(
+//        EventNeedItem(
+//            id = "1",
+//            logo = "https://pbs.twimg.com/profile_images/1281601097581211648/ZUwX2det_400x400.jpg",
+//            title = "Magang Update",
+//            label = listOf("Media Partner", "Career"),
+//            price = 100_000.0,
+//            rating = 4.9,
+//            type = EventNeedItemType.MEDIA_PARTNER
+//        ),
+//        EventNeedItem(
+//            id = "2",
+//            logo = "https://upload.wikimedia.org/wikipedia/commons/3/3b/Nutrifood.png",
+//            title = "Nutrifood",
+//            label = listOf("Equipment", "Bouquet"),
+//            price = 0.0,
+//            rating = 5.0,
+//            type = EventNeedItemType.EQUIPMENT
+//        ),
+//        EventNeedItem(
+//            id = "3",
+//            logo = "https://media.licdn.com/dms/image/C4E0BAQG_rgylSaTLoA/company-logo_200_200/0/1630628774592/indonesian_event_logo?e=2147483647&v=beta&t=L_gC2hWXLZQZY9wpBzsu1sg57-MLAnV7L7MYVJoqzuA",
+//            title = "Indonesian Event",
+//            label = listOf("Media Partner", "Event"),
+//            price = 25_000.0,
+//            rating = 4.9,
+//            type = EventNeedItemType.MEDIA_PARTNER
+//        ),
+//        EventNeedItem(
+//            id = "4",
+//            logo = "https://asset.kompas.com/crop/0x0:0x0/720x360/data/photo/2022/01/05/61d5532faf8e8.jpg",
+//            title = "Indosat Ooredoo Hutchison",
+//            label = listOf("Sponsor", "Telecommunication"),
+//            price = 0.0,
+//            rating = 5.0,
+//            type = EventNeedItemType.EQUIPMENT
+//        ),
+//        EventNeedItem(
+//            id = "5",
+//            logo = "https://alexandra.bridestory.com/image/upload/assets/bride-S18nqs9SH.jpg",
+//            title = "Owl Florist",
+//            label = listOf("Equipment", "Bouquet"),
+//            price = 100_000.0,
+//            rating = 4.8,
+//            type = EventNeedItemType.EQUIPMENT
+//        ),
+//        EventNeedItem(
+//            id = "6",
+//            logo = "https://st3.depositphotos.com/1050070/13129/i/450/depositphotos_131293830-stock-photo-coca-cola-logo-on-computer.jpg",
+//            title = "Coca-Cola",
+//            label = listOf("Sponsor", "Food & Beverage"),
+//            price = 0.0,
+//            rating = 4.5,
+//            type = EventNeedItemType.SPONSOR
+//        )
+//    )
 
     val onItemClick: (EventNeedItem) -> Unit = {
         when (it.type) {
@@ -199,17 +211,20 @@ fun HomeScreen(
             item(span = { GridItemSpan(maxLineSpan) }) {
                 Spacer(modifier = Modifier.height(20.dp))
             }
-            itemsIndexed(items = eventNeedItems, key = { _, event -> event.id }) { index, eventNeedItem ->
-                val modifierItem = if (index % 2 == 0) {
-                    Modifier.padding(start = 20.dp, bottom = 8.dp)
-                } else {
-                    Modifier.padding(end = 20.dp, bottom = 8.dp)
+            if (recommendations is Resource.Success) {
+                itemsIndexed(items = recommendations.data, key = { _, event -> event.id }) { index, eventNeedItem ->
+                    val modifierItem = if (index % 2 == 0) {
+                        Modifier.padding(start = 20.dp, bottom = 8.dp)
+                    } else {
+                        Modifier.padding(end = 20.dp, bottom = 8.dp)
+                    }
+                    EventNeedItem(
+                        eventNeedItem = eventNeedItem,
+                        modifier = modifierItem,
+                        onClick = onItemClick
+                    )
                 }
-                EventNeedItem(
-                    eventNeedItem = eventNeedItem,
-                    modifier = modifierItem,
-                    onClick = onItemClick
-                )
+
             }
             item(span = { GridItemSpan(maxLineSpan) }) {
                 Spacer(modifier = Modifier.height(20.dp))

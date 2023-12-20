@@ -1,10 +1,12 @@
 package com.eventhngs.data
 
 import com.eventhngs.data.mapper.toDomain
+import com.eventhngs.data.mapper.toEventNeeds
 import com.eventhngs.data.remote.RemoteDataSource
 import com.eventhngs.domain.model.DetailEquipment
 import com.eventhngs.domain.model.DetailMediaPartner
 import com.eventhngs.domain.model.DetailSponsor
+import com.eventhngs.domain.model.EventNeedItem
 import com.eventhngs.domain.model.LoginResult
 import com.eventhngs.domain.model.RegisterResult
 import com.eventhngs.domain.model.Resource
@@ -95,6 +97,26 @@ class EventhngsRepositoryImpl(
         when (val response = remoteDataSource.getEquipmentById(id)) {
             is NetworkResponse.Success -> {
                 val result = response.body.data?.toDomain()
+                if (result == null) {
+                    emit(Resource.Error(message = "Data null"))
+                    return@flow
+                }
+                emit(Resource.Success(result))
+            }
+            is NetworkResponse.Error -> {
+                val message = response.body?.message ?: response.error?.message
+                emit(Resource.Error(message = message))
+            }
+        }
+    }.catch {
+        emit(Resource.Error(message = it.message))
+    }
+
+    override fun getRecommendation(): Flow<Resource<List<EventNeedItem>>> = flow {
+        emit(Resource.Loading)
+        when (val response = remoteDataSource.getRecommendation()) {
+            is NetworkResponse.Success -> {
+                val result = response.body.data?.data?.toEventNeeds()
                 if (result == null) {
                     emit(Resource.Error(message = "Data null"))
                     return@flow

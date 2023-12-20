@@ -22,4 +22,7 @@ class EventhngsPagingInteractor(
         return repository.getEquipment()
     }
 
+    override fun getAll(): Flow<PagingData<EventNeedItem>> {
+        return repository.getAll()
+    }
 }

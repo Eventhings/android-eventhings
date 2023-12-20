@@ -3,6 +3,7 @@ package com.eventhngs.data
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.eventhngs.data.paging.AllPagingSource
 import com.eventhngs.data.paging.EquipmentPagingSource
 import com.eventhngs.data.paging.MediaPartnerPagingSource
 import com.eventhngs.data.paging.SponsorPagingSource
@@ -38,6 +39,15 @@ class EventhngsPagingRepositoryImpl(
             config = PagingConfig(pageSize = EquipmentPagingSource.DEFAULT_SIZE),
             pagingSourceFactory = {
                 EquipmentPagingSource(remoteDataSource = remoteDataSource)
+            }
+        ).flow
+    }
+
+    override fun getAll(): Flow<PagingData<EventNeedItem>> {
+        return Pager(
+            config = PagingConfig(pageSize = AllPagingSource.DEFAULT_SIZE),
+            pagingSourceFactory = {
+                AllPagingSource(remoteDataSource = remoteDataSource)
             }
         ).flow
     }

@@ -12,4 +12,6 @@ interface EventhngsPagingUseCase {
 
     fun getEquipment(): Flow<PagingData<EventNeedItem>>
 
+    fun getAll(): Flow<PagingData<EventNeedItem>>
+
 }

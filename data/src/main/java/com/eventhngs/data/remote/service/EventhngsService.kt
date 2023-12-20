@@ -1,5 +1,6 @@
 package com.eventhngs.data.remote.service
 
+import com.eventhngs.data.remote.response.AllResponse
 import com.eventhngs.data.remote.response.DetailEquipmentResponse
 import com.eventhngs.data.remote.response.DetailMediaPartnerResponse
 import com.eventhngs.data.remote.response.DetailSponsorResponse
@@ -65,5 +66,17 @@ interface EventhngsService {
     suspend fun getEquipmentById(
         @Path("id") id: String
     ): NetworkResponse<DetailEquipmentResponse, ErrorResponse>
+
+    @GET("event/all")
+    suspend fun getAll(
+        @Query("limit") limit: Int = 10,
+        @Query("page") page: Int = 0
+    ): NetworkResponse<AllResponse, ErrorResponse>
+
+    @GET("event/all")
+    suspend fun getRecommendation(
+        @Query("limit") limit: Int = 10,
+        @Query("page") page: Int = 0
+    ): NetworkResponse<AllResponse, ErrorResponse>
 
 }
