@@ -3,7 +3,10 @@ package com.eventhngs.feature_auth.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.eventhngs.domain.model.Resource
+import com.eventhngs.domain.model.UserPreference
 import com.eventhngs.domain.usecase.EventhngsUseCase
+import com.eventhngs.domain.usecase.SettingsPreferenceUseCase
+import com.eventhngs.domain.usecase.UserPreferenceUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -11,7 +14,9 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
-    private val eventhngsUseCase: EventhngsUseCase
+    private val eventhngsUseCase: EventhngsUseCase,
+    private val userPreferenceUseCase: UserPreferenceUseCase,
+    private val settingsPreferenceUseCase: SettingsPreferenceUseCase
 ) : ViewModel() {
 
     private val _loginUiState = MutableStateFlow(LoginUiState())
@@ -24,6 +29,8 @@ class LoginViewModel(
     val buttonLoginLoading get() = _loginUiState.map {
         it.loginResult is Resource.Loading || it.loginResult is Resource.Success
     }
+
+    val isLogging get() = settingsPreferenceUseCase.isLogging
 
     fun updateEmail(email: String) {
         _loginUiState.update {
@@ -46,6 +53,18 @@ class LoginViewModel(
                     it.copy(loginResult = result)
                 }
             }
+        }
+    }
+
+    fun updateUserPreference(userPreference: UserPreference) {
+        viewModelScope.launch {
+            userPreferenceUseCase.updateUserPreference(userPreference)
+        }
+    }
+
+    fun updateUserLoggingPreference(state: Boolean) {
+        viewModelScope.launch {
+            settingsPreferenceUseCase.setLoggingState(state)
         }
     }
 

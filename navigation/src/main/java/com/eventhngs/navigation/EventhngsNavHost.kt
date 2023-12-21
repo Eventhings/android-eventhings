@@ -35,7 +35,7 @@ import com.eventhngs.splashscreen.SplashScreen
 @ExperimentalMaterial3Api
 @Composable
 fun EventhngsNavHost(
-    startDestination: Screen = Screen.Main,
+    startDestination: Screen = Screen.SplashScreen,
     navController: NavHostController = rememberNavController()
 ) {
 
@@ -45,7 +45,8 @@ fun EventhngsNavHost(
     NavHost(navController = navController, startDestination = startDestinationRoute) {
         composableWithSlideHorizontalAnimation(Screen.SplashScreen.route) {
             SplashScreen(
-                navigateToNextScreen = { navController.navigateToLoginScreen(from = Screen.SplashScreen) }
+                navigateToLoginScreen = { navController.navigateToLoginScreen(from = Screen.SplashScreen) },
+                navigateToMainScreen = { navController.navigateToMainScreen(from = Screen.SplashScreen) }
             )
         }
         composableWithSlideHorizontalAnimation(Screen.Login.route) {

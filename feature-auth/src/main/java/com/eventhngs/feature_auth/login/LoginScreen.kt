@@ -1,6 +1,7 @@
 package com.eventhngs.feature_auth.login
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -34,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.eventhngs.domain.model.Resource
+import com.eventhngs.domain.model.UserPreference
 import com.eventhngs.feature_auth.R
 import com.eventhngs.ui.component.button.BaseClickableText
 import com.eventhngs.ui.component.button.PrimaryButton
@@ -53,7 +55,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
-    loginViewModel: LoginViewModel = koinViewModel(),
+    viewModel: LoginViewModel = koinViewModel(),
     navigateToMainScreen: () -> Unit = {},
     navigateToRegisterScreen: () -> Unit = {},
     navigateToForgotPasswordScreen: () -> Unit = {},
@@ -64,17 +66,17 @@ fun LoginScreen(
     val dialogState = rememberUseCaseState(visible = false)
     var errorMessage by remember { mutableStateOf("") }
 
-    val loginUiState by loginViewModel.loginUiState.collectAsStateWithLifecycle()
+    val loginUiState by viewModel.loginUiState.collectAsStateWithLifecycle()
 
     val email = loginUiState.email
     val password = loginUiState.password
     val loginResult = loginUiState.loginResult
 
-    val buttonLoginEnabled by loginViewModel.buttonLoginEnabled.collectAsStateWithLifecycle(
+    val buttonLoginEnabled by viewModel.buttonLoginEnabled.collectAsStateWithLifecycle(
         initialValue = false
     )
 
-    val buttonLoginLoading by loginViewModel.buttonLoginLoading.collectAsStateWithLifecycle(
+    val buttonLoginLoading by viewModel.buttonLoginLoading.collectAsStateWithLifecycle(
         initialValue = false
     )
 
@@ -84,8 +86,23 @@ fun LoginScreen(
             dialogState.show()
         }
         if (loginResult is Resource.Success) {
+            val result = loginResult.data
+            val userPreference = UserPreference(
+                name = result.name,
+                email = result.email,
+                accessToken = result.accessToken,
+                refreshToken = result.refreshToken
+            )
+            viewModel.updateUserLoggingPreference(true)
+            viewModel.updateUserPreference(userPreference)
             navigateToMainScreen()
         }
+    }
+
+    val isLogging by viewModel.isLogging.collectAsStateWithLifecycle(initialValue = false)
+
+    LaunchedEffect(key1 = isLogging) {
+        Log.d("TAG", "LoginScreen: Is Logging = $isLogging")
     }
 
     CoreDialog(
@@ -137,20 +154,20 @@ fun LoginScreen(
             BaseLargeTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = email,
-                onValueChange = loginViewModel::updateEmail,
+                onValueChange = viewModel::updateEmail,
                 placeholder = "Email"
             )
             Spacer(modifier = Modifier.height(20.dp))
             BasePasswordTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = password,
-                onValueChange = loginViewModel::updatePassword,
+                onValueChange = viewModel::updatePassword,
                 placeholder = "Password"
             )
             Spacer(modifier = Modifier.height(34.dp))
             PrimaryButton(
                 text = "Login",
-                onClick = loginViewModel::login,
+                onClick = viewModel::login,
                 enabled = buttonLoginEnabled,
                 loading = buttonLoginLoading,
                 modifier = Modifier.fillMaxWidth()

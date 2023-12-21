@@ -1,13 +1,22 @@
 package com.eventhngs.data.di
 
+import android.content.Context
+import androidx.datastore.core.DataStore
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.eventhngs.data.BuildConfig
 import com.eventhngs.data.EventhngsPagingRepositoryImpl
 import com.eventhngs.data.EventhngsRepositoryImpl
+import com.eventhngs.data.SettingsPreferenceRepositoryImpl
+import com.eventhngs.data.UserPreference
+import com.eventhngs.data.UserPreferenceRepositoryImpl
+import com.eventhngs.data.datastore.SettingsPreferenceDataStore
+import com.eventhngs.data.datastore.userPreferenceDataStore
 import com.eventhngs.data.remote.RemoteDataSource
 import com.eventhngs.data.remote.service.EventhngsService
 import com.eventhngs.domain.repository.EventhngsPagingRepository
 import com.eventhngs.domain.repository.EventhngsRepository
+import com.eventhngs.domain.repository.SettingsPreferenceRepository
+import com.eventhngs.domain.repository.UserPreferenceRepository
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -48,10 +57,20 @@ val dataModule = module {
         get<Retrofit>().create(EventhngsService::class.java)
     }
 
+    single<DataStore<UserPreference>> {
+        get<Context>().userPreferenceDataStore
+    }
+
+    single { SettingsPreferenceDataStore(get()) }
+
     single { RemoteDataSource(get()) }
 
     single<EventhngsRepository> { EventhngsRepositoryImpl(get()) }
 
     single<EventhngsPagingRepository> { EventhngsPagingRepositoryImpl(get()) }
+
+    single<UserPreferenceRepository> { UserPreferenceRepositoryImpl(get()) }
+
+    single<SettingsPreferenceRepository> { SettingsPreferenceRepositoryImpl(get()) }
 
 }
