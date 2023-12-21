@@ -5,8 +5,10 @@ import com.eventhngs.domain.model.DetailMediaPartner
 import com.eventhngs.domain.model.DetailSponsor
 import com.eventhngs.domain.model.EventNeedItem
 import com.eventhngs.domain.model.LoginResult
+import com.eventhngs.domain.model.RefreshToken
 import com.eventhngs.domain.model.RegisterResult
 import com.eventhngs.domain.model.Resource
+import com.eventhngs.domain.model.User
 import com.eventhngs.domain.repository.EventhngsRepository
 import com.eventhngs.domain.usecase.EventhngsUseCase
 import kotlinx.coroutines.flow.Flow
@@ -37,5 +39,23 @@ class EventhngsInteractor(
 
     override fun getRecommendation(): Flow<Resource<List<EventNeedItem>>> {
         return repository.getRecommendation()
+    }
+
+    override fun getUserLogging(authorization: String): Flow<Resource<User>> {
+        return repository.getUserLogging(authorization)
+    }
+
+    override fun updateUser(
+        authorization: String,
+        name: String,
+        birthDate: String,
+        phoneNumber: String,
+        domicile: String
+    ): Flow<Resource<User>> {
+        return repository.updateUser(authorization, name, birthDate, phoneNumber, domicile)
+    }
+
+    override fun refreshToken(refreshToken: String): Flow<Resource<RefreshToken>> {
+        return repository.refreshToken(refreshToken)
     }
 }

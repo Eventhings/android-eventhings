@@ -20,6 +20,7 @@ import com.eventhngs.feature_all_menu.allMenuModule
 import com.eventhngs.feature_equipment_rental_menu.di.equipmentModule
 import com.eventhngs.feature_home.di.homeModule
 import com.eventhngs.feature_media_partner_menu.di.mediaPartnerModule
+import com.eventhngs.feature_profile.di.profileModule
 import com.eventhngs.feature_sponsor_menu.di.sponsorModule
 import com.eventhngs.navigation.EventhngsNavHost
 import com.eventhngs.ui.theme.EventhngsTheme
@@ -46,7 +47,8 @@ class MainActivity : ComponentActivity() {
                     sponsorModule,
                     equipmentModule,
                     allMenuModule,
-                    homeModule
+                    homeModule,
+                    profileModule
                 )
             }) {
                 EventhngsTheme {

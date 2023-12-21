@@ -8,8 +8,10 @@ import com.eventhngs.data.remote.response.EquipmentResponse
 import com.eventhngs.data.remote.response.ErrorResponse
 import com.eventhngs.data.remote.response.LoginResponse
 import com.eventhngs.data.remote.response.MediaPartnerResponse
+import com.eventhngs.data.remote.response.RefreshTokenResponse
 import com.eventhngs.data.remote.response.RegisterResponse
 import com.eventhngs.data.remote.response.SponsorResponse
+import com.eventhngs.data.remote.response.UserResponse
 import com.eventhngs.data.remote.service.EventhngsService
 import com.haroldadmin.cnradapter.NetworkResponse
 
@@ -80,6 +82,30 @@ class RemoteDataSource(private val service: EventhngsService) {
         page: Int = 0
     ): NetworkResponse<AllResponse, ErrorResponse> {
         return service.getRecommendation(limit, page)
+    }
+
+    suspend fun getUserLogging(
+        authorization: String
+    ): NetworkResponse<UserResponse, ErrorResponse> {
+        val authorizationToken = "Bearer $authorization"
+        return service.getUserLogging(authorizationToken)
+    }
+
+    suspend fun updateUser(
+        authorization: String,
+        name: String,
+        birthDate: String,
+        phoneNumber: String,
+        domicile: String,
+    ): NetworkResponse<UserResponse, ErrorResponse> {
+        val authorizationToken = "Bearer $authorization"
+        return service.getUpdateUser(authorizationToken, name, birthDate, phoneNumber, domicile)
+    }
+
+    suspend fun refreshToken(
+        refreshToken: String,
+    ): NetworkResponse<RefreshTokenResponse, ErrorResponse> {
+        return service.refreshToken(refreshToken)
     }
 
 }

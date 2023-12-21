@@ -26,4 +26,12 @@ class UserPreferenceRepositoryImpl(
                 .build()
         }
     }
+
+    override suspend fun updateAccessToken(accessToken: String) {
+        userPreferenceSetting.updateData { preference ->
+            preference.toBuilder()
+                .setAccessToken(accessToken)
+                .build()
+        }
+    }
 }

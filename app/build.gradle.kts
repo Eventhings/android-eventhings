@@ -64,6 +64,7 @@ dependencies {
     implementation(project(":feature-equipment-rental-menu"))
     implementation(project(":feature-all-menu"))
     implementation(project(":feature-home"))
+    implementation(project(":feature-profile"))
 
     implementation("androidx.navigation:navigation-compose:2.7.5")
 

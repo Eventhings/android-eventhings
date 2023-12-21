@@ -5,8 +5,10 @@ import com.eventhngs.domain.model.DetailMediaPartner
 import com.eventhngs.domain.model.DetailSponsor
 import com.eventhngs.domain.model.EventNeedItem
 import com.eventhngs.domain.model.LoginResult
+import com.eventhngs.domain.model.RefreshToken
 import com.eventhngs.domain.model.RegisterResult
 import com.eventhngs.domain.model.Resource
+import com.eventhngs.domain.model.User
 import kotlinx.coroutines.flow.Flow
 
 interface EventhngsUseCase {
@@ -34,5 +36,21 @@ interface EventhngsUseCase {
     ): Flow<Resource<DetailEquipment>>
 
     fun getRecommendation(): Flow<Resource<List<EventNeedItem>>>
+
+    fun getUserLogging(
+        authorization: String
+    ): Flow<Resource<User>>
+
+    fun updateUser(
+        authorization: String,
+        name: String,
+        birthDate: String,
+        phoneNumber: String,
+        domicile: String,
+    ): Flow<Resource<User>>
+
+    fun refreshToken(
+        refreshToken: String,
+    ): Flow<Resource<RefreshToken>>
 
 }

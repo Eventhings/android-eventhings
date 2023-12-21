@@ -116,9 +116,18 @@ fun EventhngsNavHost(
                 navigateToEquipmentDetail = navController::navigateToEquipmentDetailScreen
             )
         }
-        composableWithSlideHorizontalAnimation(Screen.EditProfile.route) {
+        composableWithSlideHorizontalAnimation(
+            route = Screen.EditProfile.route,
+            arguments = listOf(
+                navArgument(Screen.TOKEN) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val token = it.arguments?.getString(Screen.TOKEN) ?: ""
             EditProfileScreen(
-                navigateUp = navController::navigateUp
+                navigateUp = navController::navigateUp,
+                token = token
             )
         }
         composableWithSlideHorizontalAnimation(

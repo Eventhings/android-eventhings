@@ -60,6 +60,8 @@ fun ProfileHeader(
             model = profile.photo,
             contentDescription = profile.name,
             contentScale = ContentScale.Crop,
+            placeholder = painterResource(id = com.eventhngs.ui.R.drawable.img_profile),
+            error = painterResource(id = com.eventhngs.ui.R.drawable.img_profile),
             modifier = Modifier
                 .clip(CircleShape)
                 .border(width = 1.dp, color = Color(0xFF9365CD), shape = CircleShape)

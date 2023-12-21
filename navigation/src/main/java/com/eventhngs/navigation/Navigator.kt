@@ -12,7 +12,7 @@ class MainNavigator(
     override fun navigateToSponsorMenuScreen() { navController.navigateToSponsorMenuScreen() }
     override fun navigateToEquipmentRentalMenuScreen() { navController.navigateToEquipmentRentalMenuScreen() }
     override fun navigateToAddBusinessMenuScreen() { navController.navigateToAddBusinessScreen() }
-    override fun navigateToEditProfileScreen() { navController.navigateToEditProfileScreen() }
+    override fun navigateToEditProfileScreen(token: String) { navController.navigateToEditProfileScreen(token) }
     override fun navigateToMediaPartnerDetailScreen(id: String) { navController.navigateToMediaPartnerDetailScreen(id) }
     override fun navigateToSponsorDetailScreen(id: String) { navController.navigateToSponsorDetailScreen(id) }
     override fun navigateToEquipmentDetailScreen(id: String) { navController.navigateToEquipmentDetailScreen(id) }
@@ -112,8 +112,8 @@ fun NavHostController.navigateToEquipmentRentalMenuScreen() {
 }
 
 @Throws(IllegalArgumentException::class)
-fun NavHostController.navigateToEditProfileScreen() {
-    navigate(Screen.EditProfile.route)
+fun NavHostController.navigateToEditProfileScreen(token: String) {
+    navigate(Screen.EditProfile.generateRoute(token))
 }
 
 @Throws(IllegalArgumentException::class)

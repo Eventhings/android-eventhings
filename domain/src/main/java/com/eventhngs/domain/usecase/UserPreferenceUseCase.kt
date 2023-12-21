@@ -9,4 +9,6 @@ interface UserPreferenceUseCase {
 
     suspend fun updateUserPreference(userPreference: UserPreference)
 
+    suspend fun updateAccessToken(accessToken: String)
+
 }

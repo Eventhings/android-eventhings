@@ -16,4 +16,7 @@ class UserPreferenceInteractor(
         userPreferenceRepository.updateUserPreference(userPreference)
     }
 
+    override suspend fun updateAccessToken(accessToken: String) {
+        userPreferenceRepository.updateAccessToken(accessToken)
+    }
 }

@@ -64,8 +64,8 @@ fun HomeScreen(
 ) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val user by remember { mutableStateOf("Abdul Hafiz Ramadan") }
 
+    val userPreference = uiState.userPreference
     val recommendations = uiState.recommendations
 
     val carouselItems = (1..3).map {
@@ -87,6 +87,7 @@ fun HomeScreen(
     )
 
     LaunchedEffect(key1 = Unit) {
+        viewModel.getUserPreference()
         viewModel.getRecommendations()
     }
 
@@ -171,7 +172,7 @@ fun HomeScreen(
             modifier = Modifier.navigationBarsPadding()
         ) {
             item(span = { GridItemSpan(maxLineSpan) }) {
-                HomeHeader(user = user, modifier = Modifier)
+                HomeHeader(user = userPreference.name, modifier = Modifier)
             }
             item(span = { GridItemSpan(maxLineSpan) }) {
                 Spacer(modifier = Modifier.height(25.dp))

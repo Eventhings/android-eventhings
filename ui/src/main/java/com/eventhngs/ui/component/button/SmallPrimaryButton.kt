@@ -25,8 +25,12 @@ import com.eventhngs.ui.theme.poppinsFontFamily
 fun SmallPrimaryButton(
     modifier: Modifier = Modifier,
     text: String,
-    onClick: () -> Unit = {}
+    onClick: () -> Unit = {},
+    enable: Boolean = true,
+    loading: Boolean = false
 ) {
+    val buttonText = if (loading) "Loading..." else text
+    val buttonEnabled = if (loading) false else enable
     Box(
         modifier = modifier
             .shadow(
@@ -36,13 +40,13 @@ fun SmallPrimaryButton(
             )
             .clip(RoundedCornerShape(12.dp))
             .height(39.dp)
-            .clickable { onClick() }
+            .clickable(enabled = buttonEnabled) { onClick() }
             .background(color = Color(0xFF9365CD))
             .padding(horizontal = 8.dp, vertical = 10.dp),
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = text,
+            text = buttonText,
             fontSize = 12.5.sp,
             fontFamily = poppinsFontFamily,
             fontWeight = FontWeight.Medium,

@@ -6,7 +6,7 @@ interface MainNavigator {
     fun navigateToSponsorMenuScreen()
     fun navigateToEquipmentRentalMenuScreen()
     fun navigateToAddBusinessMenuScreen()
-    fun navigateToEditProfileScreen()
+    fun navigateToEditProfileScreen(token: String)
     fun navigateToMediaPartnerDetailScreen(id: String)
     fun navigateToSponsorDetailScreen(id: String)
     fun navigateToEquipmentDetailScreen(id: String)
@@ -19,7 +19,7 @@ object EmptyMainNavigator : MainNavigator {
     override fun navigateToSponsorMenuScreen() {}
     override fun navigateToEquipmentRentalMenuScreen() {}
     override fun navigateToAddBusinessMenuScreen() {}
-    override fun navigateToEditProfileScreen() {}
+    override fun navigateToEditProfileScreen(token: String) {}
     override fun navigateToMediaPartnerDetailScreen(id: String) {}
     override fun navigateToSponsorDetailScreen(id: String) {}
     override fun navigateToEquipmentDetailScreen(id: String) {}

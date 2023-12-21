@@ -9,4 +9,6 @@ interface UserPreferenceRepository {
 
     suspend fun updateUserPreference(userPreference: UserPreference)
 
+    suspend fun updateAccessToken(accessToken: String)
+
 }
