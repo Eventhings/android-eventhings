@@ -35,7 +35,7 @@ interface EventhngsRepository {
         id: String
     ): Flow<Resource<DetailEquipment>>
 
-    fun getRecommendation(): Flow<Resource<List<EventNeedItem>>>
+    fun getRecommendation(accessToken: String): Flow<Resource<List<EventNeedItem>>>
 
     fun getUserLogging(
         authorization: String

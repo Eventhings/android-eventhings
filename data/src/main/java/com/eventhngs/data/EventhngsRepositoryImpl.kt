@@ -114,11 +114,11 @@ class EventhngsRepositoryImpl(
         emit(Resource.Error(message = it.message))
     }
 
-    override fun getRecommendation(): Flow<Resource<List<EventNeedItem>>> = flow {
+    override fun getRecommendation(accessToken: String): Flow<Resource<List<EventNeedItem>>> = flow {
         emit(Resource.Loading)
-        when (val response = remoteDataSource.getRecommendation()) {
+        when (val response = remoteDataSource.getRecommendation(accessToken)) {
             is NetworkResponse.Success -> {
-                val result = response.body.data?.data?.toEventNeeds()
+                val result = response.body.data?.toEventNeeds()
                 if (result == null) {
                     emit(Resource.Error(message = "Data null"))
                     return@flow

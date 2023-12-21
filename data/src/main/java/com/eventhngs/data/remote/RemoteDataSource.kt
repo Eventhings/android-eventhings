@@ -8,6 +8,7 @@ import com.eventhngs.data.remote.response.EquipmentResponse
 import com.eventhngs.data.remote.response.ErrorResponse
 import com.eventhngs.data.remote.response.LoginResponse
 import com.eventhngs.data.remote.response.MediaPartnerResponse
+import com.eventhngs.data.remote.response.RecomendationResponse
 import com.eventhngs.data.remote.response.RefreshTokenResponse
 import com.eventhngs.data.remote.response.RegisterResponse
 import com.eventhngs.data.remote.response.SponsorResponse
@@ -78,10 +79,10 @@ class RemoteDataSource(private val service: EventhngsService) {
     }
 
     suspend fun getRecommendation(
-        limit: Int = 10,
-        page: Int = 0
-    ): NetworkResponse<AllResponse, ErrorResponse> {
-        return service.getRecommendation(limit, page)
+        token: String
+    ): NetworkResponse<RecomendationResponse, ErrorResponse> {
+        val authorizationToken = "Bearer $token"
+        return service.getRecommendation(authorizationToken)
     }
 
     suspend fun getUserLogging(

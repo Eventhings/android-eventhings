@@ -1,6 +1,7 @@
 package com.eventhngs.feature_home
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -21,8 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -66,6 +65,7 @@ fun HomeScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     val userPreference = uiState.userPreference
+    val refreshToken = uiState.refreshToken
     val recommendations = uiState.recommendations
 
     val carouselItems = (1..3).map {
@@ -88,8 +88,29 @@ fun HomeScreen(
 
     LaunchedEffect(key1 = Unit) {
         viewModel.getUserPreference()
-        viewModel.getRecommendations()
     }
+
+    LaunchedEffect(key1 = userPreference) {
+        if (userPreference.refreshToken.isNotEmpty() && refreshToken !is Resource.Success) {
+            viewModel.getRefreshToken(userPreference.refreshToken)
+        }
+    }
+
+    LaunchedEffect(key1 = refreshToken) {
+        if (refreshToken is Resource.Success) {
+            viewModel.getRecommendations(accessToken = refreshToken.data.accessToken)
+        }
+    }
+
+    LaunchedEffect(key1 = recommendations) {
+        when (recommendations) {
+            is Resource.Error -> Log.d("TAG", "HomeScreen: Error = ${recommendations.message}")
+            Resource.Idle -> {}
+            Resource.Loading -> {}
+            is Resource.Success -> Log.d("TAG", "HomeScreen: Success = ${recommendations.data}")
+        }
+    }
+
 
 //    val eventNeedItems = listOf(
 //        EventNeedItem(

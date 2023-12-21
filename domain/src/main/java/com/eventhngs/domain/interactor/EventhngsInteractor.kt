@@ -37,8 +37,8 @@ class EventhngsInteractor(
         return repository.getEquipmentById(id)
     }
 
-    override fun getRecommendation(): Flow<Resource<List<EventNeedItem>>> {
-        return repository.getRecommendation()
+    override fun getRecommendation(accessToken: String): Flow<Resource<List<EventNeedItem>>> {
+        return repository.getRecommendation(accessToken)
     }
 
     override fun getUserLogging(authorization: String): Flow<Resource<User>> {

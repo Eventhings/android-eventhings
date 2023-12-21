@@ -8,6 +8,7 @@ import com.eventhngs.data.remote.response.EquipmentResponse
 import com.eventhngs.data.remote.response.ErrorResponse
 import com.eventhngs.data.remote.response.LoginResponse
 import com.eventhngs.data.remote.response.MediaPartnerResponse
+import com.eventhngs.data.remote.response.RecomendationResponse
 import com.eventhngs.data.remote.response.RefreshTokenResponse
 import com.eventhngs.data.remote.response.RegisterResponse
 import com.eventhngs.data.remote.response.SponsorResponse
@@ -77,11 +78,10 @@ interface EventhngsService {
         @Query("page") page: Int = 0
     ): NetworkResponse<AllResponse, ErrorResponse>
 
-    @GET("event/all")
+    @GET("ml/recommend/cf")
     suspend fun getRecommendation(
-        @Query("limit") limit: Int = 10,
-        @Query("page") page: Int = 0
-    ): NetworkResponse<AllResponse, ErrorResponse>
+        @Header("Authorization") authorization: String
+    ): NetworkResponse<RecomendationResponse, ErrorResponse>
 
     @GET("user/me")
     suspend fun getUserLogging(

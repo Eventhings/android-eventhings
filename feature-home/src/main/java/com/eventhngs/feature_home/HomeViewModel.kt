@@ -27,9 +27,19 @@ class HomeViewModel(
         }
     }
 
-    fun getRecommendations() {
+    fun getRefreshToken(refreshToken: String) {
         viewModelScope.launch {
-            eventhngsUseCase.getRecommendation().collect { result ->
+            eventhngsUseCase.refreshToken(refreshToken).collect { result ->
+                _uiState.update {
+                    it.copy(refreshToken = result)
+                }
+            }
+        }
+    }
+
+    fun getRecommendations(accessToken: String) {
+        viewModelScope.launch {
+            eventhngsUseCase.getRecommendation(accessToken).collect { result ->
                 _uiState.update {
                     it.copy(recommendations = result)
                 }
