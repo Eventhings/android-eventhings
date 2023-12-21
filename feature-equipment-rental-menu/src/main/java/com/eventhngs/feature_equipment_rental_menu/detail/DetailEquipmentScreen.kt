@@ -2,6 +2,7 @@ package com.eventhngs.feature_equipment_rental_menu.detail
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -27,6 +28,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -38,8 +40,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.eventhngs.domain.model.EventNeedItem
 import com.eventhngs.domain.model.Resource
@@ -54,6 +58,7 @@ import com.eventhngs.ui.component.review.ReviewItem
 import com.eventhngs.ui.component.text.TextWithSeeMoreButton
 import com.eventhngs.ui.component.topappbar.DetailTopAppBar
 import com.eventhngs.ui.theme.EventhngsTheme
+import com.eventhngs.ui.theme.poppinsFontFamily
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
@@ -81,6 +86,15 @@ fun DetailEquipmentScreen(
 
     LaunchedEffect(key1 = Unit) {
         viewModel.getDetailEquipment(equipmentId)
+    }
+
+    LaunchedEffect(key1 = detail) {
+        when (detail) {
+            is Resource.Error -> Log.d("TAG", "DetailEquipmentScreen: Error = ${detail.message}")
+            Resource.Idle -> {}
+            Resource.Loading -> {}
+            is Resource.Success -> Log.d("TAG", "DetailEquipmentScreen: Success = ${detail.data}")
+        }
     }
 
 //    val detail = EquipmentDetail(
@@ -190,6 +204,11 @@ fun DetailEquipmentScreen(
                         modifier = Modifier.padding(horizontal = 20.dp)
                     )
                 }
+            }
+            if (detail is Resource.Success) {
+//                item {
+//
+//                }
             }
             item {
                 Row(

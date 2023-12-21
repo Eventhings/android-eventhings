@@ -41,6 +41,27 @@ class EventhngsInteractor(
         return repository.getRecommendation(accessToken)
     }
 
+    override fun getRecommendationMediaPartner(
+        accessToken: String,
+        id: String
+    ): Flow<Resource<List<EventNeedItem>>> {
+        return repository.getRecommendationMediaPartner(accessToken, id)
+    }
+
+    override fun getRecommendationSponsor(
+        accessToken: String,
+        id: String
+    ): Flow<Resource<List<EventNeedItem>>> {
+        return repository.getRecommendationSponsor(accessToken, id)
+    }
+
+    override fun getRecommendationEquipment(
+        accessToken: String,
+        id: String
+    ): Flow<Resource<List<EventNeedItem>>> {
+        return repository.getRecommendationEquipment(accessToken, id)
+    }
+
     override fun getUserLogging(authorization: String): Flow<Resource<User>> {
         return repository.getUserLogging(authorization)
     }

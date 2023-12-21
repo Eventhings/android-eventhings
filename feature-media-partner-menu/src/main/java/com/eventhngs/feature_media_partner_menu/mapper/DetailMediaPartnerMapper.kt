@@ -27,6 +27,7 @@ fun DetailMediaPartner.toUi(): MediaPartnerDetail {
         stepsToBook = stepsToBook,
         stepsAfterBook = stepsAfterBook,
         description = description,
-        value = values
+        value = values,
+        reviewSentiment = reviewSentiment
     )
 }

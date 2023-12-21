@@ -15,4 +15,5 @@ data class SponsorDetail(
     val stepsAfterBook: List<String> = emptyList(),
     val description: String = "",
     val value: List<String> = emptyList(),
+    val reviewSentiment: String = ""
 )

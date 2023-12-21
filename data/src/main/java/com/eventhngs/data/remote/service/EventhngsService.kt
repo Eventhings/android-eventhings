@@ -83,6 +83,24 @@ interface EventhngsService {
         @Header("Authorization") authorization: String
     ): NetworkResponse<RecomendationResponse, ErrorResponse>
 
+    @GET("ml/recommend/cb/media_partner/{id}")
+    suspend fun getRecommendationMediaPartner(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: String
+    ): NetworkResponse<RecomendationResponse, ErrorResponse>
+
+    @GET("ml/recommend/cb/media_partner/{id}")
+    suspend fun getRecommendationSponsor(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: String
+    ): NetworkResponse<RecomendationResponse, ErrorResponse>
+
+    @GET("ml/recommend/cb/media_partner/{id}")
+    suspend fun getRecommendationEquipment(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: String
+    ): NetworkResponse<RecomendationResponse, ErrorResponse>
+
     @GET("user/me")
     suspend fun getUserLogging(
         @Header("Authorization") authorization: String

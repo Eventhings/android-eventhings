@@ -134,6 +134,27 @@ class EventhngsRepositoryImpl(
         emit(Resource.Error(message = it.message))
     }
 
+    override fun getRecommendationMediaPartner(
+        accessToken: String,
+        id: String
+    ): Flow<Resource<List<EventNeedItem>>> = flow {
+        TODO("Not yet implemented")
+    }
+
+    override fun getRecommendationSponsor(
+        accessToken: String,
+        id: String
+    ): Flow<Resource<List<EventNeedItem>>> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getRecommendationEquipment(
+        accessToken: String,
+        id: String
+    ): Flow<Resource<List<EventNeedItem>>> {
+        TODO("Not yet implemented")
+    }
+
     override fun getUserLogging(authorization: String): Flow<Resource<User>> = flow {
         emit(Resource.Loading)
         when (val response = remoteDataSource.getUserLogging(authorization)) {

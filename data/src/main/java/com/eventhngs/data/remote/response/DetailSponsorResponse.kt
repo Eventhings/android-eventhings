@@ -86,5 +86,8 @@ data class DetailSponsorData(
 	val email: String? = null,
 
 	@field:SerializedName("average_rating")
-	val averageRating: Double? = null
+	val averageRating: Double? = null,
+
+	@field:SerializedName("review_sentiment")
+	val reviewSentiment: String? = null
 )

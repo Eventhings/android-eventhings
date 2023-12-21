@@ -48,5 +48,7 @@ data class DetailEquipment(
 
     val email: String = "",
 
-    val averageRating: Double
+    val averageRating: Double,
+
+    val reviewSentiment: String = ""
 )

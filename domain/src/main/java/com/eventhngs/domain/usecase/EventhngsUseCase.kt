@@ -37,6 +37,12 @@ interface EventhngsUseCase {
 
     fun getRecommendation(accessToken: String): Flow<Resource<List<EventNeedItem>>>
 
+    fun getRecommendationMediaPartner(accessToken: String, id: String): Flow<Resource<List<EventNeedItem>>>
+
+    fun getRecommendationSponsor(accessToken: String, id: String): Flow<Resource<List<EventNeedItem>>>
+
+    fun getRecommendationEquipment(accessToken: String, id: String): Flow<Resource<List<EventNeedItem>>>
+
     fun getUserLogging(
         authorization: String
     ): Flow<Resource<User>>

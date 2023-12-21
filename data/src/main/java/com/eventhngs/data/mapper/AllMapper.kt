@@ -9,14 +9,14 @@ fun List<AllItem>.toEventNeeds(): List<EventNeedItem> {
 }
 
 fun AllItem.toEventNeed(): EventNeedItem {
-    val type = when (serviceType) {
-        "media-partner" -> EventNeedItemType.MEDIA_PARTNER
-        "sponsorship" -> EventNeedItemType.SPONSOR
+    val type = when  {
+        serviceType?.contains("media") == true -> EventNeedItemType.MEDIA_PARTNER
+        serviceType?.contains("sponsorship") == true -> EventNeedItemType.SPONSOR
         else -> EventNeedItemType.EQUIPMENT
     }
-    val label = when (serviceType) {
-        "media-partner" -> "Media Partner"
-        "sponsorship" -> "Sponsor"
+    val label = when  {
+        serviceType?.contains("media") == true -> "Media Partner"
+        serviceType?.contains("sponsorship") == true -> "Sponsor"
         else -> "Equipment"
     }
     return EventNeedItem(

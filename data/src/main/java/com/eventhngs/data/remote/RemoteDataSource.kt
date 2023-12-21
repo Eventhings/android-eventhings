@@ -15,6 +15,9 @@ import com.eventhngs.data.remote.response.SponsorResponse
 import com.eventhngs.data.remote.response.UserResponse
 import com.eventhngs.data.remote.service.EventhngsService
 import com.haroldadmin.cnradapter.NetworkResponse
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Path
 
 class RemoteDataSource(private val service: EventhngsService) {
 
@@ -83,6 +86,30 @@ class RemoteDataSource(private val service: EventhngsService) {
     ): NetworkResponse<RecomendationResponse, ErrorResponse> {
         val authorizationToken = "Bearer $token"
         return service.getRecommendation(authorizationToken)
+    }
+
+    suspend fun getRecommendationMediaPartner(
+        authorization: String,
+        id: String
+    ): NetworkResponse<RecomendationResponse, ErrorResponse> {
+        val authorizationToken = "Bearer $authorization"
+        return service.getRecommendationMediaPartner(authorizationToken, id)
+    }
+
+    suspend fun getRecommendationSponsor(
+        authorization: String,
+        id: String
+    ): NetworkResponse<RecomendationResponse, ErrorResponse> {
+        val authorizationToken = "Bearer $authorization"
+        return service.getRecommendationSponsor(authorizationToken, id)
+    }
+
+    suspend fun getRecommendationEquipment(
+        authorization: String,
+        id: String
+    ): NetworkResponse<RecomendationResponse, ErrorResponse> {
+        val authorizationToken = "Bearer $authorization"
+        return service.getRecommendationEquipment(authorizationToken, id)
     }
 
     suspend fun getUserLogging(

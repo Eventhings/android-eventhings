@@ -28,6 +28,7 @@ fun DetailMediaPartnerData.toDomain(): DetailMediaPartner {
         id = id ?: "",
         value = value ?: "",
         email = email ?: "",
-        averageRating = averageRating ?: 0.0
+        averageRating = averageRating ?: 0.0,
+        reviewSentiment = reviewSentiment ?: ""
     )
 }

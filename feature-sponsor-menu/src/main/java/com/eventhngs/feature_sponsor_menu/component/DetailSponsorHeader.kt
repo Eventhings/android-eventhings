@@ -163,6 +163,15 @@ fun DetailSponsorHeader(
                     .size(18.dp)
             )
         }
+        Spacer(modifier = Modifier.height(10.dp))
+        Text(
+            text = detail.reviewSentiment,
+            fontSize = 14.sp,
+            lineHeight = 20.sp,
+            fontFamily = poppinsFontFamily,
+            fontWeight = FontWeight.Medium,
+            color = Color(0xFF404040),
+        )
     }
 }
 
