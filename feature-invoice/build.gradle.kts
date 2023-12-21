@@ -4,8 +4,8 @@ plugins {
 }
 
 android {
-    namespace = "com.eventhngs.feature_auth"
-    compileSdk = 34
+    namespace = "com.eventhngs.feature_invoice"
+    compileSdk = 33
 
     defaultConfig {
         minSdk = 24
@@ -46,13 +46,10 @@ android {
 dependencies {
 
     implementation(project(":ui"))
+    implementation(project(":common"))
     implementation(project(":domain"))
-    implementation("androidx.navigation:navigation-runtime-ktx:2.7.5")
-    implementation(project(mapOf("path" to ":domain")))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
-    implementation("androidx.compose.material:material-icons-extended")
 }

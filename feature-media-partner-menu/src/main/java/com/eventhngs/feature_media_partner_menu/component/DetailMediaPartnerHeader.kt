@@ -89,27 +89,7 @@ fun DetailMediaPartnerHeader(
                     color = Color(0xFF2D2D2D)
                 )
                 Spacer(modifier = Modifier.height(10.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        text = detail.price.toRupiah(),
-                        fontSize = 16.sp,
-                        lineHeight = 20.sp,
-                        fontFamily = poppinsFontFamily,
-                        fontWeight = FontWeight(600),
-                        color = Color(0xFF9365CD)
-                    )
-                    Text(
-                        text = "⭐ ${detail.rating}",
-                        fontSize = 16.sp,
-                        lineHeight = 20.sp,
-                        fontFamily = poppinsFontFamily,
-                        fontWeight = FontWeight(500),
-                        color = Color(0xFF787878)
-                    )
-                }
+
             }
         }
         Spacer(modifier = Modifier.height(16.dp))

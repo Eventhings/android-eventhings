@@ -40,6 +40,7 @@ import com.eventhngs.ui.component.button.LoginWithGoogleButton
 import com.eventhngs.ui.component.button.PrimaryButton
 import com.eventhngs.ui.component.textfield.BaseLargeTextField
 import com.eventhngs.ui.component.textfield.BasePasswordTextField
+import com.eventhngs.ui.theme.EventhngsTheme
 import com.eventhngs.ui.theme.poppinsFontFamily
 import com.maxkeppeker.sheets.core.CoreDialog
 import com.maxkeppeker.sheets.core.models.CoreSelection
@@ -190,5 +191,7 @@ fun RegisterDivider(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun RegisterScreenPreview() {
-
+    EventhngsTheme {
+        RegisterScreen()
+    }
 }

@@ -1,4 +1,4 @@
-package com.eventhngs.feature_purchased
+package com.eventhngs.feature_invoice
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,15 +19,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.eventhngs.domain.model.EventNeedItem
 import com.eventhngs.domain.model.EventNeedItemType
-import com.eventhngs.feature_purchased.component.EmptyPurchasedItemContent
-import com.eventhngs.ui.component.event.EventNeedItem
+import com.eventhngs.feature_invoice.component.EmptyInvoiceItemContent
 import com.eventhngs.ui.component.tabbar.TabBar
 import com.eventhngs.ui.component.topappbar.DetailTopAppBar
 import com.eventhngs.ui.theme.EventhngsTheme
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
-fun PurchasedScreen(
+fun InvoiceScreen(
     modifier: Modifier = Modifier,
     navigateUp: () -> Unit = {},
     navigateToMediaPartnerDetailScreen: (Int) -> Unit = {},
@@ -55,49 +54,49 @@ fun PurchasedScreen(
         )
     }
 
-   Scaffold (
-       topBar = {
-          DetailTopAppBar(
-              title = "My Eventh!ngs",
-              onNavigationClick = navigateUp
-          )
-       },
-       modifier = modifier
-   ){paddingValues ->
-       Column(
-           modifier = Modifier
-               .fillMaxSize()
-               .padding(paddingValues)
-               .verticalScroll(state = rememberScrollState()),
-           verticalArrangement = Arrangement.Center,
-           horizontalAlignment = Alignment.CenterHorizontally
-       ) {
-           TabBar()
-           Spacer(modifier = Modifier.height(16.dp))
+    Scaffold (
+        topBar = {
+            DetailTopAppBar(
+                title = "My Eventh!ngs",
+                onNavigationClick = navigateUp
+            )
+        },
+        modifier = modifier
+    ){paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .verticalScroll(state = rememberScrollState()),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            TabBar()
+            Spacer(modifier = Modifier.height(16.dp))
 
-           if (eventNeedItems.isEmpty()) {
-               EmptyPurchasedItemContent(
-                   modifier = Modifier
-                       .fillMaxWidth()
-                       .padding(top = 174.dp)
-               )
-           }
+            if (eventNeedItems.isEmpty()) {
+                EmptyInvoiceItemContent(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 174.dp)
+                )
+            }
 
-           eventNeedItems.forEachIndexed { index, eventNeedItem ->
-               val modifierItem = if (index % 2 == 0) {
-                   Modifier.padding(start = 20.dp, bottom = 8.dp)
-               } else {
-                   Modifier.padding(end = 20.dp, bottom = 8.dp)
-               }
-               EventNeedItem(
-                   eventNeedItem = eventNeedItem,
-                   onClick = onItemClick,
-                   modifier = modifierItem
-               )
-           }
-       }
+            eventNeedItems.forEachIndexed { index, eventNeedItem ->
+                val modifierItem = if (index % 2 == 0) {
+                    Modifier.padding(start = 20.dp, bottom = 8.dp)
+                } else {
+                    Modifier.padding(end = 20.dp, bottom = 8.dp)
+                }
+                com.eventhngs.feature_invoice.component.EventItem(
+                    eventNeedItem = eventNeedItem,
+                    onClick = onItemClick,
+                    modifier = modifierItem
+                )
+            }
+        }
 
-   }
+    }
 
 }
 
@@ -105,7 +104,7 @@ fun PurchasedScreen(
 @Composable
 fun PurchasedScreenPreview() {
     EventhngsTheme {
-        PurchasedScreen()
+        InvoiceScreen()
     }
-    
+
 }
