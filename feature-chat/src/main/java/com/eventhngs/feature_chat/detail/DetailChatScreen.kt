@@ -15,18 +15,24 @@ import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.eventhngs.common.utils.toChatDateFormat
+import com.eventhngs.common.utils.toChatTimeFormat
 import com.eventhngs.feature_chat.component.ChatBubble
 import com.eventhngs.feature_chat.component.ChatBubbleType
 import com.eventhngs.feature_chat.component.ChatDateDivider
@@ -37,6 +43,9 @@ import com.eventhngs.feature_chat.domain.DetailChatHeader
 import com.eventhngs.ui.component.textfield.ChatTextField
 import com.eventhngs.ui.component.topappbar.DetailChatTopAppBar
 import com.eventhngs.ui.theme.EventhngsTheme
+import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.util.UUID
 
 @OptIn(ExperimentalLayoutApi::class)
 @ExperimentalFoundationApi
@@ -47,6 +56,9 @@ fun DetailChatScreen(
     navigateUp: () -> Unit = {},
     chatId: String = ""
 ) {
+
+    val scrollState = rememberLazyListState()
+    val scope = rememberCoroutineScope()
 
     val userId = "user123"
     var message by remember { mutableStateOf("") }
@@ -60,59 +72,81 @@ fun DetailChatScreen(
         ))
     }
 
-    val chats = listOf(
-        ChatItem(
-            id = "948024fwew",
+    val chats = remember {
+        mutableStateListOf(
+            ChatItem(
+                id = "948024fwew",
+                userId = userId,
+                date = "12 September 2023",
+                time = "13:59",
+                text = "Hi, 100 Startup digital, currently I’m looking for sponsorship for a startup, are you available?"
+            ),
+            ChatItem(
+                id = "4829038402hfuefhe",
+                userId = userId,
+                date = "12 September 2023",
+                time = "13:59",
+                text = "Hi, 100 Startup digital, currently I’m looking for sponsorship for a startup, are you available?"
+            ),
+            ChatItem(
+                id = "9480241fwew",
+                userId = userId,
+                date = "12 September 2023",
+                time = "13:59",
+                text = "Hi, 100 Startup digital, currently I’m looking for sponsorship for a startup, are you available?"
+            ),
+            ChatItem(
+                id = "4829038402h2fuefhe",
+                userId = userId,
+                date = "12 September 2023",
+                time = "13:59",
+                text = "Hi, 100 Startup digital, currently I’m looking for sponsorship for a startup, are you available?"
+            ),
+            ChatItem(
+                id = "94802453fwew",
+                userId = userId,
+                date = "12 September 2023",
+                time = "13:59",
+                text = "Hi, 100 Startup digital, currently I’m looking for sponsorship for a startup, are you available?"
+            ),
+            ChatItem(
+                id = "482903538402hfuefhe",
+                userId = userId,
+                date = "12 September 2023",
+                time = "13:59",
+                text = "Hi, 100 Startup digital, currently I’m looking for sponsorship for a startup, are you available?"
+            ),
+            ChatItem(
+                id = "845902342hfwerufhe",
+                userId = "sponsor123",
+                date = "13 September 2023",
+                time = "13:59",
+                text = "Hi, 100 Startup digital, currently I’m looking for sponsorship for a startup, are you available?"
+            )
+        )
+    }
+    val chatsGrouped = chats.groupBy { it.date }
+
+    val onSendButtonClick: () -> Unit = {
+        val localDateTime = LocalDateTime.now()
+        val date = localDateTime.toChatDateFormat()
+        val time = localDateTime.toChatTimeFormat()
+        val chatItem = ChatItem(
+            id = UUID.randomUUID().toString(),
             userId = userId,
-            date = "12 September 2023",
-            time = "13:59",
-            text = "Hi, 100 Startup digital, currently I’m looking for sponsorship for a startup, are you available?"
-        ),
-        ChatItem(
-            id = "4829038402hfuefhe",
-            userId = userId,
-            date = "12 September 2023",
-            time = "13:59",
-            text = "Hi, 100 Startup digital, currently I’m looking for sponsorship for a startup, are you available?"
-        ),
-        ChatItem(
-            id = "9480241fwew",
-            userId = userId,
-            date = "12 September 2023",
-            time = "13:59",
-            text = "Hi, 100 Startup digital, currently I’m looking for sponsorship for a startup, are you available?"
-        ),
-        ChatItem(
-            id = "4829038402h2fuefhe",
-            userId = userId,
-            date = "12 September 2023",
-            time = "13:59",
-            text = "Hi, 100 Startup digital, currently I’m looking for sponsorship for a startup, are you available?"
-        ),
-        ChatItem(
-            id = "94802453fwew",
-            userId = userId,
-            date = "12 September 2023",
-            time = "13:59",
-            text = "Hi, 100 Startup digital, currently I’m looking for sponsorship for a startup, are you available?"
-        ),
-        ChatItem(
-            id = "482903538402hfuefhe",
-            userId = userId,
-            date = "12 September 2023",
-            time = "13:59",
-            text = "Hi, 100 Startup digital, currently I’m looking for sponsorship for a startup, are you available?"
-        ),
-        ChatItem(
-            id = "845902342hfwerufhe",
-            userId = "sponsor123",
-            date = "13 September 2023",
-            time = "13:59",
-            text = "Hi, 100 Startup digital, currently I’m looking for sponsorship for a startup, are you available?"
-        ),
-    )
-    val chatGrouped = remember(key1 = chats) {
-        chats.groupBy { it.date }
+            date = date,
+            time = time,
+            text = message
+        )
+        chats.add(chatItem)
+        message = ""
+        scope.launch {
+            scrollState.animateScrollToItem(chats.lastIndex)
+        }
+    }
+
+    LaunchedEffect(key1 = Unit) {
+        scrollState.animateScrollToItem(chats.lastIndex)
     }
 
     Scaffold(
@@ -130,6 +164,7 @@ fun DetailChatScreen(
                 value = message,
                 onValueChange = { message = it },
                 placeholder = "Write your message",
+                onSendButtonClick = onSendButtonClick,
                 modifier = Modifier
                     .navigationBarsPadding()
                     .fillMaxWidth()
@@ -137,7 +172,8 @@ fun DetailChatScreen(
                     .padding(vertical = 12.dp, horizontal = 20.dp)
             )
         },
-        modifier = modifier.safeDrawingPadding()
+        modifier = modifier
+            .safeDrawingPadding()
             .imePadding()
             .imeNestedScroll()
     ) { paddingValues ->
@@ -152,9 +188,10 @@ fun DetailChatScreen(
         LazyColumn(
             contentPadding = PaddingValues(20.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp),
+            state = scrollState,
             modifier = Modifier.padding(paddingValues)
         ) {
-            chatGrouped.forEach { (date, chats) ->
+            chatsGrouped.forEach { (date, chats) ->
                 stickyHeader {
                     ChatDateDivider(
                         date = date,
