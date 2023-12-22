@@ -4,8 +4,8 @@ plugins {
 }
 
 android {
-    namespace = "com.eventhngs.feature_media_partner_menu"
-    compileSdk = 34
+    namespace = "com.eventhngs.feature_create"
+    compileSdk = 33
 
     defaultConfig {
         minSdk = 24
@@ -46,9 +46,8 @@ android {
 dependencies {
 
     implementation(project(":ui"))
-    implementation(project(":domain"))
     implementation(project(":common"))
-    implementation("androidx.paging:paging-compose:3.2.1")
+    implementation(project(":domain"))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
