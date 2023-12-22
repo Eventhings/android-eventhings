@@ -33,12 +33,9 @@ This repository is for the Eventh!ngs Product Capstone Project Android Mobile Ap
 ## Features
 - [x] Home Page
 - [x] Authentication Page (Login Register)
-- [x] Media Partner, Sponsorship, and Rentals Page (Create, View All, and Details)
-- [x] Chat Page
+- [x] Media Partner, Sponsorship, and Rentals Page (View All, and Details)
 - [x] Purchases List, Checkout and Payment Details Page
-- [x] Profile Page
-- [x] Saved Service Page
-- [x] Add Review Page
+
 
 ## Setup 
 
@@ -52,6 +49,13 @@ This repository is for the Eventh!ngs Product Capstone Project Android Mobile Ap
 git clone https://github.com/Eventhings/android-eventhings
 ```
 2. Install all needed dependencies using
+3. Open the project in Android Studio and wait for the gradle sync process.
+4. After the process is done, you can start the project.
 
---- Work In Progress ---
+### Screenshots of the App
+<img width="515" alt="image" src="https://github.com/Eventhings/android-eventhings/assets/28957554/769bf26d-cc2c-4c70-a26a-5e5ee9942573">
+<img width="515" alt="image" src="https://github.com/Eventhings/android-eventhings/assets/28957554/14bf915c-84a2-43f0-875f-110e15cede79">
+<img width="515" alt="image" src="https://github.com/Eventhings/android-eventhings/assets/28957554/96ae356c-f8ed-40b7-a573-1c2439bdb5d5">
+<img width="515" alt="image" src="https://github.com/Eventhings/android-eventhings/assets/28957554/28b532e5-7ee4-412c-9f73-d4bec2d775d0">
+
 
