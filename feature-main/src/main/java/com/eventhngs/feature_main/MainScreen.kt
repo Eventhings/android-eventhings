@@ -37,6 +37,7 @@ import com.eventhngs.feature_main.navigation.MainNavigator
 import com.eventhngs.feature_main.navigation.Screen
 import com.eventhngs.feature_profile.profile.ProfileScreen
 import com.eventhngs.feature_saved_item.SavedItemScreen
+import com.eventhngs.feature_upload_business.UploadBusinessScreen
 import com.eventhngs.ui.theme.EventhngsTheme
 
 @ExperimentalFoundationApi
@@ -111,6 +112,12 @@ fun MainScreen(
                     navigateToEditProfileScreen = mainNavigator::navigateToEditProfileScreen
                 )
             }
+            composable(Screen.UploadBusiness.route) {
+               UploadBusinessScreen(
+                    navigateToUploadBusinessScreen = mainNavigator::navigateToUploadBusinessScreen
+                )
+            }
+
         }
     }
 }

@@ -23,6 +23,9 @@ sealed class Screen(val route: String) {
     object MediaPartnerMenu : Screen(route = "media-partner-menu")
     object SponsorMenu : Screen(route = "sponsor-menu")
     object EquipmentRentalMenu : Screen(route = "equipment-rental-menu")
+    object Setting : Screen (route = "setting")
+    object UploadBusiness : Screen (route = "upload-business")
+
     object EditProfile : Screen(route = "edit-profile/{$TOKEN}") {
         fun generateRoute(token: String): String {
             return "edit-profile/$token"

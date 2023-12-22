@@ -37,7 +37,10 @@ import org.koin.androidx.compose.koinViewModel
 fun ProfileScreen(
     modifier: Modifier = Modifier,
     viewModel: ProfileViewModel = koinViewModel(),
-    navigateToEditProfileScreen: (String) -> Unit = {}
+    navigateToEditProfileScreen: (String) -> Unit = {},
+    navigateToSettingScreen: () -> Unit = {},
+    navigateToUploadBusinessScreen: () -> Unit = {}
+
 ) {
     val scrollState = rememberScrollState()
 
@@ -80,6 +83,16 @@ fun ProfileScreen(
             navigateToEditProfileScreen(refreshToken.data.accessToken)
         }
     }
+
+    val onSettingClick: () -> Unit = {
+        navigateToSettingScreen
+    }
+
+    val onUploadBusinessClick: () -> Unit = {
+        navigateToUploadBusinessScreen
+    }
+
+
 
 //    val balance by remember { mutableDoubleStateOf(0.0) }
 
@@ -157,7 +170,8 @@ fun ProfileScreen(
                 text = "Upload Business",
                 modifier = Modifier
                     .padding(horizontal = 20.dp)
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                onClick = navigateToUploadBusinessScreen
             )
             Spacer(modifier = Modifier.height(20.dp))
         }
@@ -170,7 +184,9 @@ fun ProfileScreen(
 fun PreviewProfileScreen() {
     EventhngsTheme {
         Surface {
-            ProfileScreen()
+            ProfileScreen(
+                modifier = Modifier.fillMaxWidth(1f)
+            )
         }
     }
 }

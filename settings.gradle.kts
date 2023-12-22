@@ -1,5 +1,11 @@
 import java.net.URI
 
+include(":feature-upload-business")
+
+
+include(":feature-setting")
+
+
 include(":feature-create-business")
 
 

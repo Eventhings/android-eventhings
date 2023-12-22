@@ -17,6 +17,9 @@ class MainNavigator(
     override fun navigateToSponsorDetailScreen(id: String) { navController.navigateToSponsorDetailScreen(id) }
     override fun navigateToEquipmentDetailScreen(id: String) { navController.navigateToEquipmentDetailScreen(id) }
     override fun navigateToChatDetailScreen(id: String) { navController.navigateToChatDetailScreen(id) }
+    override fun navigateToSettingScreen() { navController.navigateToSettingScreen() }
+    override fun navigateToUploadBusinessScreen() {}
+
 }
 
 @Throws(IllegalArgumentException::class)
@@ -136,3 +139,12 @@ fun NavHostController.navigateToChatDetailScreen(id: String) {
     navigate(Screen.ChatDetail.generateRoute(id))
 }
 
+@Throws(IllegalArgumentException::class)
+fun NavHostController.navigateToSettingScreen() {
+    navigate(Screen.Setting.route)
+}
+
+@Throws(IllegalArgumentException::class)
+fun NavHostController.navigateToUploadBusinessScreen() {
+    navigate(Screen.UploadBusiness.route)
+}

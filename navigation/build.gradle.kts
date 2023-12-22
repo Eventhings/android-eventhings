@@ -55,6 +55,9 @@ dependencies {
     implementation(project(":feature-equipment-rental-menu"))
     implementation(project(":feature-profile"))
     implementation(project(":feature-chat"))
+    implementation(project(":feature-setting"))
+    implementation(project(":feature-upload-business"))
+
 
     api("androidx.navigation:navigation-compose:2.7.5")
 
