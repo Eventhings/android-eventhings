@@ -22,7 +22,7 @@ fun UploadBusinessScreen(
         verticalArrangement = Arrangement.Center
     ){
         Text(
-            text = " UploadBusiness Screen\nComingSoon"
+            text = " UploadBusiness Screen\nComingSoon",
         )
     }
 

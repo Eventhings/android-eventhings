@@ -83,9 +83,14 @@ fun DetailEquipmentScreen(
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val detail = uiState.detailEquipment
+    val list = uiState.detailEquipmentList
 
     LaunchedEffect(key1 = Unit) {
         viewModel.getDetailEquipment(equipmentId)
+    }
+
+    LaunchedEffect(key1 = Unit) {
+        viewModel.getRecommendationEquipment("eyJhbGciOiJSUzI1NiIsImtpZCI6IjAzMmNjMWNiMjg5ZGQ0NjI2YTQzNWQ3Mjk4OWFlNDMyMTJkZWZlNzgiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRmVsaXgiLCJkb2IiOiIxNy8wNC8yMDAyIiwibG9jYXRpb24iOiJCYW5kdW5nIiwicGhvbmVOdW1iZXIiOiIwODEyMzMxMjEzIiwicm9sZSI6ImFkbWluIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2V2ZW50aGluZ3MiLCJhdWQiOiJldmVudGhpbmdzIiwiYXV0aF90aW1lIjoxNzAzMjk3ODQ5LCJ1c2VyX2lkIjoiVWNLUjRwam1kSmVPR08wa3B2OHV5N1MxNmN3MSIsInN1YiI6IlVjS1I0cGptZEplT0dPMGtwdjh1eTdTMTZjdzEiLCJpYXQiOjE3MDMyOTc4NTAsImV4cCI6MTcwMzMwMTQ1MCwiZW1haWwiOiJmZWxpeGFkbWluQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJmZWxpeGFkbWluQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.TbBFmbWRCsNl0XUIXprR9mhBxW2po3LJmIkTEGCfTWcaZAjybtIKZ-3Zb0yQHIWCXHPelwucr40oylWLBs3Aj-bD5H1RTCwWjpByaYNIvdfyeqNsWcJ2aSzFP1s9HpFHG80aMs1udaS7YFGKyVOkwshTyD98HBNl0cFStCrwMvdUems_QIGVO_aEJmRl89QbPWsI_YIkxgM03ynSld0eFcUsxlEIka-d8WfmQw-uF8dfQqoI2m3rwTIvuBIVwHzaVH92fQ6cwL69IhFGwcstUCO6QciUDy8zYnFlTkk4WjWUwO6APH9kP_QID4WiaSbJ2ELgy5MLEiwBR6i09zOXxQ","002ad707-8006-4c7f-9d98-19e0650cff0d")
     }
 
     LaunchedEffect(key1 = detail) {
@@ -94,6 +99,16 @@ fun DetailEquipmentScreen(
             Resource.Idle -> {}
             Resource.Loading -> {}
             is Resource.Success -> Log.d("TAG", "DetailEquipmentScreen: Success = ${detail.data}")
+        }
+    }
+
+    LaunchedEffect(key1 = list) {
+        Log.d("Fasxsxsx", list.toString())
+        when (list) {
+            is Resource.Error -> Log.d("TAG", "Esdsdndd: Error = ${list.message}")
+            Resource.Idle -> {}
+            Resource.Loading -> {}
+            is Resource.Success -> Log.d("TAG", "Esdsdndd: Success = ${list.data}")
         }
     }
 
