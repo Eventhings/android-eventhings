@@ -1,4 +1,4 @@
-package com.eventhngs.feature_create.component
+package com.eventhngs.feature_create.component.general
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -36,9 +36,15 @@ fun GeneralBasicInformation(
             label = "Category",
             value = " ",
             onValueChange = {},
-            placeholder = "Select One"
+            placeholder = "Select One",
         )
         Spacer(modifier = Modifier.height(10.dp))
+        TextFieldCategory(
+            label = "Subcategory",
+            value = " ",
+            onValueChange = {},
+            placeholder = "Select One"
+        )
 
     }
 }

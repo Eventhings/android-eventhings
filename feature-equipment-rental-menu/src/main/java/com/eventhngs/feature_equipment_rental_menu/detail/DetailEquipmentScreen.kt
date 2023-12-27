@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -28,7 +29,6 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -40,10 +40,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.eventhngs.domain.model.EventNeedItem
 import com.eventhngs.domain.model.Resource
@@ -58,7 +56,6 @@ import com.eventhngs.ui.component.review.ReviewItem
 import com.eventhngs.ui.component.text.TextWithSeeMoreButton
 import com.eventhngs.ui.component.topappbar.DetailTopAppBar
 import com.eventhngs.ui.theme.EventhngsTheme
-import com.eventhngs.ui.theme.poppinsFontFamily
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
@@ -85,6 +82,9 @@ fun DetailEquipmentScreen(
     val detail = uiState.detailEquipment
     val list = uiState.detailEquipmentList
 
+    val uiStateList by viewModel.uiStateList.collectAsStateWithLifecycle()
+    val detailEquipmentList = uiStateList.detailEquipmentList
+
     LaunchedEffect(key1 = Unit) {
         viewModel.getDetailEquipment(equipmentId)
     }
@@ -102,13 +102,13 @@ fun DetailEquipmentScreen(
         }
     }
 
-    LaunchedEffect(key1 = list) {
-        Log.d("Fasxsxsx", list.toString())
-        when (list) {
-            is Resource.Error -> Log.d("TAG", "Esdsdndd: Error = ${list.message}")
+    LaunchedEffect(key1 = detailEquipmentList) {
+        Log.d("Fasxsxsx", detailEquipmentList.toString())
+        when (detailEquipmentList) {
+            is Resource.Error -> Log.d("TAG", "Esdsdndd: Error = ${detailEquipmentList.message}")
             Resource.Idle -> {}
             Resource.Loading -> {}
-            is Resource.Success -> Log.d("TAG", "Esdsdndd: Success = ${list.data}")
+            is Resource.Success -> Log.d("TAG", "Esdsdndd: Success = ${detailEquipmentList.data}")
         }
     }
 
@@ -310,13 +310,13 @@ fun DetailEquipmentScreen(
                         .fillMaxWidth()
                 )
             }
-            if (detail is Resource.Success) {
+            if (detailEquipmentList is Resource.Success) {
                 item {
                     LazyRow(
                         contentPadding = PaddingValues(16.dp),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        items(items = similarMediaPartners, key = { it.id }) { eventNeedItem ->
+                        items(items = detailEquipmentList.data, key = { it.id }) { eventNeedItem ->
                             EventNeedItem(
                                 eventNeedItem = eventNeedItem,
                                 modifier = Modifier.widthIn(

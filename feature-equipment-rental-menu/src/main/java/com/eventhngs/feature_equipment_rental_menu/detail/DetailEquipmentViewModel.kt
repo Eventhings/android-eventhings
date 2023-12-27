@@ -16,6 +16,7 @@ class DetailEquipmentViewModel(
     private val _uiStateList = MutableStateFlow(DetailEquipmentListUiState())
     private val _uiState = MutableStateFlow(DetailEquipmentUiState())
     val uiState: StateFlow<DetailEquipmentUiState> get() = _uiState
+    val uiStateList: StateFlow<DetailEquipmentListUiState> get() = _uiStateList
 
     fun getDetailEquipment(id: String) {
         viewModelScope.launch {
