@@ -138,21 +138,21 @@ class EventhngsRepositoryImpl(
         accessToken: String,
         id: String
     ): Flow<Resource<List<EventNeedItem>>> = flow {
-        TODO("Not yet implemented")
+
     }
 
     override fun getRecommendationSponsor(
         accessToken: String,
         id: String
-    ): Flow<Resource<List<EventNeedItem>>> {
-        TODO("Not yet implemented")
+    ): Flow<Resource<List<EventNeedItem>>> = flow{
+
     }
 
     override fun getRecommendationEquipment(
         accessToken: String,
         id: String
-    ): Flow<Resource<List<EventNeedItem>>> {
-        TODO("Not yet implemented")
+    ): Flow<Resource<List<EventNeedItem>>> = flow {
+
     }
 
     override fun getUserLogging(authorization: String): Flow<Resource<User>> = flow {

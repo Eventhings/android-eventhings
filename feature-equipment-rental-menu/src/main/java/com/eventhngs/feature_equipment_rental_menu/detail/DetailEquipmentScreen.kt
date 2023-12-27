@@ -310,8 +310,8 @@ fun DetailEquipmentScreen(
                         .fillMaxWidth()
                 )
             }
-            if (detailEquipmentList is Resource.Success) {
-                item {
+            item {
+                if (detailEquipmentList is Resource.Success) {
                     LazyRow(
                         contentPadding = PaddingValues(16.dp),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)

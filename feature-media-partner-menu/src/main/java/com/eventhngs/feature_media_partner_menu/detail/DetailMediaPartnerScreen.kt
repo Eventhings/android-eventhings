@@ -2,6 +2,7 @@ package com.eventhngs.feature_media_partner_menu.detail
 
 import android.content.Intent
 import android.net.Uri
+import android.view.MenuItem
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -48,6 +49,7 @@ import com.eventhngs.feature_media_partner_menu.component.DetailMediaPartnerInfo
 import com.eventhngs.feature_media_partner_menu.component.DetailMediaPartnerPackageSection
 import com.eventhngs.feature_media_partner_menu.domain.MediaPartnerPackage
 import com.eventhngs.feature_media_partner_menu.mapper.toUi
+import com.eventhngs.ui.R
 import com.eventhngs.ui.component.bottomnavigation.DetailBottomNavigation
 import com.eventhngs.ui.component.event.EventNeedItem
 import com.eventhngs.ui.component.review.ReviewItem
@@ -65,7 +67,8 @@ fun DetailMediaPartnerScreen(
     modifier: Modifier = Modifier,
     viewModel: DetailMediaPartnerViewModel = koinViewModel(),
     mediaPartnerId: String = "002ad707-8006-4c7f-9d98-19e0650cff0d",
-    navigateUp: () -> Unit = {}
+    navigateUp: () -> Unit = {},
+    navigateToMediaPartnerMenuScreen: () -> Unit = {},
 ) {
 
     val context = LocalContext.current
@@ -75,6 +78,10 @@ fun DetailMediaPartnerScreen(
     val buttonTitle = remember(key1 = pagerState.currentPage) {
         if (pagerState.currentPage == 0) "Choose Package" else "Book Now"
     }
+
+    val menuItems = listOf(
+        com.eventhngs.feature_media_partner_menu.domain.MenuItem(icon = R.drawable.ic_menu_media_partner, label = R.string.label_media_partner)
+    )
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val detail = uiState.detailMediaPartner
@@ -155,6 +162,12 @@ fun DetailMediaPartnerScreen(
                 0 -> pagerState.animateScrollToPage(1)
                 1 -> {}
             }
+        }
+    }
+
+    val onMenuClick: (com.eventhngs.feature_media_partner_menu.domain.MenuItem) -> Unit = { menu ->
+        when (menu.label) {
+            R.string.label_media_partner -> navigateToMediaPartnerMenuScreen()
         }
     }
 
@@ -274,9 +287,10 @@ fun DetailMediaPartnerScreen(
             item {
                 TextWithSeeMoreButton(
                     text = "Similar Media Partner",
+                    onSeeMoreClick = navigateToMediaPartnerMenuScreen,
                     modifier = Modifier
                         .padding(horizontal = 20.dp)
-                        .fillMaxWidth()
+                        .fillMaxWidth(),
                 )
             }
             item {
