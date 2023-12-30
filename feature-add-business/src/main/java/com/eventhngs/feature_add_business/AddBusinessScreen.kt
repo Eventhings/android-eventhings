@@ -25,7 +25,8 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @Composable
 fun AddBusinessScreen(
     modifier: Modifier = Modifier,
-    navigateUp: () -> Unit = {}
+    navigateUp: () -> Unit = {},
+
 ) {
 
     val scrollState = rememberScrollState()

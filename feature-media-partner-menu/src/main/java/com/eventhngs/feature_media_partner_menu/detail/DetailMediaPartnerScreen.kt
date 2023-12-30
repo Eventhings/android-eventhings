@@ -39,8 +39,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.eventhngs.domain.model.EventNeedItem
 import com.eventhngs.domain.model.Resource
@@ -51,11 +54,13 @@ import com.eventhngs.feature_media_partner_menu.domain.MediaPartnerPackage
 import com.eventhngs.feature_media_partner_menu.mapper.toUi
 import com.eventhngs.ui.R
 import com.eventhngs.ui.component.bottomnavigation.DetailBottomNavigation
+import com.eventhngs.ui.component.button.BaseClickableText
 import com.eventhngs.ui.component.event.EventNeedItem
 import com.eventhngs.ui.component.review.ReviewItem
 import com.eventhngs.ui.component.text.TextWithSeeMoreButton
 import com.eventhngs.ui.component.topappbar.DetailTopAppBar
 import com.eventhngs.ui.theme.EventhngsTheme
+import com.eventhngs.ui.theme.poppinsFontFamily
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
@@ -293,6 +298,7 @@ fun DetailMediaPartnerScreen(
                         .fillMaxWidth(),
                 )
             }
+
             item {
                 if (detail is Resource.Success) {
                     LazyRow(
@@ -305,7 +311,8 @@ fun DetailMediaPartnerScreen(
                                 modifier = Modifier.widthIn(
                                     min = 175.dp,
                                     max = 230.dp
-                                )
+                                ),
+                                onClick = {onMenuClick}
                             )
                         }
                     }

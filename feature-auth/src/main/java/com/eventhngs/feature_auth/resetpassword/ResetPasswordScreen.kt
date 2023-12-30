@@ -71,6 +71,7 @@ fun ResetPasswordScreen(
                 value = "",
                 onValueChange = {},
                 placeholder = "New  Password",
+                label = "",
                 modifier = Modifier
                     .padding(horizontal = 45.dp)
                     .fillMaxWidth()
@@ -81,6 +82,7 @@ fun ResetPasswordScreen(
                 value = "",
                 onValueChange = {},
                 placeholder = "Confirm Password",
+                label = "",
                 modifier = Modifier
                     .padding(horizontal = 45.dp)
                     .fillMaxWidth()

@@ -141,7 +141,8 @@ fun EventhngsNavHost(
             val mediaPartnerId = it.arguments?.getString(Screen.MEDIA_PARTNER_ID) ?: ""
             DetailMediaPartnerScreen(
                 navigateUp = navController::navigateUp,
-                mediaPartnerId = mediaPartnerId
+                mediaPartnerId = mediaPartnerId,
+                navigateToMediaPartnerMenuScreen = navController::navigateToMediaPartnerMenuScreen
             )
         }
         composableWithSlideHorizontalAnimation(
@@ -155,7 +156,8 @@ fun EventhngsNavHost(
             val sponsorId = it.arguments?.getString(Screen.SPONSOR_ID) ?: ""
             DetailSponsorScreen(
                 navigateUp = navController::navigateUp,
-                sponsorId = sponsorId
+                sponsorId = sponsorId,
+                navigateToSponsorMenuScreen = navController::navigateToSponsorMenuScreen
             )
         }
         composableWithSlideHorizontalAnimation(
@@ -169,7 +171,8 @@ fun EventhngsNavHost(
             val equipmentId = it.arguments?.getString(Screen.EQUIPMENT_ID) ?: ""
             DetailEquipmentScreen(
                 navigateUp = navController::navigateUp,
-                equipmentId = equipmentId
+                equipmentId = equipmentId,
+                navigateToEquipmentMenuScreen = navController::navigateToEquipmentRentalMenuScreen
             )
         }
         composableWithSlideHorizontalAnimation(
@@ -186,6 +189,5 @@ fun EventhngsNavHost(
                 chatId = chatId
             )
         }
-
     }
 }

@@ -71,6 +71,7 @@ fun ForgotPasswordScreen(
                 value = "",
                 onValueChange = {},
                 placeholder = "Email",
+                label = "",
                 modifier = Modifier
                     .padding(horizontal = 45.dp)
                     .fillMaxWidth()

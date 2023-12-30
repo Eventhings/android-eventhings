@@ -49,7 +49,9 @@ import com.eventhngs.feature_equipment_rental_menu.component.DetailEquipmentHead
 import com.eventhngs.feature_equipment_rental_menu.component.DetailEquipmentInformationSection
 import com.eventhngs.feature_equipment_rental_menu.component.DetailEquipmentPackageSection
 import com.eventhngs.feature_equipment_rental_menu.domain.EquipmentPackage
+import com.eventhngs.feature_equipment_rental_menu.domain.MenuItem
 import com.eventhngs.feature_equipment_rental_menu.mapper.toUi
+import com.eventhngs.ui.R
 import com.eventhngs.ui.component.bottomnavigation.DetailBottomNavigation
 import com.eventhngs.ui.component.event.EventNeedItem
 import com.eventhngs.ui.component.review.ReviewItem
@@ -67,7 +69,8 @@ fun DetailEquipmentScreen(
     modifier: Modifier = Modifier,
     viewModel: DetailEquipmentViewModel = koinViewModel(),
     navigateUp: () -> Unit = {},
-    equipmentId: String = ""
+    equipmentId: String = "",
+    navigateToEquipmentMenuScreen: () -> Unit = {},
 ) {
 
     val context = LocalContext.current
@@ -184,6 +187,12 @@ fun DetailEquipmentScreen(
                 0 -> pagerState.animateScrollToPage(1)
                 1 -> {}
             }
+        }
+    }
+
+    val onMenuClick: (MenuItem) -> Unit = { menu ->
+        when (menu.label) {
+            R.string.label_equipment -> navigateToEquipmentMenuScreen()
         }
     }
 
@@ -305,6 +314,7 @@ fun DetailEquipmentScreen(
             item {
                 TextWithSeeMoreButton(
                     text = "Similar Equipment",
+                    onSeeMoreClick = navigateToEquipmentMenuScreen,
                     modifier = Modifier
                         .padding(horizontal = 20.dp)
                         .fillMaxWidth()
@@ -322,7 +332,8 @@ fun DetailEquipmentScreen(
                                 modifier = Modifier.widthIn(
                                     min = 175.dp,
                                     max = 230.dp
-                                )
+                                ),
+                                onClick = { onMenuClick }
                             )
                         }
                     }

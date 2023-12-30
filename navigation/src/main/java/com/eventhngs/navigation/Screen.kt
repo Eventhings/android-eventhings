@@ -51,4 +51,5 @@ sealed class Screen(val route: String) {
             return "chat-detail/$chatId"
         }
     }
+
 }

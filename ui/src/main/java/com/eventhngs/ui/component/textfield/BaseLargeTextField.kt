@@ -41,6 +41,7 @@ val largeTextFieldStyle @Composable get() = MaterialTheme.typography.bodyMedium.
 fun BaseLargeTextField(
     modifier: Modifier = Modifier,
     value: String,
+    label: String,
     onValueChange: (String) -> Unit,
     placeholder: String = "",
     keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
@@ -82,6 +83,7 @@ fun PreviewBaseLargeTextField() {
             BaseLargeTextField(
                 value = "Search",
                 onValueChange = {},
+                label = "search",
                 modifier = Modifier.padding(16.dp)
             )
         }

@@ -32,7 +32,9 @@ import com.eventhngs.domain.model.EventNeedItem
 import com.eventhngs.domain.model.Resource
 import com.eventhngs.feature_sponsor_menu.component.DetailSponsorHeader
 import com.eventhngs.feature_sponsor_menu.component.DetailSponsorInformationSection
+import com.eventhngs.feature_sponsor_menu.domain.MenuItem
 import com.eventhngs.feature_sponsor_menu.mapper.toUi
+import com.eventhngs.ui.R
 import com.eventhngs.ui.component.bottomnavigation.DetailBottomNavigation
 import com.eventhngs.ui.component.event.EventNeedItem
 import com.eventhngs.ui.component.review.ReviewItem
@@ -49,7 +51,8 @@ fun DetailSponsorScreen(
     modifier: Modifier = Modifier,
     viewModel: DetailSponsorViewModel = koinViewModel(),
     navigateUp: () -> Unit = {},
-    sponsorId: String = ""
+    sponsorId: String = "",
+    navigateToSponsorMenuScreen: () -> Unit = {},
 ) {
 
     val context = LocalContext.current
@@ -88,6 +91,11 @@ fun DetailSponsorScreen(
     }
 
     val onButtonClick: () -> Unit = {}
+    val onMenuClick: (MenuItem) -> Unit = { menu ->
+        when (menu.label) {
+            R.string.label_sponsor -> navigateToSponsorMenuScreen()
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -157,13 +165,14 @@ fun DetailSponsorScreen(
             item {
                 TextWithSeeMoreButton(
                     text = "Similar Sponsor",
+                    onSeeMoreClick = navigateToSponsorMenuScreen,
                     modifier = Modifier
                         .padding(horizontal = 20.dp)
                         .fillMaxWidth()
                 )
             }
-            if (detail is Resource.Success) {
-                item {
+            item {
+                if (detail is Resource.Success) {
                     LazyRow(
                         contentPadding = PaddingValues(16.dp),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -174,7 +183,8 @@ fun DetailSponsorScreen(
                                 modifier = Modifier.widthIn(
                                     min = 175.dp,
                                     max = 230.dp
-                                )
+                                ),
+                                onClick = { onMenuClick }
                             )
                         }
                     }

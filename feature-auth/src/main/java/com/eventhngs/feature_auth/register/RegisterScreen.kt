@@ -129,6 +129,7 @@ fun RegisterScreen(
                 modifier = Modifier.fillMaxWidth(),
                 value = email,
                 onValueChange = viewModel::updateEmail,
+                label = "",
                 placeholder = "Email"
             )
             Spacer(modifier = Modifier.height(20.dp))
