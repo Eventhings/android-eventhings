@@ -25,6 +25,7 @@ import com.eventhngs.feature_create.component.DetailBottomNavigation
 import com.eventhngs.feature_create.component.general.GeneralBasicInformation
 import com.eventhngs.feature_create.component.general.GeneralBusinessProfile
 import com.eventhngs.feature_create.component.general.GeneralSocialMedia
+import com.eventhngs.feature_create.domain.BusinessProfile
 import com.eventhngs.ui.component.tabbar.TabBarCreateBusiness
 import com.eventhngs.ui.component.textfield.BaseLargeTextField
 import com.eventhngs.ui.component.textfield.SmallTextFieldWithLabel
@@ -70,7 +71,20 @@ fun CreatGeneralScreen(
                 GeneralBasicInformation()
             }
             item {
-                GeneralBusinessProfile(eventNeedItem = EventNeedItem() )
+                val detail = BusinessProfile(
+                    value = "",
+                    text = "Business Profile",
+                    label = "Business Name",
+                    wordLimit = "0/42",
+                    placeholder = "Input name here",
+                    name = "",
+                    description = "",
+                    photo = ""
+                )
+                GeneralBusinessProfile(
+                    detail = detail,
+                    eventNeedItem = EventNeedItem()
+                )
             }
             item {
                 BaseLargeTextField(

@@ -20,7 +20,7 @@ import com.eventhngs.ui.theme.poppinsFontFamily
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GeneralBasicInformation(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
 
     Column (modifier = modifier){

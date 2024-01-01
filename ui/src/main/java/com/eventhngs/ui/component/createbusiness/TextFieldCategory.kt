@@ -99,7 +99,7 @@ fun TextFieldCategory(
                 value = gender,
                 onValueChange = {},
                 readOnly = true,
-                shape = RoundedCornerShape(10.dp),
+                shape = RoundedCornerShape(12.dp),
                 placeholder = {
                     if (placeholder.isNotBlank()) {
                         Text(
@@ -118,7 +118,6 @@ fun TextFieldCategory(
                 trailingIcon = {
                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded)
                 },
-                colors = ExposedDropdownMenuDefaults.textFieldColors(),
             )
             ExposedDropdownMenu(
                 expanded = isExpanded,

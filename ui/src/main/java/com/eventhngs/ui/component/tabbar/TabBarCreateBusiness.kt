@@ -35,7 +35,6 @@ fun TabBarCreateBusiness(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
     ) {
         TabRow(
             selectedTabIndex = selectedTabIndex,

@@ -58,6 +58,7 @@ fun FilterBottomSheetHeader(
 fun PreviewFilterBottomSheet() {
     EventhngsTheme {
         Surface {
+            FilterBottomSheetHeader()
         }
     }
 }

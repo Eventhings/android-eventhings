@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.eventhngs.domain.model.EventNeedItem
 import com.eventhngs.domain.model.EventNeedItemType
+import com.eventhngs.feature_create.domain.BusinessProfile
 import com.eventhngs.ui.R
 import com.eventhngs.ui.component.createbusiness.TextFieldBusinessName
 import com.eventhngs.ui.theme.EventhngsTheme
@@ -32,6 +33,7 @@ import com.eventhngs.ui.theme.EventhngsTheme
 @Composable
 fun GeneralBusinessProfile(
     modifier: Modifier = Modifier,
+    detail: BusinessProfile,
     eventNeedItem: EventNeedItem,
 ) {
     val logo = when (eventNeedItem.type) {
@@ -46,7 +48,7 @@ fun GeneralBusinessProfile(
         horizontalAlignment = Alignment.Start
     ) {
         Text(
-            text = "Business Profile",
+            text = detail.text,
             fontWeight = FontWeight.Bold,
         )
         Row (
@@ -70,7 +72,11 @@ fun GeneralBusinessProfile(
                 error = painterResource(id = R.drawable.logo_default_mp),
             )
             TextFieldBusinessName(
-                value = "input name here"
+                value = detail.value,
+                label = detail.label,
+                placeholder = detail.placeholder,
+                wordLimit = detail.wordLimit,
+                onValueChange = {}
             )
         }
 
@@ -85,11 +91,22 @@ fun GeneralBusinessProfilePreview() {
         val eventNeedItem = EventNeedItem(
             logo = "",
         )
+        val detail = BusinessProfile(
+            value = "",
+            text = "Business Profile",
+            label = "Business Name",
+            wordLimit = "0/42",
+            placeholder = "Input name here",
+            name = "",
+            description = "",
+            photo = ""
+        )
         Surface {
             Row(
             ) {
                 GeneralBusinessProfile(
                     eventNeedItem = eventNeedItem,
+                    detail = detail
                 )
             }
         }
