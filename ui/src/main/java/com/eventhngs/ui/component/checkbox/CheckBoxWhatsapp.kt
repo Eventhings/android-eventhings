@@ -33,6 +33,7 @@ import com.eventhngs.ui.theme.poppinsFontFamily
 @Composable
 fun CheckBoxWhatapp(
     modifier: Modifier = Modifier,
+    text: String,
     onClick: () -> Unit = {}
 ) {
 
@@ -59,7 +60,7 @@ fun CheckBoxWhatapp(
         )
         Spacer(modifier = Modifier.width(16.dp))
         androidx.compose.material3.Text(
-            text = "WhatsApp",
+            text = text,
             fontSize = 14.sp,
             lineHeight = 25.sp,
             fontFamily = poppinsFontFamily,
@@ -124,7 +125,9 @@ fun CheckBoxWhatapp(
 @Composable
 fun CheckBoxPreview() {
     EventhngsTheme {
-        CheckBoxWhatapp()
+        CheckBoxWhatapp(
+            text = "WhatsApp"
+        )
     }
 
 }

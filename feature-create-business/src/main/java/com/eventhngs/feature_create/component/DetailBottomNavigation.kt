@@ -34,7 +34,6 @@ fun DetailBottomNavigation(
     modifier: Modifier = Modifier,
     text: String,
     onButtonClick: () -> Unit = {},
-    onShareClick: () -> Unit = {},
     onSaveClick: () -> Unit = {}
 ) {
     Row(
@@ -46,7 +45,7 @@ fun DetailBottomNavigation(
     ) {
         SmallPrimaryButtonWhite(
             text = "Save As Draft",
-            onClick = onButtonClick,
+            onClick = onSaveClick,
             modifier = Modifier.weight(1f)
         )
         SmallPrimaryButton(

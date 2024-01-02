@@ -43,8 +43,7 @@ fun GeneralBusinessProfile(
     }
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(20.dp),
+            .fillMaxSize(),
         horizontalAlignment = Alignment.Start
     ) {
         Text(

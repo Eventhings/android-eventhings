@@ -22,12 +22,12 @@ import com.eventhngs.ui.theme.poppinsFontFamily
 
 @Composable
 fun GeneralSocialMedia(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+
 ) {
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(20.dp),
+            .fillMaxSize(),
         horizontalAlignment = Alignment.Start
     ) {
         Text(
@@ -48,17 +48,16 @@ fun GeneralSocialMedia(
             horizontalArrangement = Arrangement.SpaceBetween,
         ){
             CheckBoxWhatapp(
+                text = "WhatsApp",
                 onClick = {}
             )
             CheckBoxInstagram(
+                text = "Instagram",
                 onClick = {}
             )
 
         }
     }
-
-
-
 }
 
 @Preview

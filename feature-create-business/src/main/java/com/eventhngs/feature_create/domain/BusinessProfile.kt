@@ -10,5 +10,6 @@ data class BusinessProfile(
     val label: String,
     val placeholder: String = "",
     val wordLimit: String,
-    val text: String
+    val text: String,
+    val price: Double = 0.0,
 )

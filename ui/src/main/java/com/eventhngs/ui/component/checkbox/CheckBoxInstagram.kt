@@ -34,6 +34,7 @@ import com.eventhngs.ui.theme.poppinsFontFamily
 @Composable
 fun CheckBoxInstagram(
     modifier: Modifier = Modifier,
+    text: String,
     onClick: () -> Unit = {}
 ) {
 
@@ -60,7 +61,7 @@ fun CheckBoxInstagram(
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
-            text = "WhatsApp",
+            text = text,
             fontSize = 14.sp,
             lineHeight = 25.sp,
             fontFamily = poppinsFontFamily,
@@ -125,7 +126,9 @@ fun CheckBoxInstagram(
 @Composable
 fun CheckBoxInstagramPreview() {
     EventhngsTheme {
-        CheckBoxInstagram()
+        CheckBoxInstagram(
+            text = "Instagram"
+        )
     }
 
 }

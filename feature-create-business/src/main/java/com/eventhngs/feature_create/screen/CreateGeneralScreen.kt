@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -17,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.eventhngs.domain.model.EventNeedItem
@@ -26,6 +28,8 @@ import com.eventhngs.feature_create.component.general.GeneralBasicInformation
 import com.eventhngs.feature_create.component.general.GeneralBusinessProfile
 import com.eventhngs.feature_create.component.general.GeneralSocialMedia
 import com.eventhngs.feature_create.domain.BusinessProfile
+import com.eventhngs.ui.component.createbusiness.TextFieldBusinessName
+import com.eventhngs.ui.component.createbusiness.TextFieldPrice
 import com.eventhngs.ui.component.tabbar.TabBarCreateBusiness
 import com.eventhngs.ui.component.textfield.BaseLargeTextField
 import com.eventhngs.ui.component.textfield.SmallTextFieldWithLabel
@@ -95,7 +99,7 @@ fun CreatGeneralScreen(
                     placeholder = "Input email here",
                 )
             }
-            item { Spacer(modifier = Modifier.height(20.dp)) }
+            item { Spacer(modifier = Modifier.height(8.dp)) }
             item {
                 BaseLargeTextField(
                     modifier = Modifier.fillMaxWidth(),
@@ -105,14 +109,28 @@ fun CreatGeneralScreen(
                     placeholder = "Retype email here",
                 )
             }
-            item { Spacer(modifier = Modifier.height(20.dp)) }
+            item { Spacer(modifier = Modifier.height(8.dp)) }
             item {
-                BaseLargeTextField(
+                GeneralSocialMedia()
+            }
+            item {
+                TextFieldPrice(
+                    onValueChange = {},
+                    value = "+62",
+                    label = "WhatsApp Phone Number",
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    placeholder = "81234567890"
+                )
+            }
+            item { Spacer(modifier = Modifier.height(8.dp)) }
+            item {
+                TextFieldBusinessName(
                     modifier = Modifier.fillMaxWidth(),
-                    value = website ,
+                    value = "https://" ,
                     label = "Website",
                     onValueChange = {},
-                    placeholder = "Https://www.example.com"
+                    placeholder = "www.example.com",
+                    wordLimit = ""
                 )
             }
             item {
